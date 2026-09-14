@@ -1,26 +1,224 @@
 @import "tailwindcss";
 
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+
 :root {
+  /* Colors */
+  --primary: #afeb63;
+  --secondary: #b3482b;
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Fonts */
+  --font-heading: "Times New Roman", Times, serif;
+  --font-body: "Mona Sans", sans-serif;
+
+  /* Container */
+  --container-max: 1800px;
 }
+
+/* ============================================
+   TAILWIND THEME
+   ============================================ */
 
 @theme inline {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================
+   FONT FACE - Mona Sans
+   ============================================ */
+
+@font-face {
+  font-family: "Mona Sans";
+  src: url("https://github.com/github/mona-sans/raw/main/fonts/webfonts/MonaSans-Regular.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mona Sans";
+  src: url("https://github.com/github/mona-sans/raw/main/fonts/webfonts/MonaSans-Medium.woff2")
+    format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mona Sans";
+  src: url("https://github.com/github/mona-sans/raw/main/fonts/webfonts/MonaSans-SemiBold.woff2")
+    format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mona Sans";
+  src: url("https://github.com/github/mona-sans/raw/main/fonts/webfonts/MonaSans-Bold.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   CONTAINER
+   ============================================ */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* ============================================
+   HEADINGS — serif font
+   ============================================ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+/* ---- Desktop / large screens (>1600px) ---- */
+h1 {
+  font-size: 72px;
+}
+h2 {
+  font-size: 56px;
+}
+h3 {
+  font-size: 44px;
+}
+h4 {
+  font-size: 36px;
+}
+h5 {
+  font-size: 28px;
+}
+h6 {
+  font-size: 22px;
+}
+
+/* ---- Mid screens (801px – 1600px) ---- */
+@media (max-width: 1600px) {
+  h1 {
+    font-size: 56px;
+  }
+  h2 {
+    font-size: 44px;
+  }
+  h3 {
+    font-size: 36px;
+  }
+  h4 {
+    font-size: 28px;
+  }
+  h5 {
+    font-size: 24px;
+  }
+  h6 {
+    font-size: 20px;
+  }
+}
+
+/* ---- Mobile / small screens (≤800px) ---- */
+@media (max-width: 800px) {
+  h1 {
+    font-size: 38px;
+  }
+  h2 {
+    font-size: 30px;
+  }
+  h3 {
+    font-size: 26px;
+  }
+  h4 {
+    font-size: 22px;
+  }
+  h5 {
+    font-size: 20px;
+  }
+  h6 {
+    font-size: 18px;
+  }
+}
+
+/* ============================================
+   BODY TEXT — paragraph, list, span
+   Desktop: 20px  |  Mobile (≤800px): 18px
+   ============================================ */
+
+p,
+li,
+span {
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+@media (max-width: 800px) {
+  p,
+  li,
+  span {
+    font-size: 18px;
+  }
+}
+
+/* ============================================
+   LINKS
+   ============================================ */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ============================================
+   IMAGES
+   ============================================ */
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
