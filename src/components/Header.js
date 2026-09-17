@@ -198,17 +198,19 @@ function BrandLogo({ onClick }) {
     <Link
       href="/"
       onClick={onClick}
-      className="inline-flex items-center transition-opacity hover:opacity-90 py-1"
+      className="inline-flex items-center transition-opacity hover:opacity-90 py-1 shrink-0"
       aria-label="Nirvaana Hills Home"
     >
-      <Image
-        src="/logo.avif"
-        alt="Nirvaana Hills"
-        width={172}
-        height={28}
-        priority
-        className="h-[26px] lg:h-[30px] w-auto object-contain"
-      />
+      <div className="relative w-[145px] sm:w-[165px] lg:w-[180px] h-[24px] sm:h-[26px] lg:h-[28px] max-w-[180px] max-h-[28px] shrink-0">
+        <Image
+          src="/logo.avif"
+          alt="Nirvaana Hills"
+          fill
+          priority
+          sizes="(max-width: 1024px) 165px, 180px"
+          className="object-contain object-left !w-full !h-full"
+        />
+      </div>
     </Link>
   );
 }
