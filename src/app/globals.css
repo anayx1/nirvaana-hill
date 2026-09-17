@@ -12,7 +12,7 @@
   --foreground: #171717;
 
   /* Fonts */
-  --font-heading: "Times New Roman", Times, serif;
+  --font-heading: "Times Sans Serif", "Times Sans", "Times New Roman", Times, serif;
   --font-body: "Mona Sans", sans-serif;
 
   /* Container */
@@ -28,6 +28,30 @@
   --color-secondary: var(--secondary);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --font-serif: var(--font-heading);
+  --font-heading: var(--font-heading);
+  --font-sans: var(--font-body);
+  --font-body: var(--font-body);
+}
+
+/* ============================================
+   FONT FACE - Times Sans Serif
+   ============================================ */
+
+@font-face {
+  font-family: "Times Sans Serif";
+  src: url("/fonts/times_sans_serif/TIMESS__.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Times Sans Serif";
+  src: url("/fonts/times_sans_serif/TIMESS__.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* ============================================
@@ -36,8 +60,7 @@
 
 @font-face {
   font-family: "Mona Sans";
-  src: url("https://github.com/github/mona-sans/raw/main/fonts/webfonts/MonaSans-Regular.woff2")
-    format("woff2");
+  src: url("https://github.com/github/mona-sans/raw/main/fonts/webfonts/MonaSans-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -45,8 +68,7 @@
 
 @font-face {
   font-family: "Mona Sans";
-  src: url("https://github.com/github/mona-sans/raw/main/fonts/webfonts/MonaSans-Medium.woff2")
-    format("woff2");
+  src: url("https://github.com/github/mona-sans/raw/main/fonts/webfonts/MonaSans-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -54,8 +76,7 @@
 
 @font-face {
   font-family: "Mona Sans";
-  src: url("https://github.com/github/mona-sans/raw/main/fonts/webfonts/MonaSans-SemiBold.woff2")
-    format("woff2");
+  src: url("https://github.com/github/mona-sans/raw/main/fonts/webfonts/MonaSans-SemiBold.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -63,31 +84,127 @@
 
 @font-face {
   font-family: "Mona Sans";
-  src: url("https://github.com/github/mona-sans/raw/main/fonts/webfonts/MonaSans-Bold.woff2")
-    format("woff2");
+  src: url("https://github.com/github/mona-sans/raw/main/fonts/webfonts/MonaSans-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 /* ============================================
-   RESET & BASE
+   RESET & BASE (inside @layer base)
    ============================================ */
 
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-body);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* HEADINGS — serif font */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.15;
+  }
+
+  /* Desktop / large screens (>1600px) */
+  h1 {
+    font-size: 72px;
+  }
+  h2 {
+    font-size: 56px;
+  }
+  h3 {
+    font-size: 44px;
+  }
+  h4 {
+    font-size: 36px;
+  }
+  h5 {
+    font-size: 28px;
+  }
+  h6 {
+    font-size: 22px;
+  }
+
+  /* Mid screens (801px – 1600px) */
+  @media (max-width: 1600px) {
+    h1 {
+      font-size: 56px;
+    }
+    h2 {
+      font-size: 44px;
+    }
+    h3 {
+      font-size: 36px;
+    }
+    h4 {
+      font-size: 28px;
+    }
+    h5 {
+      font-size: 24px;
+    }
+    h6 {
+      font-size: 20px;
+    }
+  }
+
+  /* Mobile / small screens (≤800px) */
+  @media (max-width: 800px) {
+    h1 {
+      font-size: 38px;
+    }
+    h2 {
+      font-size: 30px;
+    }
+    h3 {
+      font-size: 26px;
+    }
+    h4 {
+      font-size: 22px;
+    }
+    h5 {
+      font-size: 20px;
+    }
+    h6 {
+      font-size: 18px;
+    }
+  }
+
+  /* BODY TEXT — paragraph, list, span */
+  p,
+  li,
+  span {
+    font-family: var(--font-body);
+    font-size: 20px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 800px) {
+    p,
+    li,
+    span {
+      font-size: 18px;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
 }
 
 /* ============================================
@@ -99,117 +216,31 @@ body {
   max-width: var(--container-max);
   margin-left: auto;
   margin-right: auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: clamp(1.5rem, 4vw, 5rem);
+  padding-right: clamp(1.5rem, 4vw, 5rem);
 }
 
 /* ============================================
-   HEADINGS — serif font
+   NAVIGATION MENU LINK UTILITIES
    ============================================ */
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  line-height: 1.15;
+.nav-menu-link {
+  color: #1F2922;
+  transition: color 0.15s ease-in-out;
+  cursor: pointer;
 }
 
-/* ---- Desktop / large screens (>1600px) ---- */
-h1 {
-  font-size: 72px;
-}
-h2 {
-  font-size: 56px;
-}
-h3 {
-  font-size: 44px;
-}
-h4 {
-  font-size: 36px;
-}
-h5 {
-  font-size: 28px;
-}
-h6 {
-  font-size: 22px;
+.nav-menu-link:hover {
+  color: var(--primary) !important;
 }
 
-/* ---- Mid screens (801px – 1600px) ---- */
-@media (max-width: 1600px) {
-  h1 {
-    font-size: 56px;
-  }
-  h2 {
-    font-size: 44px;
-  }
-  h3 {
-    font-size: 36px;
-  }
-  h4 {
-    font-size: 28px;
-  }
-  h5 {
-    font-size: 24px;
-  }
-  h6 {
-    font-size: 20px;
-  }
+.nav-menu-link.active {
+  color: var(--secondary) !important;
+  font-weight: 500;
 }
 
-/* ---- Mobile / small screens (≤800px) ---- */
-@media (max-width: 800px) {
-  h1 {
-    font-size: 38px;
-  }
-  h2 {
-    font-size: 30px;
-  }
-  h3 {
-    font-size: 26px;
-  }
-  h4 {
-    font-size: 22px;
-  }
-  h5 {
-    font-size: 20px;
-  }
-  h6 {
-    font-size: 18px;
-  }
-}
-
-/* ============================================
-   BODY TEXT — paragraph, list, span
-   Desktop: 20px  |  Mobile (≤800px): 18px
-   ============================================ */
-
-p,
-li,
-span {
-  font-family: var(--font-body);
-  font-size: 20px;
-  line-height: 1.6;
-}
-
-@media (max-width: 800px) {
-  p,
-  li,
-  span {
-    font-size: 18px;
-  }
-}
-
-/* ============================================
-   LINKS
-   ============================================ */
-
-a {
-  color: inherit;
-  text-decoration: none;
+.nav-menu-link.active:hover {
+  color: var(--primary) !important;
 }
 
 /* ============================================
@@ -221,4 +252,29 @@ video {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+/* ============================================
+   MARQUEE ANIMATION
+   ============================================ */
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }

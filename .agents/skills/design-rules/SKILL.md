@@ -60,7 +60,7 @@ Heading and body text sizes are defined globally in `globals.css` with responsiv
 
 Avoid inline CSS font sizing (e.g. `style={{ fontSize: '18px' }}`). Always rely on the globally defined typography rules, Tailwind utility classes, or CSS custom properties.
 
-### 3.4 Responsive Breakpoints
+### 3.4 Responsive Breakpoints & Mobile-First Tailwind Rules
 
 The project uses two key breakpoints:
 
@@ -73,15 +73,54 @@ The project uses two key breakpoints:
 - **Mobile-first approach**: Design and code for mobile first, then enhance for larger screens.
 - The user provides **mobile screenshots** as the design source of truth. Scale up for desktop while maintaining the same UX flow and visual hierarchy.
 
+#### Tailwind CSS Responsive Class Rules (CRITICAL)
+
+- **Default (Unprefixed) = Mobile**: In Tailwind CSS, unprefixed utility classes apply to mobile by default.
+- **DO NOT use `sm:` for mobile styles**: `sm:` applies to screens `≥ 640px` (not mobile). Using `sm:` for mobile styling causes values to invert or fail.
+- **Pattern**: Specify the mobile style unprefixed, then add breakpoint prefixes (e.g., `md:`, `lg:`) for larger screens.
+
+**Example (20px text on mobile, 24px text on desktop):**
+- ✅ **CORRECT**: `text-[20px] md:text-[24px]` *(Default mobile gets 20px, desktop/md gets 24px)*
+- ❌ **INCORRECT**: `sm:text-[20px] text-[24px]` *(Applies 24px to mobile and 20px to sm+, completely reversing the intended layout)*
+
 ### 3.5 Container
 
 - Main container max-width is capped at **1800px** using the `.container` class.
 - On screens wider than 1800px, display blank side margins and keep all page content centered (`margin: 0 auto`).
 - Always wrap page-level content in a `.container` div.
 
-## 4. Performance & Animation
+## 4. Mobile-to-Desktop Conversion Rules (CRITICAL FOR LUXURY AESTHETICS)
 
-### 4.1 Framer Motion
+The user provides **mobile screenshots** as the source of truth for content, typography, and visual assets. **Do NOT simply stretch mobile single-column stacks across desktop screens.** You must elevate the mobile concept into a refined, high-end desktop editorial experience.
+
+### 4.1 Layout Archetypes for Desktop (`lg:` / `xl:`)
+
+When converting a mobile screen to desktop, identify the section archetype and apply the corresponding desktop pattern:
+
+| Section Type | Mobile Layout | Desktop Layout (`lg:` ≥ 1024px) |
+| :--- | :--- | :--- |
+| **Hero / Headline + Media** | Stacked vertically | **2-Column Split Grid** (`grid lg:grid-cols-2 items-center gap-12 xl:gap-20`) — Text on one side, visual media on the other. |
+| **Intro / Narrative + Image** | Stacked (Text → Image → Text → CTA) | **Asymmetric 2-Column Split** OR **Editorial Centered Column** (`max-w-[1100px] mx-auto`) with balanced margins, never stretched edge-to-edge. |
+| **Feature / Amenity Cards** | 1-Column vertical scroll | **2, 3, or 4-Column Grid** (`grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 xl:gap-8`). |
+| **Stats / Highlights** | Stacked vertical rows | **Horizontal Multi-Column Bar / Grid** (`grid grid-cols-2 lg:grid-cols-4 gap-8`). |
+| **Forms / Enquiries** | Full-width single column | **Split Layout** (`lg:grid-cols-12` — Left 5 cols context/imagery, Right 7 cols form container). |
+
+### 4.2 Desktop Spacing, White Space & Rhythm
+
+- **Generous Vertical Breathing Room**: Desktop sections require substantial vertical padding (`py-16 md:py-24 lg:py-32 xl:py-36`). Never cram desktop sections into tight spaces.
+- **Constrain Text Line Lengths**: Never allow paragraphs to stretch across full desktop width. Always cap text blocks at `max-w-[540px]` to `max-w-[680px]` (`max-w-xl` / `max-w-2xl` / `max-w-prose`) to maintain optimal typographic readability.
+- **Intelligent Grid Gaps**: Use progressive gaps between columns: `gap-6 md:gap-10 lg:gap-16 xl:gap-24`.
+- **Media Proportions on Desktop**: Prevent landscape images and videos from taking up 100% viewport height on desktop. Use balanced aspect ratios (`aspect-[16/10]`, `aspect-[16/9]`, `aspect-[4/3]`) and constrain with max-height/aspect-ratio containers.
+
+### 4.3 Interactive Elements & Buttons on Desktop
+
+- **Button Widths**: Action buttons must never stretch full-width on desktop. Use `w-fit` or `inline-flex` with luxury padding (`px-7 py-3.5` to `px-8 py-4`).
+- **CTA Groups**: Align CTA buttons horizontally on desktop (`flex flex-row items-center gap-6 lg:gap-8`).
+- **Micro-Interactions**: Implement subtle desktop hover animations (e.g. `hover:brightness-95`, `transition-transform duration-300 hover:scale-[1.02]`, smooth underline accents).
+
+## 5. Performance & Animation
+
+### 5.1 Framer Motion
 
 - Use `framer-motion` for all animations and transitions.
 - Write clean, performance-first animation code.
@@ -89,18 +128,18 @@ The project uses two key breakpoints:
 - Prevent unnecessary re-renders in animation-heavy layouts.
 - Import motion components only in `'use client'` components — never in Server Components.
 
-### 4.2 Images
+### 5.2 Images
 
 - **NEVER generate images using AI tools.** If an image or asset is needed, STOP and ask the user. The user will upload or add the image to the `public/` folder manually.
 - **Do NOT compress, crop, resize, or transform** any image in the `public/` folder. All assets there are pre-compressed and optimised — use them exactly as-is.
 - Always use `next/image` (`import Image from "next/image"`) instead of raw `<img>` tags for automatic image optimization, layout shift prevention, and fast loading.
 - Provide explicit `width` and `height` or use the `fill` prop with a sized container.
 
-### 4.3 Icons
+### 5.3 Icons
 
 - Use `lucide-react` for clean, lightweight, accessible icons (install when first needed).
 
-## 5. File & Folder Conventions
+## 6. File & Folder Conventions
 
 ```
 src/
@@ -118,7 +157,7 @@ src/
 - **Client Components** must have `'use client'` at the top.
 - **Group related components** in subdirectories when a section grows beyond 2–3 files.
 
-## 6. Code Quality Checklist
+## 7. Code Quality Checklist
 
 Before completing any task, verify:
 
@@ -127,7 +166,11 @@ Before completing any task, verify:
 - [ ] All colors use design tokens, not hardcoded hex values
 - [ ] All headings use `h1`–`h6` tags (not styled `div`/`span`)
 - [ ] Page content is wrapped in `.container`
-- [ ] Images use `next/image`
+- [ ] Images use `next/image` with properly sized and aspect-ratio constrained containers
 - [ ] Animations use `framer-motion` in client components only
+- [ ] Mobile designs are intelligently converted into balanced, luxury desktop multi-column/grid layouts (never stretched single-column stacks)
+- [ ] Text line-lengths on desktop are constrained (`max-w-xl` / `max-w-2xl` / `max-w-prose`) for readability
+- [ ] Section vertical rhythm is generous on desktop (`py-16 md:py-24 lg:py-32 xl:py-36`)
 - [ ] Responsive design works at ≤ 800px, 801–1600px, and > 1600px
+- [ ] Tailwind responsive classes are mobile-first (unprefixed for mobile, `md:`/`lg:` for desktop — never use `sm:` for mobile styling)
 - [ ] No dummy/placeholder content unless explicitly instructed
