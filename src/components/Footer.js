@@ -14,14 +14,14 @@ import SiteVisitSection from "@/components/sections/SiteVisitSection";
 
 export const QUICK_LINKS = [
     { label: "HOME", href: "/" },
-    { label: "ABOUT NIRVAANA", href: "#about-nirvaana-hills" },
-    { label: "LOCATION", href: "#location" },
-    { label: "GALLERY & LIFE AT NIRVAANA", href: "#gallery" },
-    { label: "ABOUT SEAD", href: "#about-sead" },
-    { label: "FAQS", href: "#faqs" },
-    { label: "BLOGS", href: "#blogs" },
+    { label: "ABOUT NIRVAANA", href: "/nirvaana-hills" },
+    { label: "LOCATION", href: "/locations" },
+    { label: "GALLERY & LIFE AT NIRVAANA", href: "/gallery" },
+    { label: "ABOUT SEAD", href: "/about-seed" },
+    { label: "FAQS", href: "/#faqs" },
+    { label: "BLOGS", href: "/blogs" },
     { label: "CONTACT US", href: "/contact-us" },
-    { label: "CAREERS", href: "#careers" },
+    { label: "CAREERS", href: "/career" },
 ];
 
 export const LOCATION_INFO = [
@@ -91,7 +91,7 @@ export const SOCIAL_LINKS = [
     {
         id: "instagram",
         label: "Instagram",
-        href: "https://instagram.com",
+        href: "https://www.instagram.com/nirvaanahills/?hl=en",
         icon: (
             <svg
                 width="18"
@@ -111,8 +111,8 @@ export const SOCIAL_LINKS = [
     },
     {
         id: "facebook",
-        label: "Facebook",
-        href: "https://facebook.com",
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/company/sead-realty/posts/?feedView=all",
         icon: (
             <svg
                 width="18"
@@ -151,7 +151,7 @@ export const SOCIAL_LINKS = [
     {
         id: "youtube",
         label: "YouTube",
-        href: "https://youtube.com",
+        href: "https://www.youtube.com/@NirvaanaHills",
         icon: (
             <svg
                 width="18"

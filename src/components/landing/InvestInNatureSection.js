@@ -98,7 +98,7 @@ export default function InvestInNatureSection() {
           <div className="flex flex-col items-center gap-6 pt-8 sm:pt-10">
             {/* Primary Button */}
             <Link
-              href="#explore"
+              href="#landing-pricing"
               className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-medium text-[15px] sm:text-[16px] px-8 sm:px-10 py-3.5 sm:py-4 rounded-full transition-all duration-300 inline-flex items-center justify-center shadow-xs active:scale-95"
             >
               Explore Phase 2

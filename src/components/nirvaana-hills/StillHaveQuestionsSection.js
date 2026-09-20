@@ -47,7 +47,7 @@ export default function StillHaveQuestionsSection() {
           {/* CTA Button */}
           <div className="pt-2 sm:pt-4">
             <Link
-              href="/faqs"
+              href="/#faqs"
               className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-medium text-[15px] sm:text-[16px] px-8 sm:px-9 py-3.5 sm:py-4 rounded-full transition-all duration-300 shadow-xs inline-flex items-center justify-center active:scale-95"
             >
               Explore All FAQs

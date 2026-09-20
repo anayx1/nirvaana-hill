@@ -16,47 +16,47 @@ export const TOP_NAV_ITEMS = [
   {
     id: "about-nirvaana-hills",
     label: "About Nirvaana Hills",
-    href: "#about-nirvaana-hills",
+    href: "/nirvaana-hills",
     isItalic: true,
   },
-  { id: "nirvaana-hills", label: "NIRVAANA HILLS", href: "#nirvaana-hills" },
+  { id: "nirvaana-hills", label: "NIRVAANA HILLS", href: "/nirvaana-hills" },
   {
     id: "different",
     label: "WHAT MAKES NIRVAANA HILLS DIFFERENT",
-    href: "#different",
+    href: "/nirvaana-hills#different",
   },
   {
     id: "features",
     label: "FEATURES & AMENITIES",
-    href: "#features-amenities",
+    href: "/landing#forest-living-amenities",
   },
-  { id: "meaning", label: "THE MEANING OF NIRVAANA", href: "#meaning" },
-  { id: "phases", label: "PHASES OF NIRVAANA HILLS", href: "#phases" },
-  { id: "master-plan", label: "MASTER PLAN", href: "#master-plan" },
-  { id: "price", label: "PRICE", href: "#price" },
+  { id: "meaning", label: "THE MEANING OF NIRVAANA", href: "/nirvaana-hills#meaning" },
+  { id: "phases", label: "PHASES OF NIRVAANA HILLS", href: "/nirvaana-hills#phases" },
+  { id: "master-plan", label: "MASTER PLAN", href: "/nirvaana-hills#master-plan" },
+  { id: "price", label: "PRICE", href: "/landing#landing-pricing" },
   {
     id: "roi",
     label: "ROI & FOREST DIVIDEND INSIGHT",
-    href: "#roi-forest-dividend",
+    href: "/nirvaana-hills#roi",
   },
   {
     id: "gallery",
     label: "GALLERY & LIFE AT NIRVAANA",
-    href: "#gallery",
+    href: "/gallery",
   },
-  { id: "location", label: "LOCATION", href: "#location" },
-  { id: "about-sead", label: "ABOUT SEAD", href: "#about-sead" },
+  { id: "location", label: "LOCATION", href: "/locations" },
+  { id: "about-sead", label: "ABOUT SEAD", href: "/about-seed" },
 ];
 
 export const INSIGHTS_ITEMS = [
-  { id: "blogs", label: "BLOGS", href: "#blogs" },
-  { id: "faqs", label: "FAQS", href: "#faqs" },
+  { id: "blogs", label: "BLOGS", href: "/blogs" },
+  { id: "faqs", label: "FAQS", href: "/#faqs" },
 ];
 
 export const CONTACT_ITEMS = [
-  { id: "enquiry", label: "ENQUIRY FORM", href: "#enquiry" },
-  { id: "channel-partner", label: "CHANNEL PARTNER", href: "#channel-partner" },
-  { id: "careers", label: "CAREERS", href: "#careers" },
+  { id: "enquiry", label: "ENQUIRY FORM", href: "/contact-us" },
+  { id: "channel-partner", label: "CHANNEL PARTNER", href: "/contact-us" },
+  { id: "careers", label: "CAREERS", href: "/career" },
 ];
 
 // Full list maintained for backwards compatibility
@@ -73,7 +73,7 @@ export const MENU_ITEMS = [
   {
     id: "contact-us",
     label: "Contact Us",
-    href: "#contact-us",
+    href: "/contact-us",
     isItalic: true,
     isSubheading: true,
   },
@@ -84,7 +84,7 @@ export const SOCIAL_LINKS = [
   {
     id: "instagram",
     label: "Instagram",
-    href: "https://instagram.com",
+    href: "https://www.instagram.com/nirvaanahills/?hl=en",
     icon: (
       <svg
         width="20"
@@ -104,8 +104,8 @@ export const SOCIAL_LINKS = [
   },
   {
     id: "facebook",
-    label: "Facebook",
-    href: "https://facebook.com",
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/sead-realty/posts/?feedView=all",
     icon: (
       <svg
         width="20"
@@ -144,7 +144,7 @@ export const SOCIAL_LINKS = [
   {
     id: "youtube",
     label: "YouTube",
-    href: "https://youtube.com",
+    href: "https://www.youtube.com/@NirvaanaHills",
     icon: (
       <svg
         width="20"
@@ -178,13 +178,13 @@ export const CTA_ACTIONS = [
   {
     id: "book-visit",
     label: "Book A Site Visit",
-    href: "#book-visit",
+    href: "/contact-us",
     type: "button",
   },
   {
     id: "brochure",
     label: "Download Brochure",
-    href: "#brochure",
+    href: "/#brochure",
     type: "link-with-accent",
   },
 ];
@@ -503,7 +503,7 @@ export default function Header() {
                   {/* Action CTAs for Desktop */}
                   <div className="flex flex-col gap-4 pt-4">
                     <Link
-                      href="#book-visit"
+                      href="/contact-us"
                       onClick={closeMenu}
                       className="inline-flex items-center justify-center bg-primary text-[#19241B] font-medium text-[15px] xl:text-[17px] px-6 py-3 rounded-xl hover:brightness-95 transition-all shadow-sm active:scale-[0.98] w-fit"
                     >
@@ -512,7 +512,7 @@ export default function Header() {
 
                     <div className="flex flex-col items-start pt-1">
                       <Link
-                        href="#brochure"
+                        href="/#brochure"
                         onClick={closeMenu}
                         className="nav-menu-link inline-flex items-center gap-1.5 text-[16px] xl:text-[18px] font-normal"
                       >
@@ -648,7 +648,7 @@ export default function Header() {
                 {/* 3. Bottom Action CTAs (Book A Site Visit & Download Brochure) */}
                 <div className="flex flex-wrap items-center gap-5 md:gap-8 pt-8 md:pt-10 pb-4">
                   <Link
-                    href="#book-visit"
+                    href="/contact-us"
                     onClick={closeMenu}
                     className="inline-flex items-center justify-center bg-primary text-[#19241B] font-medium text-[15px] md:text-[17px] px-6 py-3 md:px-7 md:py-3.5 rounded-xl hover:brightness-95 transition-all shadow-sm active:scale-[0.98]"
                   >
@@ -657,7 +657,7 @@ export default function Header() {
 
                   <div className="flex flex-col items-start">
                     <Link
-                      href="#brochure"
+                      href="/#brochure"
                       onClick={closeMenu}
                       className="nav-menu-link inline-flex items-center gap-1.5 text-[16px] md:text-[18px] font-normal"
                     >

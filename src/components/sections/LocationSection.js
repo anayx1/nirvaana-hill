@@ -2,13 +2,10 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 export default function LocationSection() {
-  const handleExploreLocation = (e) => {
-    e.preventDefault();
-    console.log("Explore Location clicked");
-  };
 
   return (
     <section
@@ -97,16 +94,15 @@ export default function LocationSection() {
 
           {/* CTA Row (Explore Button + WhatsApp Icon Button) */}
           <div className="flex items-center justify-between gap-4 pt-1">
-            <button
-              type="button"
-              onClick={handleExploreLocation}
+            <Link
+              href="/locations"
               className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl bg-[#AFEB63] hover:bg-[#A3E553] text-[#1F2922] font-sans font-medium shadow-sm hover:shadow transition-all duration-200 active:scale-95 cursor-pointer"
             >
               Explore The Location
-            </button>
+            </Link>
 
             <a
-              href="https://wa.me/"
+              href="https://wa.me/919589585050"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Contact on WhatsApp"
@@ -187,14 +183,12 @@ export default function LocationSection() {
 
             {/* CTA Row */}
             <div className="flex items-center gap-4 pt-2">
-              <button
-                type="button"
-                onClick={handleExploreLocation}
+              <Link
+                href="/locations"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-[#AFEB63] hover:bg-[#A3E553] text-[#1F2922] font-sans font-medium shadow-sm hover:shadow-md transition-all duration-200 hover:scale-[1.02] active:scale-98 cursor-pointer"
               >
                 Explore The Location
-              </button>
-
+              </Link>
             </div>
           </motion.div>
 
