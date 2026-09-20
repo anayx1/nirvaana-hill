@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import React from "react";
+import { motion } from "framer-motion";
+import ExperienceSlideCard from "@/components/common/ExperienceSlideCard";
 
 // ========================================================
 // 5 MAIN SLIDE CARDS (Each contains an internal carousel)
@@ -216,116 +215,6 @@ export const SLIDE_CARDS = [
 ];
 
 // ========================================================
-// INDIVIDUAL SLIDE CARD WITH INTERNAL CAROUSEL
-// ========================================================
-function ExperienceSlideCard({ slide }) {
-  const [currentIndex, setCurrentIndex] = useState(slide.initialIndex ?? 0);
-  const [direction, setDirection] = useState(1);
-  const total = slide.items.length;
-
-  const handlePrev = (e) => {
-    e.stopPropagation();
-    setDirection(-1);
-    setCurrentIndex((prev) => (prev === 0 ? total - 1 : prev - 1));
-  };
-
-  const handleNext = (e) => {
-    e.stopPropagation();
-    setDirection(1);
-    setCurrentIndex((prev) => (prev === total - 1 ? 0 : prev + 1));
-  };
-
-  const currentItem = slide.items[currentIndex];
-
-  return (
-    <div className="relative w-full aspect-[4/3.2] sm:aspect-[4/3] rounded-2xl md:rounded-3xl overflow-hidden shadow-sm isolate group bg-[#1F2518] select-none">
-      {/* Background Image Carousel with Cross-fade */}
-      <AnimatePresence initial={false} mode="wait">
-        <motion.div
-          key={currentItem.id}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.35, ease: "easeInOut" }}
-          className="absolute inset-0"
-        >
-          <Image
-            src={currentItem.image}
-            alt={currentItem.title}
-            fill
-            unoptimized
-            priority={slide.id === "slide-1"}
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-          />
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Subtle Natural Dark Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
-
-      {/* Left Navigation Arrow */}
-      <button
-        type="button"
-        onClick={handlePrev}
-        aria-label={`Previous ${slide.theme} item`}
-        className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-black/45 hover:bg-black/70 text-white flex items-center justify-center backdrop-blur-xs transition-all z-20 active:scale-90"
-      >
-        <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
-      </button>
-
-      {/* Right Navigation Arrow */}
-      <button
-        type="button"
-        onClick={handleNext}
-        aria-label={`Next ${slide.theme} item`}
-        className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-black/45 hover:bg-black/70 text-white flex items-center justify-center backdrop-blur-xs transition-all z-20 active:scale-90"
-      >
-        <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
-      </button>
-
-      {/* Card Content (Bottom-Left) */}
-      <div className="absolute bottom-4 sm:bottom-5 md:bottom-6 left-4 sm:left-5 md:left-6 right-16 z-10 text-white">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentItem.id}
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.25 }}
-          >
-            <h3 className="font-serif !font-normal text-white text-[20px] sm:text-[22px] md:text-[24px] lg:text-[26px] leading-tight mb-1">
-              {currentItem.title}
-            </h3>
-            <p className="font-sans text-[12px] sm:text-[13px] md:text-[14px] text-white/90 font-normal">
-              {currentItem.category}
-            </p>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      {/* Dot Indicators (Bottom-Right) */}
-      <div className="absolute bottom-4 sm:bottom-5 md:bottom-6 right-4 sm:right-5 md:right-6 z-10 flex items-center gap-1.5">
-        {slide.items.map((item, idx) => (
-          <button
-            key={item.id}
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              setCurrentIndex(idx);
-            }}
-            aria-label={`Go to ${item.title}`}
-            className={`transition-all duration-300 rounded-full ${idx === currentIndex
-              ? "w-4 h-1.5 bg-[#AFEB63]"
-              : "w-1.5 h-1.5 bg-white/50 hover:bg-white/80"
-              }`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-// ========================================================
 // SECTION CONTAINER
 // ========================================================
 export default function ExperiencesSection() {
@@ -380,14 +269,17 @@ export default function ExperiencesSection() {
           </p>
         </motion.div>
 
-        {/* 5 Slide Cards Grid (Responsive 1-col on mobile, 2-col on tablet/desktop, 3-col on large) */}
+        {/* 5 Slide Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7 lg:gap-8">
-          {SLIDE_CARDS.map((slide) => (
-            <ExperienceSlideCard key={slide.id} slide={slide} />
+          {SLIDE_CARDS.map((slide, idx) => (
+            <ExperienceSlideCard
+              key={slide.id}
+              slide={slide}
+              priority={idx === 0}
+            />
           ))}
         </div>
       </div>
     </section>
   );
 }
-

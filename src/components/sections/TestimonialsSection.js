@@ -44,33 +44,33 @@ export const STORY_TESTIMONIALS = [
 export const WRITTEN_TESTIMONIALS = [
   {
     id: "review-1",
-    text: '"Away from Hustle bustle of fast paced city daily life, coming here at foot hill location was a real welcome break... a must have Farm option at this place where one chill, rejuvenate and get ready for next challenge of life.."',
-    author: "Asheesh and Vijender",
-    organization: "VALUE DEALS",
+    text: '"The vision behind Nirvaana Hills is both ambitious and grounded in careful planning. Its focus on a nature-led lifestyle creates a differentiated opportunity for clients exploring premium land ownership."',
+    author: "Param Malhotra",
+    organization: "CAPITAL KEY PARTNERS",
   },
   {
     id: "review-2",
+    text: '"Nirvaana Hills by Sead Reality is very good farm Land community. The location and approach is very excellent. Very Good option for the weekend gateway home."',
+    author: "",
+    organization: "TULIP PRIME PROP",
+  },
+  {
+    id: "review-3",
     text: '"What stands out about Nirvaana Hills is the team\'s commitment to clarity, responsiveness and long-term relationships. It is a distinctive proposition for clients seeking land, nature and a more considered lifestyle."',
     author: "Dinesh Chaudhary",
     organization: "GOOD ONE PROPERTIES",
   },
   {
-    id: "review-3",
-    text: '"Visiting Nirvaana Hills was a revelation. The air quality, the views of the Aravalli hills, and the hospitality of the SEAD team made our decision immediate and effortless."',
-    author: "Dr. Alok & Meenakshi Sen",
-    organization: "FARM OWNER",
-  },
-  {
     id: "review-4",
-    text: '"For anyone living in Delhi NCR looking for a genuine second home that generates managed returns while appreciating in value, there is simply no comparison."',
-    author: "Kavita Narang",
-    organization: "COMMUNITY INVESTOR",
+    text: '"Our experience with Nirvaana Hills has been excellent. The project is thoughtfully planned, and the location has great potential. Working with Mr. Puneet Ji and Mr. Kashish Ji has been a pleasure—they have been professional, supportive, and transparent throughout the process."',
+    author: "Mr.Kaif Khan",
+    organization: "SCALE UP REALTY",
   },
   {
     id: "review-5",
-    text: '"The eco kids zone, organic farming patches, and clubhouse make it a complete ecosystem for multigenerational families. Truly thoughtful planning."',
-    author: "Sanjay Singhal",
-    organization: "RESIDENT MEMBER",
+    text: '"Away from Hustle bustle of fast paced city daily life, coming here at foot hill location was a real welcome break... a must have Farm option at this place where one chill, rejuvenate and get ready for next challenge of life.."',
+    author: "Asheesh and Vijender",
+    organization: "VALUE DEALS",
   },
 ];
 
@@ -325,27 +325,29 @@ export default function TestimonialsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-6 flex flex-col space-y-6"
+            className="lg:col-span-6 flex flex-col items-center w-full"
           >
-            <div className="relative rounded-3xl bg-[#EBE9D9] p-6 sm:p-8 md:p-9 shadow-sm border border-black/5 min-h-[220px] flex flex-col justify-between">
+            <div className="w-full relative rounded-[22px] sm:rounded-[26px] bg-[#E5E8D8] p-6 sm:p-8 md:p-9 shadow-xs min-h-[260px] sm:min-h-[250px] flex flex-col justify-between">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentReview.id}
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.35 }}
-                  className="flex flex-col space-y-4"
+                  transition={{ duration: 0.3 }}
+                  className="flex flex-col justify-between h-full space-y-6"
                 >
-                  <p className="text-[#2F3A2B] leading-relaxed">
+                  <p className="font-sans text-[#3A4032] text-[15px] sm:text-[16px] md:text-[17px] font-normal leading-[1.65] sm:leading-[1.7]">
                     {currentReview.text}
                   </p>
 
                   <div className="pt-2">
-                    <h4 className="font-serif !font-normal text-[#1F2922] text-[18px] sm:text-[20px] leading-tight">
-                      {currentReview.author}
-                    </h4>
-                    <span className="text-[12px] font-semibold text-[#667253] tracking-[0.12em] uppercase block mt-0.5">
+                    {currentReview.author ? (
+                      <h4 className="font-sans font-medium text-[#23281E] text-[15px] sm:text-[16px] leading-tight mb-1">
+                        {currentReview.author}
+                      </h4>
+                    ) : null}
+                    <span className="font-sans text-[12px] sm:text-[13px] font-medium text-[#707862] tracking-[0.06em] uppercase block">
                       {currentReview.organization}
                     </span>
                   </div>
@@ -354,17 +356,17 @@ export default function TestimonialsSection() {
             </div>
 
             {/* Pagination Dots */}
-            <div className="flex items-center justify-center gap-2 pt-1">
+            <div className="flex items-center justify-center gap-2.5 pt-6">
               {WRITTEN_TESTIMONIALS.map((_, idx) => (
                 <button
                   key={idx}
                   type="button"
                   onClick={() => setActiveReviewIndex(idx)}
                   aria-label={`Go to testimonial ${idx + 1}`}
-                  className={`transition-all duration-300 rounded-full cursor-pointer ${
+                  className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
                     idx === activeReviewIndex
-                      ? "w-4 h-2 bg-[#AFEB63]"
-                      : "w-2 h-2 bg-[#D1CFBF] hover:bg-[#B5B3A1]"
+                      ? "bg-[#9EE837] scale-110"
+                      : "bg-[#D5E4BC] hover:bg-[#BCCE9E]"
                   }`}
                 />
               ))}

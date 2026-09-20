@@ -10,6 +10,8 @@ import LocationSection from "@/components/sections/LocationSection";
 import LifestylePillarsSection from "@/components/sections/LifestylePillarsSection";
 import LifeDesignedSection from "@/components/sections/LifeDesignedSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
+import FaqSection from "@/components/sections/FaqSection";
+import SocialHubSection from "@/components/sections/SocialHubSection";
 
 export default function Page() {
   return (
@@ -25,6 +27,8 @@ export default function Page() {
       <LifestylePillarsSection />
       <LifeDesignedSection />
       <TestimonialsSection />
+      <FaqSection />
+      <SocialHubSection />
     </>
   );
 }

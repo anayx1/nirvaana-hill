@@ -222,6 +222,7 @@ function BrandLogo({ onClick }) {
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+
   const [activeId, setActiveId] = useState(() => {
     if (typeof window !== "undefined" && window.location.hash) {
       const hash = window.location.hash.replace("#", "");
@@ -233,6 +234,10 @@ export default function Header() {
     return "home";
   });
   const drawerRef = useRef(null);
+
+  if (pathname && pathname.startsWith("/admin")) {
+    return null;
+  }
 
   // Sync active nav item when pathname or URL hash changes
   useEffect(() => {
