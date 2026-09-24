@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Compass, Wallet, Camera, FileText, ChevronDown, Check, Info } from "lucide-react";
+import { executeRecaptcha } from "@/lib/recaptcha";
 
 const BROCHURE_FEATURES = [
   {
@@ -67,14 +68,58 @@ export default function BrochureSection() {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Brochure Form submitted:", formData);
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 4000);
+    if (!formData.mobile.trim()) return;
+
+    setIsLoading(true);
+    setErrorMessage("");
+
+    try {
+      const recaptchaToken = await executeRecaptcha("brochure_download");
+
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.fullName,
+          phone: formData.mobile,
+          email: formData.email,
+          city: formData.city !== "Select your city" ? formData.city : "",
+          budget: formData.budget !== "Select budget range" ? formData.budget : "",
+          purpose: formData.purpose !== "Select purpose" ? formData.purpose : "",
+          requirement: "Phase 2 Brochure Download Request",
+          source: "brochure-section",
+          recaptchaToken,
+        }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setIsSubmitted(true);
+        setFormData({
+          fullName: "",
+          mobile: "",
+          email: "",
+          city: "Select your city",
+          budget: "Select budget range",
+          purpose: "Select purpose",
+          agreed: true,
+        });
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 5000);
+      } else {
+        setErrorMessage(data.error || "Failed to submit request. Please try again.");
+      }
+    } catch {
+      setErrorMessage("Network error. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -323,8 +368,8 @@ export default function BrochureSection() {
                     />
                     <div
                       className={`w-4 h-4 rounded-[4px] border flex items-center justify-center transition-colors ${formData.agreed
-                          ? "bg-[#AFEB63] border-[#7DBF2D]"
-                          : "bg-white border-black/30 group-hover:border-black/50"
+                        ? "bg-[#AFEB63] border-[#7DBF2D]"
+                        : "bg-white border-black/30 group-hover:border-black/50"
                         }`}
                     >
                       {formData.agreed && (
@@ -339,12 +384,23 @@ export default function BrochureSection() {
                   </span>
                 </label>
 
+                {errorMessage && (
+                  <p className="text-[#B3482B] text-[13px] sm:text-[14px] font-medium pt-1">
+                    {errorMessage}
+                  </p>
+                )}
+
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full bg-primary hover:bg-[#9EE837] text-[#1F2922] font-medium text-[16px] sm:text-[17px] py-4 rounded-full transition-all duration-300 cursor-pointer shadow-xs active:scale-[0.99] mt-2 flex items-center justify-center"
+                  disabled={isLoading}
+                  className="w-full bg-primary hover:bg-[#9EE837] text-[#1F2922] font-medium text-[16px] sm:text-[17px] py-4 rounded-full transition-all duration-300 cursor-pointer shadow-xs active:scale-[0.99] mt-2 flex items-center justify-center disabled:opacity-60"
                 >
-                  {isSubmitted ? "Brochure Sent Successfully!" : "Download Brochure Now"}
+                  {isLoading
+                    ? "Submitting Request..."
+                    : isSubmitted
+                      ? "Brochure Sent Successfully!"
+                      : "Download Brochure Now"}
                 </button>
               </form>
             </div>

@@ -15,6 +15,8 @@ export const metadata = {
     "Explore original site visuals, development progress, natural landscape, and living community moments at Nirvaana Hills.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default function GalleryPage() {
   const galleryItems = getGalleryImages();
   const rawCategories = getCategories("gallery");
@@ -34,7 +36,7 @@ export default function GalleryPage() {
     <>
       <GalleryHeroSection />
       <DroneExperienceSection />
-      <WalkthroughSection />
+      <WalkthroughSection buttonUrl="https://www.youtube.com/watch?v=oEEhBYWmNrU" />
       <OriginalSiteVisualsSection
         initialItems={galleryItems}
         initialCategories={galleryCategories}

@@ -37,7 +37,7 @@ export default function NirvaanaDevanagariBanner() {
               fill
               unoptimized
               priority
-              className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+              className="object-cover transition-transform duration-1000 ease-out"
               sizes="(max-width: 1400px) 100vw, 1300px"
             />
 

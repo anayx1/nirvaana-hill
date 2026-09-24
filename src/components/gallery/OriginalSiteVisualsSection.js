@@ -5,69 +5,23 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-// ========================================================
-// CATEGORIES & INITIAL MOCK DATA (API READY)
-// ========================================================
-export const GALLERY_CATEGORIES = [
-  { id: "all", label: "All" },
-  { id: "raw-site", label: "Raw Site Images" },
-  { id: "landscape", label: "Landscape Views" },
-  { id: "aravalli", label: "Aravalli Hills View" },
-  { id: "sunrise-sunset", label: "Sunrise & Sunset Moments" },
-  { id: "drive-through", label: "Drive Through Experience" },
-];
-
-export const INITIAL_GALLERY_ITEMS = [
-  {
-    id: "visual-1",
-    category: "aravalli",
-    title: "Aravalli Foothills Panoramic Ground View",
-    src: "/locations/hero.avif",
-    alt: "Raw site footage of Aravalli hills and natural terrain at Nirvaana Hills",
-  },
-  {
-    id: "visual-2",
-    category: "landscape",
-    title: "Scenic Aravalli Farmland Landscape",
-    src: "/locations/why-distance-changes-everything.avif",
-    alt: "Scenic Aravalli green landscape near Mahendragarh",
-  },
-  {
-    id: "visual-3",
-    category: "raw-site",
-    title: "Community and Mature Tree Canopy",
-    src: "/gallery/hero.avif",
-    alt: "Real ground moments and natural tree plantation",
-  },
-  {
-    id: "visual-4",
-    category: "sunrise-sunset",
-    title: "360° Aravalli Mountain Horizon",
-    src: "/nirvaana-hills/360-arravali.avif",
-    alt: "360 Degree Aravalli mountain views",
-  },
-];
-
 export default function OriginalSiteVisualsSection({
-  initialItems = INITIAL_GALLERY_ITEMS,
-  initialCategories = GALLERY_CATEGORIES,
+  initialItems = [],
+  initialCategories = [],
 }) {
   const [activeCategory, setActiveCategory] = useState("all");
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Normalize items to support both 'image' and 'src' properties
-  const allItems = (initialItems && initialItems.length > 0
-    ? initialItems
-    : INITIAL_GALLERY_ITEMS
-  ).map((item) => ({
+  // Normalize items to ensure 'src' is populated from DB 'image' or 'src'
+  const allItems = (initialItems || []).map((item) => ({
     ...item,
-    src: item.src || item.image,
+    src: item.image || item.src,
   }));
 
   const categories =
     initialCategories && initialCategories.length > 0
       ? initialCategories
-      : GALLERY_CATEGORIES;
+      : [{ id: "all", label: "All", slug: "all", name: "All" }];
 
   // Filter items based on active category
   const filteredItems =
@@ -75,16 +29,19 @@ export default function OriginalSiteVisualsSection({
       ? allItems
       : allItems.filter((item) => item.category === activeCategory);
 
-  const totalItems = filteredItems.length > 0 ? filteredItems.length : 1;
-  const currentItem =
-    filteredItems[currentIndex % totalItems] || allItems[0] || INITIAL_GALLERY_ITEMS[0];
+  const totalItems = filteredItems.length;
+  const currentItem = totalItems > 0 ? filteredItems[currentIndex % totalItems] : null;
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalItems);
+    if (totalItems > 1) {
+      setCurrentIndex((prev) => (prev + 1) % totalItems);
+    }
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + totalItems) % totalItems);
+    if (totalItems > 1) {
+      setCurrentIndex((prev) => (prev - 1 + totalItems) % totalItems);
+    }
   };
 
   const handleCategoryChange = (catId) => {
@@ -95,9 +52,9 @@ export default function OriginalSiteVisualsSection({
   return (
     <section
       id="original-site-visuals"
-      className="w-full bg-[#FAF9F5] py-14 sm:py-18 md:py-24 text-[#1F2922]"
+      className="w-full bg-[#FAF9F5] py-14 sm:py-18 md:py-24 text-[#1F2922] scroll-mt-12"
     >
-      <div className="container max-w-[900px] px-4 sm:px-6 flex flex-col items-center text-center">
+      <div id="gallery-grid" className="container max-w-[900px] px-4 sm:px-6 flex flex-col items-center text-center">
         
         {/* ====================================================== */}
         {/* HEADER BLOCK                                           */}
@@ -160,8 +117,8 @@ export default function OriginalSiteVisualsSection({
         {/* ====================================================== */}
         <div className="w-full flex flex-wrap items-center justify-center gap-x-5 gap-y-3 sm:gap-x-7 text-[13.5px] sm:text-[15px] font-sans mb-8 sm:mb-10">
           {categories.map((cat) => {
-            const catKey = cat.id || cat.slug;
-            const catLabel = cat.label || cat.name;
+            const catKey = cat.slug || cat.id;
+            const catLabel = cat.name || cat.label;
             const isActive = activeCategory === catKey;
             return (
               <button
@@ -198,43 +155,60 @@ export default function OriginalSiteVisualsSection({
           className="w-full max-w-[620px] aspect-[4/5] sm:aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-[#E5E8D8] relative bg-[#1F241C] select-none"
         >
           <AnimatePresence mode="wait">
-            <motion.div
-              key={currentItem.id || currentIndex}
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.4 }}
-              className="w-full h-full relative"
-            >
-              <Image
-                src={currentItem.src}
-                alt={currentItem.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, 620px"
-                className="object-cover"
-                priority
-              />
-            </motion.div>
+            {currentItem ? (
+              <motion.div
+                key={currentItem.id || `${activeCategory}-${currentIndex}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="absolute inset-0 w-full h-full"
+              >
+                <Image
+                  src={currentItem.src}
+                  alt={currentItem.alt || currentItem.title || "Nirvaana Hills Site Visual"}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 620px"
+                  className="object-cover object-center w-full h-full"
+                  style={{ objectFit: "cover" }}
+                  priority
+                  unoptimized
+                />
+              </motion.div>
+            ) : (
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center text-white/80 bg-[#2A3426]">
+                <p className="font-serif text-[18px] sm:text-[20px] text-[#FAF9F5]">
+                  No visuals uploaded for this category yet.
+                </p>
+                <p className="font-sans text-[13px] sm:text-[14px] text-white/70 mt-1">
+                  Upload images from the admin panel to display here.
+                </p>
+              </div>
+            )}
           </AnimatePresence>
 
-          {/* Navigation Arrows */}
-          <button
-            type="button"
-            onClick={handlePrev}
-            aria-label="Previous Image"
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 text-white flex items-center justify-center backdrop-blur-xs transition-transform active:scale-90 cursor-pointer shadow-md"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
+          {/* Navigation Arrows - shown only when multiple images exist */}
+          {totalItems > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={handlePrev}
+                aria-label="Previous Image"
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/45 hover:bg-black/75 text-white flex items-center justify-center backdrop-blur-xs transition-all active:scale-90 cursor-pointer shadow-md"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
 
-          <button
-            type="button"
-            onClick={handleNext}
-            aria-label="Next Image"
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 text-white flex items-center justify-center backdrop-blur-xs transition-transform active:scale-90 cursor-pointer shadow-md"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
+              <button
+                type="button"
+                onClick={handleNext}
+                aria-label="Next Image"
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/45 hover:bg-black/75 text-white flex items-center justify-center backdrop-blur-xs transition-all active:scale-90 cursor-pointer shadow-md"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </>
+          )}
         </motion.div>
 
         {/* ====================================================== */}
@@ -248,7 +222,7 @@ export default function OriginalSiteVisualsSection({
           className="mt-8 sm:mt-10 flex justify-center"
         >
           <a
-            href="#site-visit"
+            href="/contact-us"
             className="inline-flex items-center justify-center bg-[#AFEB63] text-[#1F2922] font-sans font-semibold text-[15px] sm:text-[16px] px-8 py-3.5 rounded-2xl hover:bg-[#9de04e] active:scale-[0.98] transition-all duration-300 shadow-sm"
           >
             Discover Nirvaana

@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Home, Info, Check, ChevronDown } from "lucide-react";
+import { executeRecaptcha } from "@/lib/recaptcha";
+import { openVisitModal } from "@/components/modals/VisitConfirmationModal";
 
 export const INTEREST_OPTIONS = [
   "Farmland Ownership & Plot Selection",
@@ -50,6 +52,8 @@ export default function ContactFormTabsSection() {
     setErrorMessage("");
 
     try {
+      const recaptchaToken = await executeRecaptcha("contact_enquiry");
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -58,14 +62,17 @@ export default function ContactFormTabsSection() {
           email: enquiryData.emailAddress,
           phone: enquiryData.mobileNumber,
           requirement: enquiryData.interestedIn || "Enquiry Form Submission",
-          message: `City: ${enquiryData.city} | Message: ${enquiryData.message}`,
+          city: enquiryData.city,
+          message: enquiryData.message,
           source: "contact-page-enquiry",
+          recaptchaToken,
         }),
       });
 
       const data = await res.json();
       if (res.ok && data.success) {
         setSubmitted(true);
+        openVisitModal();
         setEnquiryData({
           fullName: "",
           mobileNumber: "",
@@ -92,6 +99,8 @@ export default function ContactFormTabsSection() {
     setErrorMessage("");
 
     try {
+      const recaptchaToken = await executeRecaptcha("partner_application");
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -99,9 +108,11 @@ export default function ContactFormTabsSection() {
           name: partnerData.fullName,
           email: partnerData.emailAddress,
           phone: partnerData.mobileNumber,
+          companyName: partnerData.companyName,
+          city: partnerData.city,
           requirement: "Channel Partner Program Application",
-          message: `Company: ${partnerData.companyName} | City: ${partnerData.city}`,
           source: "contact-page-channel-partner",
+          recaptchaToken,
         }),
       });
 

@@ -239,8 +239,8 @@ export default function TestimonialsSection() {
                             idx < activeStoryIndex
                               ? "100%"
                               : idx === activeStoryIndex
-                              ? `${progress}%`
-                              : "0%",
+                                ? `${progress}%`
+                                : "0%",
                         }}
                       />
                     </div>
@@ -363,11 +363,10 @@ export default function TestimonialsSection() {
                   type="button"
                   onClick={() => setActiveReviewIndex(idx)}
                   aria-label={`Go to testimonial ${idx + 1}`}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
-                    idx === activeReviewIndex
+                  className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${idx === activeReviewIndex
                       ? "bg-[#9EE837] scale-110"
                       : "bg-[#D5E4BC] hover:bg-[#BCCE9E]"
-                  }`}
+                    }`}
                 />
               ))}
             </div>

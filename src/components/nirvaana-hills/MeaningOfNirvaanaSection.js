@@ -5,7 +5,10 @@ import { motion } from "framer-motion";
 
 export default function MeaningOfNirvaanaSection() {
   return (
-    <section className="w-full bg-[#FAF9F5] pt-10 sm:pt-12 md:pt-14 lg:pt-16 pb-8 sm:pb-10 md:pb-12 select-none">
+    <section
+      id="meaning"
+      className="w-full bg-[#FAF9F5] pt-10 sm:pt-12 md:pt-14 lg:pt-16 pb-8 sm:pb-10 md:pb-12 select-none scroll-mt-12"
+    >
       <div className="container max-w-[1200px] px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

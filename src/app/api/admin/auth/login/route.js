@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getAdminByUsername } from "@/lib/db";
+import { getAdminByEmailOrUsername } from "@/lib/db";
 import {
   verifyPassword,
   createSessionToken,
@@ -11,7 +11,7 @@ import { checkRateLimit, getClientIp } from "@/lib/security";
 export async function POST(request) {
   try {
     const ip = getClientIp(request);
-    const rateCheck = checkRateLimit(`login:${ip}`, 5, 60000);
+    const rateCheck = checkRateLimit(`login:${ip}`, 10, 60000);
     if (!rateCheck.allowed) {
       return NextResponse.json(
         {
@@ -23,19 +23,20 @@ export async function POST(request) {
     }
 
     const body = await request.json();
-    const { username, password } = body;
+    const identifier = body.email || body.username;
+    const { password } = body;
 
-    if (!username || !password) {
+    if (!identifier || !password) {
       return NextResponse.json(
-        { success: false, error: "Username and password are required" },
+        { success: false, error: "Email/username and password are required" },
         { status: 400 }
       );
     }
 
-    const admin = getAdminByUsername(username.trim().toLowerCase());
+    const admin = getAdminByEmailOrUsername(identifier.trim().toLowerCase());
     if (!admin) {
       return NextResponse.json(
-        { success: false, error: "Invalid username or password" },
+        { success: false, error: "Invalid email/username or password" },
         { status: 401 }
       );
     }

@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@source "../**/*.{js,ts,jsx,tsx,mdx}";
+@source "../../src/**/*.{js,ts,jsx,tsx,mdx}";
+@source "../../public/**/*.{html,js}";
 
 /* ============================================
    DESIGN TOKENS
@@ -12,8 +15,8 @@
   --foreground: #171717;
 
   /* Fonts */
-  --font-heading: "Times Sans Serif", "Times Sans", "Times New Roman", Times, serif;
-  --font-body: "Mona Sans", sans-serif;
+  --font-heading: "Times New Roman", Times, "Playfair Display", serif;
+  --font-body: "Mona Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   /* Container */
   --container-max: 1800px;
@@ -201,10 +204,9 @@
     }
   }
 
-  /* BODY TEXT — paragraph, list, span */
+  /* BODY TEXT — paragraph, list */
   p,
-  li,
-  span {
+  li {
     font-family: var(--font-body);
     font-size: 20px;
     line-height: 1.6;
@@ -213,8 +215,7 @@
   @media (max-width: 800px) {
 
     p,
-    li,
-    span {
+    li {
       font-size: 18px;
     }
   }
@@ -286,4 +287,14 @@
 
 .animate-marquee:hover {
   animation-play-state: paused;
+}
+
+/* ============================================
+   GOOGLE RECAPTCHA V3 BADGE
+   ============================================ */
+
+.grecaptcha-badge {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }

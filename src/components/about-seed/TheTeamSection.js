@@ -149,11 +149,10 @@ export default function TheTeamSection() {
                     type="button"
                     onClick={() => setCurrentIndex(idx)}
                     aria-label={`Go to slide ${idx + 1}`}
-                    className={`transition-all duration-300 rounded-full cursor-pointer ${
-                      currentIndex === idx
+                    className={`transition-all duration-300 rounded-full cursor-pointer ${currentIndex === idx
                         ? "w-5 h-1.5 bg-primary"
                         : "w-1.5 h-1.5 bg-white/50 hover:bg-white/80"
-                    }`}
+                      }`}
                   />
                 ))}
               </div>

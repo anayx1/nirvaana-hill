@@ -21,7 +21,7 @@ export default function Page() {
       <IntroductionSection />
       <TrustScaleSection />
       <ExperiencesSection />
-      <WalkthroughSection />
+      <WalkthroughSection buttonUrl="https://www.youtube.com/watch?v=HwMWaD_C-As" />
       <ForestDividendSection />
       <LocationSection />
       <LifestylePillarsSection />

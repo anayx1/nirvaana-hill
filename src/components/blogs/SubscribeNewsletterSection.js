@@ -3,23 +3,41 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
+import { executeRecaptcha } from "@/lib/recaptcha";
 
 export default function SubscribeNewsletterSection() {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !email.includes("@")) return;
 
     setIsLoading(true);
-    // Simulate lightweight client submission
-    setTimeout(() => {
+    try {
+      const recaptchaToken = await executeRecaptcha("newsletter_blog");
+
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email.trim(),
+          requirement: "Blog Newsletter Subscription",
+          source: "blog-newsletter",
+          recaptchaToken,
+        }),
+      });
+
+      if (res.ok) {
+        setIsSubmitted(true);
+        setEmail("");
+      }
+    } catch {
+      // Graceful fallback
+    } finally {
       setIsLoading(false);
-      setIsSubmitted(true);
-      setEmail("");
-    }, 600);
+    }
   };
 
   return (

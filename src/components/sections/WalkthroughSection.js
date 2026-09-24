@@ -82,16 +82,18 @@ const ORBIT_ITEMS = [
   },
 ];
 
-export default function WalkthroughSection() {
-  const handleWatchClick = (e) => {
-    e.preventDefault();
-    console.log("Watch Walkthrough clicked");
-  };
+export default function WalkthroughSection({
+  buttonUrl = "",
+  videoUrl,
+  buttonText = "WATCH THE WALKTHROUGH",
+  className = "",
+}) {
+  const targetUrl = buttonUrl || videoUrl || "";
 
   return (
     <section
       id="walkthrough-vision"
-      className="w-full bg-[#FAF9F5] py-14 sm:py-16 md:py-24 lg:py-32 overflow-hidden select-none"
+      className={`w-full bg-[#FAF9F5] py-14 sm:py-16 md:py-24 lg:py-32 overflow-hidden select-none ${className}`}
     >
       <div className="container max-w-[1400px] px-4 sm:px-6">
         {/* ======================================================== */}
@@ -157,9 +159,10 @@ export default function WalkthroughSection() {
           />
 
           {/* Center Button */}
-          <motion.button
-            type="button"
-            onClick={handleWatchClick}
+          <motion.a
+            href={targetUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             initial={{ opacity: 0, scale: 0.6 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-60px" }}
@@ -171,15 +174,15 @@ export default function WalkthroughSection() {
             }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="relative z-20 w-[120px] h-[120px] xs:w-[135px] xs:h-[135px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px] lg:w-[250px] lg:h-[250px] rounded-full bg-[#AFEB63] hover:bg-[#A3E553] text-[#1F2922] flex flex-col items-center justify-center p-3 sm:p-5 text-center shadow-lg shadow-[#AFEB63]/25 transition-colors cursor-pointer group"
+            className="relative z-20 w-[120px] h-[120px] xs:w-[135px] xs:h-[135px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px] lg:w-[250px] lg:h-[250px] rounded-full bg-[#AFEB63] hover:bg-[#A3E553] text-[#1F2922] flex flex-col items-center justify-center p-3 sm:p-5 text-center shadow-lg shadow-[#AFEB63]/25 transition-colors cursor-pointer group no-underline"
           >
             <div className="flex items-center justify-center gap-1.5 sm:gap-2">
               <Play className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 fill-[#1F2922] stroke-none shrink-0 transition-transform group-hover:scale-110" />
               <span className="font-sans font-semibold text-[9px] xs:text-[10px] sm:text-[12px] md:text-[13px] lg:text-[14px] tracking-[0.08em] uppercase text-[#1F2922] leading-tight">
-                WATCH THE WALKTHROUGH
+                {buttonText}
               </span>
             </div>
-          </motion.button>
+          </motion.a>
 
           {/* 5 Floating Orbit Images */}
           {ORBIT_ITEMS.map((item) => (

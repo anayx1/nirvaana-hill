@@ -1,9 +1,8 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import RoiCalculatorModal from "@/components/modals/RoiCalculatorModal";
 
 const WHY_IT_MATTERS_ITEMS = [
   "Freehold land ownership",
@@ -14,8 +13,13 @@ const WHY_IT_MATTERS_ITEMS = [
 ];
 
 export default function RoiDividendInsightSection() {
+  const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
+
   return (
-    <section className="w-full bg-[#5C6E56] py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden select-none">
+    <section
+      id="roi"
+      className="w-full bg-[#5C6E56] py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden select-none scroll-mt-12"
+    >
       <div className="container max-w-[760px] px-4 sm:px-6">
         
         {/* ====================================================== */}
@@ -90,19 +94,24 @@ export default function RoiDividendInsightSection() {
             and value over time.
           </p>
 
-          {/* WhatsApp CTA Button */}
+          {/* Interactive Calculator Trigger CTA */}
           <div className="pt-2 sm:pt-4">
-            <Link
-              href="https://wa.me/919589585050"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-medium text-[15px] sm:text-[16px] px-8 sm:px-9 py-3.5 sm:py-4 rounded-full transition-all duration-300 shadow-xs inline-flex items-center justify-center active:scale-95"
+            <button
+              type="button"
+              onClick={() => setIsCalculatorOpen(true)}
+              className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-medium text-[15px] sm:text-[16px] px-8 sm:px-9 py-3.5 sm:py-4 rounded-full transition-all duration-300 shadow-xs inline-flex items-center justify-center active:scale-95 cursor-pointer"
             >
-              Discuss My Investment On WhatsApp
-            </Link>
+              Calculate Your Forest Dividend &amp; ROI
+            </button>
           </div>
         </motion.div>
       </div>
+
+      {/* ROI Calculator Modal */}
+      <RoiCalculatorModal
+        isOpen={isCalculatorOpen}
+        onClose={() => setIsCalculatorOpen(false)}
+      />
     </section>
   );
 }

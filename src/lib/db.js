@@ -23,8 +23,8 @@ export function getDb() {
   const db = new DatabaseSync(DB_PATH);
 
   // Performance and concurrency settings
-  db.exec("PRAGMA journal_mode = WAL;");
   db.exec("PRAGMA busy_timeout = 30000;");
+  db.exec("PRAGMA journal_mode = WAL;");
   db.exec("PRAGMA foreign_keys = ON;");
 
   // Initialize Tables
@@ -122,6 +122,18 @@ function initTables(db) {
       updatedAt TEXT NOT NULL
     );
     CREATE INDEX IF NOT EXISTS idx_admin_username ON admin_users(username);
+    CREATE INDEX IF NOT EXISTS idx_admin_email ON admin_users(email);
+
+    -- 6. Password Resets Table
+    CREATE TABLE IF NOT EXISTS password_resets (
+      id TEXT PRIMARY KEY,
+      email TEXT NOT NULL,
+      otp TEXT NOT NULL,
+      expiresAt INTEGER NOT NULL,
+      used INTEGER DEFAULT 0,
+      createdAt TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS idx_password_resets_email ON password_resets(email);
   `);
 
   // Seed default categories if empty
@@ -235,11 +247,8 @@ function seedDefaultCategories(db) {
   if (catCount === 0) {
     const defaultCategories = [
       // Blog categories
-      { name: "Living & Wellness", slug: "living-wellness", type: "blog" },
-      { name: "Farmland Ownership", slug: "farmland-ownership", type: "blog" },
-      { name: "Aravalli Ecosystem", slug: "aravalli-ecosystem", type: "blog" },
-      { name: "Design & Architecture", slug: "design-architecture", type: "blog" },
-      { name: "Investment Insights", slug: "investment-insights", type: "blog" },
+      { name: "LIFESTYLE", slug: "lifestyle", type: "blog" },
+      { name: "DEVELOPMENT UPDATES", slug: "development-updates", type: "blog" },
       // Gallery categories
       { name: "Raw Site Images", slug: "raw-site", type: "gallery" },
       { name: "Landscape Views", slug: "landscape", type: "gallery" },
@@ -700,7 +709,7 @@ function seedDefaultAdmin(db) {
   const adminCount = db.prepare("SELECT COUNT(*) as count FROM admin_users").get().count;
   if (adminCount === 0) {
     const salt = crypto.randomBytes(16).toString("hex");
-    const defaultPassword = process.env.DEFAULT_ADMIN_PASSWORD || "nirvaana@admin2026";
+    const defaultPassword = process.env.DEFAULT_ADMIN_PASSWORD || "admin@123";
     const passwordHash = crypto
       .pbkdf2Sync(defaultPassword, salt, 10000, 64, "sha512")
       .toString("hex");
@@ -711,8 +720,8 @@ function seedDefaultAdmin(db) {
     );
     stmt.run(
       crypto.randomUUID(),
-      "admin",
-      "admin@nirvaanahills.com",
+      "nirvaanahills",
+      "nirvaanahills@gmail.com",
       passwordHash,
       salt,
       now,
@@ -722,12 +731,27 @@ function seedDefaultAdmin(db) {
 }
 
 // ============================================================================
-// HELPER FUNCTIONS: ADMIN AUTH
+// HELPER FUNCTIONS: ADMIN AUTH & PASSWORD RESETS
 // ============================================================================
 
-export function getAdminByUsername(username) {
+export function getAdminByEmailOrUsername(identifier) {
+  if (!identifier) return null;
   const db = getDb();
-  const user = db.prepare("SELECT * FROM admin_users WHERE username = ?").get(username);
+  const clean = identifier.trim().toLowerCase();
+  const user = db
+    .prepare("SELECT * FROM admin_users WHERE lower(username) = ? OR lower(email) = ?")
+    .get(clean, clean);
+  return toPlain(user);
+}
+
+export function getAdminByUsername(username) {
+  return getAdminByEmailOrUsername(username);
+}
+
+export function getAdminByEmail(email) {
+  if (!email) return null;
+  const db = getDb();
+  const user = db.prepare("SELECT * FROM admin_users WHERE lower(email) = ?").get(email.trim().toLowerCase());
   return toPlain(user);
 }
 
@@ -735,6 +759,46 @@ export function getAdminById(id) {
   const db = getDb();
   const user = db.prepare("SELECT id, username, email, createdAt, updatedAt FROM admin_users WHERE id = ?").get(id);
   return toPlain(user);
+}
+
+export function createPasswordReset(email, otp, durationMinutes = 15) {
+  const db = getDb();
+  const now = Date.now();
+  const expiresAt = now + durationMinutes * 60 * 1000;
+  const id = crypto.randomUUID();
+  const stmt = db.prepare(
+    "INSERT INTO password_resets (id, email, otp, expiresAt, used, createdAt) VALUES (?, ?, ?, ?, 0, ?)"
+  );
+  stmt.run(id, email.toLowerCase().trim(), otp, expiresAt, new Date().toISOString());
+  return { id, email, otp, expiresAt };
+}
+
+export function verifyAndConsumePasswordReset(email, otp) {
+  const db = getDb();
+  const now = Date.now();
+  const record = db
+    .prepare(
+      "SELECT * FROM password_resets WHERE lower(email) = ? AND otp = ? AND used = 0 AND expiresAt > ? ORDER BY createdAt DESC LIMIT 1"
+    )
+    .get(email.toLowerCase().trim(), otp.trim(), now);
+  if (!record) return false;
+  db.prepare("UPDATE password_resets SET used = 1 WHERE id = ?").run(record.id);
+  return true;
+}
+
+export function updateAdminPassword(identifier, newPassword) {
+  const db = getDb();
+  const salt = crypto.randomBytes(16).toString("hex");
+  const passwordHash = crypto
+    .pbkdf2Sync(newPassword, salt, 10000, 64, "sha512")
+    .toString("hex");
+  const now = new Date().toISOString();
+  const clean = identifier.trim().toLowerCase();
+  const stmt = db.prepare(
+    "UPDATE admin_users SET passwordHash = ?, salt = ?, updatedAt = ? WHERE lower(email) = ? OR lower(username) = ?"
+  );
+  const result = stmt.run(passwordHash, salt, now, clean, clean);
+  return result.changes > 0;
 }
 
 // ============================================================================

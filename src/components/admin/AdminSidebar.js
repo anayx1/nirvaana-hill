@@ -74,10 +74,10 @@ export default function AdminSidebar({ user, newLeadsCount = 0 }) {
             N
           </div>
           <div>
-            <span className="font-serif text-[18px] sm:text-[19px] font-normal text-[#1F2922] block leading-tight">
+            <span className="text-[17px] font-semibold text-[#1F2922] block leading-tight tracking-tight">
               Nirvaana Hills
             </span>
-            <span className="text-[11px] text-[#B3482B] font-semibold uppercase tracking-[0.14em] block">
+            <span className="text-[10.5px] text-[#B3482B] font-semibold uppercase tracking-[0.14em] block mt-0.5">
               Control Panel
             </span>
           </div>
@@ -95,7 +95,7 @@ export default function AdminSidebar({ user, newLeadsCount = 0 }) {
 
       {/* Navigation Links */}
       <div className="flex-1 py-6 px-3 space-y-1.5 overflow-y-auto">
-        <div className="px-3 pb-2 text-[11px] font-semibold text-[#5C6051]/70 uppercase tracking-[0.14em]">
+        <div className="px-3 pb-2 !text-[11px] font-semibold text-[#5C6051]/70 uppercase tracking-[0.14em]">
           Management
         </div>
 
@@ -110,7 +110,7 @@ export default function AdminSidebar({ user, newLeadsCount = 0 }) {
               key={item.href}
               href={item.href}
               onClick={() => setIsMobileOpen(false)}
-              className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-[14px] font-medium transition-all duration-200 ${
+              className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl !text-[13.5px] font-medium transition-all duration-200 ${
                 isActive
                   ? "bg-[#AFEB63] text-[#1F2922] font-semibold shadow-xs"
                   : "text-[#5C6051] hover:text-[#1F2922] hover:bg-[#FAF9F5]"
@@ -118,12 +118,12 @@ export default function AdminSidebar({ user, newLeadsCount = 0 }) {
             >
               <div className="flex items-center gap-3">
                 <Icon className={`w-4.5 h-4.5 ${isActive ? "text-[#1F2922]" : "text-[#5C6051]"}`} />
-                <span>{item.label}</span>
+                <span className="!text-[13.5px]">{item.label}</span>
               </div>
 
               {item.badgeKey === "newLeads" && newLeadsCount > 0 && (
                 <span
-                  className={`px-2 py-0.5 rounded-full text-[11px] font-bold ${
+                  className={`px-2 py-0.5 rounded-full !text-[11px] font-bold ${
                     isActive
                       ? "bg-[#1F2922] text-[#AFEB63]"
                       : "bg-[#AFEB63] text-[#1F2922]"
@@ -136,7 +136,7 @@ export default function AdminSidebar({ user, newLeadsCount = 0 }) {
           );
         })}
 
-        <div className="pt-6 px-3 pb-2 text-[11px] font-semibold text-[#5C6051]/70 uppercase tracking-[0.14em]">
+        <div className="pt-6 px-3 pb-2 !text-[11px] font-semibold text-[#5C6051]/70 uppercase tracking-[0.14em]">
           External
         </div>
 
@@ -144,13 +144,13 @@ export default function AdminSidebar({ user, newLeadsCount = 0 }) {
           href="/"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-[14px] text-[#5C6051] hover:text-[#1F2922] hover:bg-[#FAF9F5] transition-colors"
+          className="flex items-center justify-between px-3.5 py-2.5 rounded-xl !text-[13.5px] text-[#5C6051] hover:text-[#1F2922] hover:bg-[#FAF9F5] transition-colors"
         >
           <div className="flex items-center gap-3">
             <ExternalLink className="w-4.5 h-4.5 text-[#5C6051]" />
-            <span>Live Website</span>
+            <span className="!text-[13.5px]">Live Website</span>
           </div>
-          <span className="text-[12px] text-[#5C6051]/60">↗</span>
+          <span className="!text-[12px] text-[#5C6051]/60">↗</span>
         </a>
       </div>
 
@@ -162,11 +162,11 @@ export default function AdminSidebar({ user, newLeadsCount = 0 }) {
               <ShieldCheck className="w-4.5 h-4.5" />
             </div>
             <div className="truncate">
-              <div className="text-[13.5px] font-semibold text-[#1F2922] truncate">
+              <div className="!text-[13px] font-semibold text-[#1F2922] truncate">
                 {user?.username || "Admin"}
               </div>
-              <div className="text-[11.5px] text-[#5C6051] truncate">
-                {user?.email || "admin@nirvaanahills.com"}
+              <div className="!text-[11px] text-[#5C6051] truncate">
+                {user?.email || "nirvaanahills@gmail.com"}
               </div>
             </div>
           </div>
@@ -176,10 +176,10 @@ export default function AdminSidebar({ user, newLeadsCount = 0 }) {
           type="button"
           onClick={handleLogout}
           disabled={isLoggingOut}
-          className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 hover:text-rose-800 border border-rose-200 text-[13px] font-semibold transition-colors cursor-pointer"
+          className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 hover:text-rose-800 border border-rose-200 !text-[12.5px] font-semibold transition-colors cursor-pointer"
         >
           <LogOut className="w-4 h-4" />
-          <span>{isLoggingOut ? "Signing out..." : "Sign Out"}</span>
+          <span className="!text-[12.5px]">{isLoggingOut ? "Signing out..." : "Sign Out"}</span>
         </button>
       </div>
 

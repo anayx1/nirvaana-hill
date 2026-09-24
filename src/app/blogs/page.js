@@ -3,6 +3,7 @@ import BlogsHeroSection from "@/components/blogs/BlogsHeroSection";
 import JournalAndBlogsIntroSection from "@/components/blogs/JournalAndBlogsIntroSection";
 import SocialMediaHubSection from "@/components/blogs/SocialMediaHubSection";
 import SubscribeNewsletterSection from "@/components/blogs/SubscribeNewsletterSection";
+import { getAllBlogs, getCategories } from "@/lib/db";
 
 export const metadata = {
   title: "Blogs & Insights | Nirvaana Hills",
@@ -11,10 +12,16 @@ export const metadata = {
 };
 
 export default function BlogsPage() {
+  const publishedBlogs = getAllBlogs({ status: "PUBLISHED" });
+  const blogCategories = getCategories("blog");
+
   return (
     <>
       <BlogsHeroSection />
-      <JournalAndBlogsIntroSection />
+      <JournalAndBlogsIntroSection
+        initialBlogs={publishedBlogs}
+        initialCategories={blogCategories}
+      />
       <SocialMediaHubSection />
       <SubscribeNewsletterSection />
     </>

@@ -18,6 +18,7 @@ export const TOP_NAV_ITEMS = [
     label: "About Nirvaana Hills",
     href: "/nirvaana-hills",
     isItalic: true,
+    isSubheading: true,
   },
   { id: "nirvaana-hills", label: "NIRVAANA HILLS", href: "/nirvaana-hills" },
   {
@@ -50,7 +51,7 @@ export const TOP_NAV_ITEMS = [
 
 export const INSIGHTS_ITEMS = [
   { id: "blogs", label: "BLOGS", href: "/blogs" },
-  { id: "faqs", label: "FAQS", href: "/#faqs" },
+  { id: "faqs", label: "FAQS", href: "/faqs" },
 ];
 
 export const CONTACT_ITEMS = [
@@ -203,7 +204,8 @@ function BrandLogo({ onClick }) {
     >
       <div className="relative w-[145px] sm:w-[165px] lg:w-[180px] h-[24px] sm:h-[26px] lg:h-[28px] max-w-[180px] max-h-[28px] shrink-0">
         <Image
-          src="/logo.avif"
+          src="/logo-new.png"
+          // src="/logo.avif"
           alt="Nirvaana Hills"
           fill
           priority
@@ -362,6 +364,21 @@ export default function Header() {
                 <nav className="flex flex-col space-y-1">
                   {desktopNavCol1.map((item) => {
                     const isActive = activeId === item.id;
+                    if (item.isSubheading || item.isItalic) {
+                      return (
+                        <Link
+                          key={item.id}
+                          href={item.href}
+                          onClick={() => {
+                            setActiveId(item.id);
+                            closeMenu();
+                          }}
+                          className="font-serif !font-normal italic text-secondary !text-[20px] xl:!text-[22px] pt-2 pb-1 normal-case select-none block hover:opacity-85 transition-opacity"
+                        >
+                          {item.label}
+                        </Link>
+                      );
+                    }
                     return (
                       <Link
                         key={item.id}
@@ -370,10 +387,9 @@ export default function Header() {
                           setActiveId(item.id);
                           closeMenu();
                         }}
-                        className={`nav-menu-link tracking-[0.03em] block transition-colors ${item.isItalic
-                          ? "font-serif italic text-[20px] xl:text-[22px] py-1.5 xl:py-2 normal-case"
-                          : "uppercase text-[15px] xl:text-[17px] py-1.5 xl:py-2 font-normal"
-                          } ${isActive ? "active" : ""}`}
+                        className={`nav-menu-link uppercase text-[15px] xl:text-[17px] py-1.5 xl:py-2 tracking-[0.03em] font-normal block transition-colors ${
+                          isActive ? "active" : ""
+                        }`}
                       >
                         {item.label}
                       </Link>
@@ -385,6 +401,21 @@ export default function Header() {
                 <nav className="flex flex-col space-y-1">
                   {desktopNavCol2.map((item) => {
                     const isActive = activeId === item.id;
+                    if (item.isSubheading || item.isItalic) {
+                      return (
+                        <Link
+                          key={item.id}
+                          href={item.href}
+                          onClick={() => {
+                            setActiveId(item.id);
+                            closeMenu();
+                          }}
+                          className="font-serif !font-normal italic text-secondary !text-[20px] xl:!text-[22px] pt-2 pb-1 normal-case select-none block hover:opacity-85 transition-opacity"
+                        >
+                          {item.label}
+                        </Link>
+                      );
+                    }
                     return (
                       <Link
                         key={item.id}
@@ -393,10 +424,9 @@ export default function Header() {
                           setActiveId(item.id);
                           closeMenu();
                         }}
-                        className={`nav-menu-link tracking-[0.03em] block transition-colors ${item.isItalic
-                          ? "font-serif italic text-[20px] xl:text-[22px] py-1.5 xl:py-2 normal-case"
-                          : "uppercase text-[15px] xl:text-[17px] py-1.5 xl:py-2 font-normal"
-                          } ${isActive ? "active" : ""}`}
+                        className={`nav-menu-link uppercase text-[15px] xl:text-[17px] py-1.5 xl:py-2 tracking-[0.03em] font-normal block transition-colors ${
+                          isActive ? "active" : ""
+                        }`}
                       >
                         {item.label}
                       </Link>
@@ -533,7 +563,21 @@ export default function Header() {
                 <nav className="flex flex-col md:grid md:grid-cols-2 md:gap-x-8">
                   {TOP_NAV_ITEMS.map((item) => {
                     const isActive = activeId === item.id;
-
+                    if (item.isSubheading || item.isItalic) {
+                      return (
+                        <Link
+                          key={item.id}
+                          href={item.href}
+                          onClick={() => {
+                            setActiveId(item.id);
+                            closeMenu();
+                          }}
+                          className="font-serif !font-normal italic text-secondary !text-[20px] pt-2 pb-1 normal-case select-none block hover:opacity-85 transition-opacity"
+                        >
+                          {item.label}
+                        </Link>
+                      );
+                    }
                     return (
                       <Link
                         key={item.id}
@@ -542,10 +586,9 @@ export default function Header() {
                           setActiveId(item.id);
                           closeMenu();
                         }}
-                        className={`nav-menu-link tracking-[0.03em] block transition-colors ${item.isItalic
-                          ? "font-serif italic text-[18px] md:text-[20px] py-1.5 md:py-2 normal-case"
-                          : "uppercase text-[15px] md:text-[17px] py-1.5 md:py-2 font-normal"
-                          } ${isActive ? "active" : ""}`}
+                        className={`nav-menu-link uppercase text-[15px] md:text-[17px] py-1.5 md:py-2 tracking-[0.03em] font-normal block transition-colors ${
+                          isActive ? "active" : ""
+                        }`}
                       >
                         {item.label}
                       </Link>
