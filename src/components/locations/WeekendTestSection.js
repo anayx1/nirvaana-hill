@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export default function WeekendTestSection() {
   return (
@@ -23,37 +24,21 @@ export default function WeekendTestSection() {
         >
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 text-[#B3482B]">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0"
-              aria-hidden="true"
-            >
-              <path d="M3 10.5L12 3l9 7.5" />
-              <path d="M5 9v11a1 1 0 001 1h12a1 1 0 001-1V9" />
-              <path d="M3 21c4-2 8-2 12 0" />
-              <path d="M9 17c2-1 4-1 6 0" />
-            </svg>
-            <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px]">
+            <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+            <span className="font-medium tracking-[0.14em] uppercase text-[11px] sm:text-[12px]">
               THE WEEKEND TEST
             </span>
           </div>
 
           {/* Headline */}
-          <h2 className="font-serif !font-normal text-[#1F2922] text-[30px] xs:text-[36px] sm:text-[42px] md:text-[48px] leading-[1.18] tracking-[-0.01em]">
+          <h2 className="font-serif !font-normal text-[#1F2922] text-[24px] sm:text-[30px] md:text-[36px] leading-[1.18] tracking-[-0.01em]">
             Can Your Family Leave On A Saturday Morning And Still Feel The Weekend Belongs To You?
           </h2>
 
           {/* Body Paragraph 1 */}
           <p
             style={{ color: "#5C6051" }}
-            className="font-sans text-[15px] sm:text-[17px] md:text-[18px] leading-[1.65] font-normal pt-1"
+            className="font-sans text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal pt-1"
           >
             The true test of a second home: will it naturally become part of your lifestyle? A day outdoors, real time together, and a return that feels genuinely refreshed.
           </p>
@@ -61,7 +46,7 @@ export default function WeekendTestSection() {
           {/* Body Paragraph 2 */}
           <p
             style={{ color: "#5C6051" }}
-            className="font-sans text-[15px] sm:text-[17px] md:text-[18px] leading-[1.65] font-normal"
+            className="font-sans text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal"
           >
             Nirvaana Hills is built around one principle - a place you&apos;ll actually keep using. Because value isn&apos;t only what you own. It&apos;s how often you return to it.
           </p>
@@ -70,7 +55,7 @@ export default function WeekendTestSection() {
           <div className="pt-3">
             <a
               href="#site-visit"
-              className="inline-flex items-center justify-center bg-[#AFEB63] text-[#1F2922] font-sans font-semibold text-[15px] sm:text-[16px] px-8 py-3.5 rounded-2xl hover:bg-[#9de04e] active:scale-[0.98] transition-all duration-300 shadow-sm"
+              className="inline-flex items-center justify-center bg-[#AFEB63] text-[#1F2922] font-sans font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] hover:bg-[#9de04e] active:scale-[0.98] transition-all duration-300 shadow-xs"
             >
               Experience A Weekend Visit
             </a>

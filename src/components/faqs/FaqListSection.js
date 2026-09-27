@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 
@@ -245,6 +245,65 @@ export default function FaqListSection() {
   const [activeTab, setActiveTab] = useState("all");
   const [openFaqIds, setOpenFaqIds] = useState(["about-1"]);
 
+  // Sync with URL hash or query params on load and hashchange
+  useEffect(() => {
+    const handleHashOrSearch = () => {
+      if (typeof window === "undefined") return;
+      const rawHash = window.location.hash.toLowerCase().replace("#", "");
+      const params = new URLSearchParams(window.location.search);
+      const catParam = params.get("category")?.toLowerCase() || rawHash;
+
+      if (!catParam) return;
+
+      const categoryMap = {
+        about: { cat: "about", faqId: "about-1" },
+        phases: { cat: "about", faqId: "about-4" },
+        "phases-of-nirvaana": { cat: "about", faqId: "about-4" },
+        location: { cat: "location", faqId: "loc-1" },
+        connectivity: { cat: "location", faqId: "loc-2" },
+        ownership: { cat: "ownership", faqId: "own-1" },
+        legal: { cat: "ownership", faqId: "own-2" },
+        farmlands: { cat: "farmlands", faqId: "farm-1" },
+        "master-plan": { cat: "farmlands", faqId: "farm-1" },
+        "design-intent": { cat: "farmlands", faqId: "farm-1" },
+        amenities: { cat: "amenities", faqId: "amen-1" },
+        experiences: { cat: "amenities", faqId: "amen-1" },
+        investment: { cat: "investment", faqId: "inv-1" },
+        returns: { cat: "investment", faqId: "inv-1" },
+        visits: { cat: "visits", faqId: "vis-1" },
+        "site-visit": { cat: "visits", faqId: "vis-1" },
+      };
+
+      const match = categoryMap[catParam];
+      if (match) {
+        setOpenFaqIds((prev) => Array.from(new Set([...prev, match.faqId])));
+
+        const targetEl =
+          document.getElementById(catParam) ||
+          document.getElementById(`faq-category-${match.cat}`) ||
+          document.getElementById(match.cat) ||
+          document.getElementById("faq-list");
+
+        if (targetEl) {
+          setTimeout(() => {
+            targetEl.scrollIntoView({ behavior: "smooth" });
+          }, 150);
+        }
+      } else if (rawHash === "faq-list" || rawHash === "faqs" || rawHash === "questions") {
+        const targetEl = document.getElementById("faq-list");
+        if (targetEl) {
+          setTimeout(() => {
+            targetEl.scrollIntoView({ behavior: "smooth" });
+          }, 150);
+        }
+      }
+    };
+
+    handleHashOrSearch();
+    window.addEventListener("hashchange", handleHashOrSearch);
+    return () => window.removeEventListener("hashchange", handleHashOrSearch);
+  }, []);
+
   const toggleFaq = (id) => {
     setOpenFaqIds((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
@@ -257,7 +316,10 @@ export default function FaqListSection() {
       : CATEGORIES_DATA.filter((cat) => cat.id === activeTab);
 
   return (
-    <section className="w-full bg-[#FAF9F5] pt-8 pb-16 md:pt-12 md:pb-24 overflow-hidden select-none">
+    <section
+      id="faq-list"
+      className="w-full bg-[#FAF9F5] pt-8 pb-16 md:pt-12 md:pb-24 overflow-hidden select-none scroll-mt-14 sm:scroll-mt-16 lg:scroll-mt-20"
+    >
       <div className="container max-w-[720px] px-4 md:px-6 mx-auto">
 
         {/* ======================================================== */}
@@ -271,7 +333,7 @@ export default function FaqListSection() {
             className="group flex flex-col items-center cursor-pointer transition-all duration-200"
           >
             <span
-              className={`text-[13.5px] md:text-[14.5px] transition-colors ${activeTab === "all"
+              className={`text-[12px] md:text-[16px] transition-colors ${activeTab === "all"
                 ? "text-black font-medium"
                 : "text-[#8E8E8E] hover:text-black font-normal"
                 }`}
@@ -298,7 +360,7 @@ export default function FaqListSection() {
                 className="group flex flex-col items-center cursor-pointer transition-all duration-200"
               >
                 <span
-                  className={`text-[13.5px] md:text-[14.5px] transition-colors ${isActive
+                  className={`text-[12px] md:text-[16px] transition-colors ${isActive
                     ? "text-black font-medium"
                     : "text-[#8E8E8E] hover:text-black font-normal"
                     }`}
@@ -322,14 +384,28 @@ export default function FaqListSection() {
         {/* ======================================================== */}
         <div className="space-y-10 md:space-y-14">
           {displayedCategories.map((category) => (
-            <div key={category.id} className="space-y-4 md:space-y-5">
+            <div
+              key={category.id}
+              id={category.id}
+              className="space-y-4 md:space-y-5 scroll-mt-20 lg:scroll-mt-24 relative"
+            >
+              {/* Category Aliases for Topic Links */}
+              {category.id === "about" && (
+                <div id="phases" className="absolute -top-24 pointer-events-none" />
+              )}
+              {category.id === "farmlands" && (
+                <div id="master-plan" className="absolute -top-24 pointer-events-none" />
+              )}
+              {category.id === "amenities" && (
+                <div id="features" className="absolute -top-24 pointer-events-none" />
+              )}
 
               {/* Category Header Card Banner */}
               <div className="w-full bg-[#6B7F64] rounded-[18px] md:rounded-[22px] p-5 md:p-8 text-white shadow-xs">
-                <h2 className="font-serif !font-normal text-[20px] md:text-[36px] leading-[1.18] text-white">
+                <h2 className="font-serif !font-normal text-[20px] md:text-[28px] leading-[1.18] text-white">
                   {category.name}
                 </h2>
-                <p className="font-sans text-[13px] md:text-[15.5px] text-[#F0F5EC] font-normal mt-1.5 leading-relaxed">
+                <p className="font-sans text-[12.5px] sm:text-[13.5px] md:text-[14.5px] text-[#F0F5EC] font-normal mt-1.5 leading-relaxed">
                   {category.tagline}
                 </p>
               </div>
@@ -350,7 +426,7 @@ export default function FaqListSection() {
                             onClick={() => toggleFaq(faq.id)}
                             aria-expanded={isOpen}
                             aria-controls={`faq-answer-${faq.id}`}
-                            className="relative z-10 bg-[#E5E8D8] hover:bg-[#DDE1CE] transition-colors rounded-[18px] md:rounded-[22px] rounded-br-[4px] px-5 md:px-6 py-3 md:py-3.5 text-left text-[#1A1A1A] font-sans text-[12px] md:text-[15px] font-medium leading-snug cursor-pointer shadow-2xs active:scale-[0.99]"
+                            className="relative z-10 bg-[#E5E8D8] hover:bg-[#DDE1CE] transition-colors rounded-[18px] md:rounded-[22px] rounded-br-[4px] px-5 md:px-6 py-3 md:py-3.5 text-left text-[#1A1A1A] font-sans text-[12px] md:text-[15px] font-normal leading-snug cursor-pointer shadow-2xs active:scale-[0.99]"
                           >
                             {faq.question}
                           </button>
@@ -404,7 +480,7 @@ export default function FaqListSection() {
                             className="overflow-hidden flex justify-end"
                           >
                             <div className="bg-[#E5E8D8] rounded-[20px] md:rounded-[24px] p-5 md:p-6 max-w-[92%] md:max-w-[88%] shadow-2xs">
-                              <p className="font-sans text-[#252B20] text-[12px] md:text-[15px] font-medium leading-tight">
+                              <p className="font-sans text-[#252B20] text-[12px] md:text-[14px] font-normal leading-relaxed">
                                 {faq.answer}
                               </p>
                             </div>

@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export default function WhyLocationMattersSection() {
   return (
@@ -25,30 +26,14 @@ export default function WhyLocationMattersSection() {
           >
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2 text-[#B3482B]">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0"
-                aria-hidden="true"
-              >
-                <path d="M3 10.5L12 3l9 7.5" />
-                <path d="M5 9v11a1 1 0 001 1h12a1 1 0 001-1V9" />
-                <path d="M3 21c4-2 8-2 12 0" />
-                <path d="M9 17c2-1 4-1 6 0" />
-              </svg>
-              <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px]">
+              <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+              <span className="font-medium tracking-[0.14em] uppercase text-[11px] sm:text-[12px]">
                 WHY THIS LOCATION MATTERS
               </span>
             </div>
 
             {/* Headline */}
-            <h2 className="font-serif !font-normal text-[#1F2922] text-[28px] xs:text-[32px] sm:text-[38px] md:text-[40px] lg:text-[44px] leading-[1.15] tracking-[-0.01em]">
+            <h2 className="font-serif !font-normal text-[#1F2922] text-[24px] sm:text-[28px] md:text-[34px] lg:text-[38px] leading-[1.15] tracking-[-0.01em]">
               Why Mahendragarh.
               <br />
               Why The Aravallis.
@@ -57,19 +42,19 @@ export default function WhyLocationMattersSection() {
             {/* Description Paragraph */}
             <p
               style={{ color: "#5C6051" }}
-              className="font-sans text-[15px] sm:text-[16px] md:text-[17px] leading-[1.65] font-normal pt-1"
+              className="font-sans text-[13px] sm:text-[14px] md:text-[15px] leading-[1.65] font-normal pt-1"
             >
               Some places are chosen for convenience, others for quality of life. Mahendragarh and the Aravalli belt offer something rare near Delhi, where the location itself becomes part of the experience and offers 60-70% lower AQI.
             </p>
 
             {/* Why It Matters Subheading */}
-            <div className="pt-2 flex flex-col space-y-2">
-              <h3 className="font-sans font-bold text-[#1F2922] text-[16px] sm:text-[18px]">
+            <div className="pt-2 flex flex-col space-y-1.5">
+              <h3 className="font-sans font-medium text-[#1F2922] text-[14px] sm:text-[15.5px]">
                 Why It Matters
               </h3>
               <p
                 style={{ color: "#5C6051" }}
-                className="font-sans text-[15px] sm:text-[16px] md:text-[17px] leading-[1.65] font-normal"
+                className="font-sans text-[13px] sm:text-[14px] md:text-[15px] leading-[1.65] font-normal"
               >
                 Scenic Aravalli Landscape · Cleaner Environment · Lower Congestion · Weekend Accessibility from NCR · Strong Long-Term Potential.
               </p>

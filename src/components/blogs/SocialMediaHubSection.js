@@ -3,7 +3,8 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Home, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export const SOCIAL_HUB_ITEMS = [
   {
@@ -142,21 +143,21 @@ export default function SocialMediaHubSection() {
         >
           {/* Eyebrow */}
           <div className="inline-flex items-center justify-center gap-2 text-[#B3482B]">
-            <Home className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" strokeWidth={2.2} aria-hidden="true" />
-            <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px]">
+            <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+            <span className="font-medium tracking-[0.14em] uppercase text-[11px] md:text-[12px]">
               SOCIAL MEDIA HUB
             </span>
           </div>
 
           {/* Headline */}
-          <h2 className="font-serif !font-normal text-[#1F2922] text-[28px] xs:text-[34px] sm:text-[40px] md:text-[46px] leading-[1.15] tracking-[-0.01em]">
+          <h2 className="font-serif !font-normal text-[#1F2922] text-[24px] sm:text-[30px] md:text-[36px] leading-[1.15] tracking-[-0.01em]">
             Stay Closer.
           </h2>
 
           {/* Description */}
           <p
             style={{ color: "#5C6051" }}
-            className="font-sans text-[15px] sm:text-[16px] md:text-[17px] leading-[1.65] font-normal max-w-xl mx-auto"
+            className="font-sans text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal max-w-xl mx-auto"
           >
             Follow the journey of Nirvaana Hills - site updates, development
             progress, and glimpses of life in the Aravallis, delivered to your
@@ -167,7 +168,7 @@ export default function SocialMediaHubSection() {
         {/* ====================================================== */}
         {/* SOCIAL CHANNELS CARDS LIST                             */}
         {/* ====================================================== */}
-        <div className="flex flex-col space-y-4 sm:space-y-5 max-w-[720px] mx-auto">
+        <div className="flex flex-col space-y-4 sm:space-y-5 max-w-[720px] mx-auto pr-4 sm:pr-6">
           {SOCIAL_HUB_ITEMS.map((item, index) => (
             <motion.div
               key={item.id}
@@ -179,38 +180,39 @@ export default function SocialMediaHubSection() {
                 delay: index * 0.08,
                 ease: [0.22, 1, 0.36, 1],
               }}
+              className="relative"
             >
               <Link
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group w-full bg-[#E4EAD9] hover:bg-[#DEE5D2] border border-[#D5DDC9] rounded-[22px] sm:rounded-[28px] p-4 sm:p-5 md:p-6 flex items-center justify-between transition-all duration-300 shadow-xs hover:shadow-md active:scale-[0.99]"
+                className="group relative w-full bg-[#E4EAD9] hover:bg-[#DEE5D2] border border-[#D5DDC9] rounded-[20px] sm:rounded-[28px] p-3.5 sm:p-5 md:p-6 pr-8 sm:pr-12 flex items-center justify-between transition-all duration-300 shadow-xs hover:shadow-md active:scale-[0.99]"
               >
                 {/* Left Content with Channel Icon & Text */}
-                <div className="flex items-center gap-3.5 sm:gap-4 md:gap-5 min-w-0">
+                <div className="flex items-center gap-3 sm:gap-4 md:gap-5 min-w-0 flex-1">
                   {/* Rounded Lime Icon Box */}
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-[14px] sm:rounded-[18px] bg-primary flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform duration-300">
+                  <div className="w-8 h-8 sm:w-14 sm:h-14 rounded-[10px] sm:rounded-[18px] bg-primary flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform duration-300">
                     {item.icon}
                   </div>
 
                   {/* Text Details */}
-                  <div className="flex flex-col min-w-0 pr-2">
+                  <div className="flex flex-col min-w-0 pr-1">
                     <span
                       style={{ color: "#5C6051" }}
-                      className="font-sans text-[12px] sm:text-[13px] font-normal truncate"
+                      className="font-sans text-[10px] sm:text-[13px] font-normal leading-tight sm:leading-normal"
                     >
                       {item.subtitle}
                     </span>
-                    <h3 className="font-sans font-medium text-[#1F2922] text-[17px] sm:text-[19px] md:text-[20px] tracking-tight">
+                    <h3 className="font-serif !font-normal text-[#1F2922] text-[16px] xs:text-[18px] sm:text-[20px] md:text-[22px] tracking-tight leading-tight mt-0.5 sm:mt-1">
                       {item.title}
                     </h3>
                   </div>
                 </div>
 
-                {/* Right Arrow CTA Box */}
-                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-[14px] sm:rounded-[18px] bg-primary flex items-center justify-center text-[#1F2922] shrink-0 shadow-xs group-hover:scale-110 transition-transform duration-300">
+                {/* Right Arrow CTA Box Floating Off Edge */}
+                <div className="absolute top-1/2 -translate-y-1/2 right-0 translate-x-1/2 w-9 h-9 sm:w-12 sm:h-12 rounded-[12px] sm:rounded-[18px] bg-primary flex items-center justify-center text-[#1F2922] shrink-0 shadow-sm group-hover:scale-110 transition-transform duration-300">
                   <ArrowUpRight
-                    className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    className="w-4.5 h-4.5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     strokeWidth={2.2}
                   />
                 </div>

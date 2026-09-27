@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export default function LegalHeroSection() {
   return (
@@ -14,35 +15,19 @@ export default function LegalHeroSection() {
         <div className="flex flex-col items-center text-center space-y-4 md:space-y-6 max-w-3xl mx-auto mb-8 md:mb-12">
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 text-white/90">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-4 h-4 shrink-0"
-              aria-hidden="true"
-            >
-              <path d="M3 10.5L12 3l9 7.5" />
-              <path d="M5 9v11a1 1 0 001 1h12a1 1 0 001-1V9" />
-              <path d="M3 21c4-2 8-2 12 0" />
-              <path d="M9 17c2-1 4-1 6 0" />
-            </svg>
-            <span className="font-semibold tracking-[0.14em] uppercase text-[12px] md:text-[13px] whitespace-nowrap">
+            <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+            <span className="font-medium tracking-[0.14em] uppercase text-[11px] md:text-[12px] whitespace-nowrap">
               LEGAL INFORMATION
             </span>
           </div>
 
           {/* Headline */}
-          <h1 className="font-serif !font-normal text-white text-[28px] md:text-[46px] lg:text-[54px] leading-[1.15] tracking-[-0.01em]">
+          <h1 className="font-serif !font-normal text-white text-[28px] xs:text-[34px] sm:text-[42px] md:text-[48px] lg:text-[54px] leading-[1.15] tracking-[-0.01em]">
             Transparency, Trust &amp; Compliance
           </h1>
 
           {/* Subtitle */}
-          <p className="font-sans text-white/90 text-[14.5px] md:text-[17px] leading-[1.65] font-normal max-w-2xl">
+          <p className="font-sans text-white/90 text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal max-w-2xl">
             Essential legal information, policies, and terms applicable to the
             Nirvaana Hills website and project.
           </p>

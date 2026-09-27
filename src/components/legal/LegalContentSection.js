@@ -87,13 +87,13 @@ export default function LegalContentSection() {
 
               {/* Text Content */}
               <div className="flex-1 space-y-3 md:space-y-4">
-                <h2 className="font-serif !font-normal text-[#1F2922] text-[24px] md:text-[30px] lg:text-[32px] leading-tight">
+                <h2 className="font-serif !font-normal text-[#1F2922] text-[20px] md:text-[24px] lg:text-[26px] leading-tight">
                   {section.title}
                 </h2>
 
                 <div className="space-y-2.5 md:space-y-3 text-[#313116] font-normal leading-[1.65]">
                   {section.paragraphs.map((paragraph, pIdx) => (
-                    <p key={pIdx} className="text-[14px] md:text-[15.5px]">
+                    <p key={pIdx} className="text-[13px] sm:text-[14px] md:text-[14.5px]">
                       {paragraph}
                     </p>
                   ))}

@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 // ========================================================
 // SOCIAL SLIDES DATA
@@ -88,24 +89,8 @@ export default function SocialHubSection() {
         >
           {/* Eyebrow */}
           <div className="inline-flex items-center justify-center gap-2 text-secondary text-center">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-4 h-4 sm:w-5 sm:h-5 shrink-0"
-              aria-hidden="true"
-            >
-              <path d="M3 10.5L12 3l9 7.5" />
-              <path d="M5 9v11a1 1 0 001 1h12a1 1 0 001-1V9" />
-              <path d="M3 21c4-2 8-2 12 0" />
-              <path d="M9 17c2-1 4-1 6 0" />
-            </svg>
-            <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px] whitespace-nowrap">
+            <FarmIcon className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+            <span className="font-medium tracking-[0.14em] uppercase text-[11px] md:text-[12px] whitespace-nowrap">
               OUR SOCIAL HUB
             </span>
           </div>

@@ -54,14 +54,14 @@ export default function SubscribeNewsletterSection() {
           className="flex flex-col space-y-4 sm:space-y-5 max-w-[680px]"
         >
           {/* Headline */}
-          <h2 className="font-serif !font-normal text-[#1F2922] text-[28px] xs:text-[34px] sm:text-[38px] md:text-[42px] leading-[1.2] tracking-[-0.01em]">
+          <h2 className="font-serif !font-normal text-[#1F2922] text-[24px] sm:text-[30px] md:text-[36px] leading-[1.2] tracking-[-0.01em]">
             Subscribe to Our Newsletter
           </h2>
 
           {/* Description */}
           <p
             style={{ color: "#5C6051" }}
-            className="font-sans text-[15px] sm:text-[16px] md:text-[17px] leading-[1.65] font-normal"
+            className="font-sans text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal"
           >
             Stay updated with the latest insights, stories, announcements, and
             exclusive updates delivered straight to your inbox.

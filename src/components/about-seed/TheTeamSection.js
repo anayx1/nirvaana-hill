@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Home, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export const TEAM_IMAGES = [
   {
@@ -30,6 +31,22 @@ export const TEAM_IMAGES = [
 
 export default function TheTeamSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Eagerly prefetch all team carousel images so switching is instantaneous
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      TEAM_IMAGES.forEach((img) => {
+        const link = document.createElement("link");
+        link.rel = "prefetch";
+        link.as = "image";
+        link.href = img.src;
+        document.head.appendChild(link);
+
+        const preload = new window.Image();
+        preload.src = img.src;
+      });
+    }
+  }, []);
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev === 0 ? TEAM_IMAGES.length - 1 : prev - 1));
@@ -59,21 +76,19 @@ export default function TheTeamSection() {
           >
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2.5 text-white/95">
-              <Home className="w-4.5 h-4.5 sm:w-5 sm:h-5 shrink-0" strokeWidth={2.2} aria-hidden="true" />
-              <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px] whitespace-nowrap">
+              <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+              <span className="font-medium tracking-[0.14em] uppercase text-[11px] md:text-[12px] whitespace-nowrap">
                 THE PEOPLE BEHIND THE VISION
               </span>
             </div>
 
             {/* Headline */}
-            <h2 className="font-serif !font-normal text-white text-[30px] xs:text-[36px] sm:text-[42px] md:text-[48px] lg:text-[54px] leading-[1.15] tracking-[-0.01em]">
-              Great Communities Are Built By
-              <br />
-              People.
+            <h2 className="font-serif !font-normal text-white text-[28px] xs:text-[34px] sm:text-[42px] md:text-[48px] lg:text-[54px] leading-[1.15] tracking-[-0.01em]">
+              Great Communities Are Built By People.
             </h2>
 
             {/* Narrative Paragraphs */}
-            <div className="flex flex-col space-y-4 text-white/90 font-sans text-[15px] sm:text-[16px] md:text-[17px] leading-[1.65] font-normal max-w-xl">
+            <div className="flex flex-col space-y-4 text-white/90 font-sans text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal max-w-xl">
               <p>
                 Behind Nirvaana Hills is a team of planners, partners, advisors,
                 and on-ground experts working together every day - from
@@ -150,8 +165,8 @@ export default function TheTeamSection() {
                     onClick={() => setCurrentIndex(idx)}
                     aria-label={`Go to slide ${idx + 1}`}
                     className={`transition-all duration-300 rounded-full cursor-pointer ${currentIndex === idx
-                        ? "w-5 h-1.5 bg-primary"
-                        : "w-1.5 h-1.5 bg-white/50 hover:bg-white/80"
+                      ? "w-5 h-1.5 bg-primary"
+                      : "w-1.5 h-1.5 bg-white/50 hover:bg-white/80"
                       }`}
                   />
                 ))}
@@ -160,6 +175,21 @@ export default function TheTeamSection() {
           </motion.div>
 
         </div>
+      </div>
+
+      {/* Hidden image pre-cachers for instant full-quality carousel switching */}
+      <div className="hidden" aria-hidden="true">
+        {TEAM_IMAGES.map((img) => (
+          <Image
+            key={img.id}
+            src={img.src}
+            alt={img.alt}
+            width={650}
+            height={520}
+            priority
+            unoptimized
+          />
+        ))}
       </div>
     </section>
   );

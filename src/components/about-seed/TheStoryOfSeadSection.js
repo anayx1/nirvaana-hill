@@ -4,23 +4,24 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Handshake, HandHeart, Palmtree, Home } from "lucide-react";
+import { Handshake, HandHeart, Palmtree } from "lucide-react";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export const STORY_HIGHLIGHTS = [
   {
     id: "legacy",
     title: "20+ Years of Legacy",
-    icon: <Handshake className="w-9 h-9 sm:w-10 sm:h-10 text-[#1F2922]" strokeWidth={1.75} />,
+    icon: <Handshake className="w-9 h-9 sm:w-10 sm:h-10 text-[#1F2922]" strokeWidth={1} />,
   },
   {
     id: "relationships",
     title: "Trusted Relationships Across Generations",
-    icon: <HandHeart className="w-9 h-9 sm:w-10 sm:h-10 text-[#1F2922]" strokeWidth={1.75} />,
+    icon: <HandHeart className="w-9 h-9 sm:w-10 sm:h-10 text-[#1F2922]" strokeWidth={1} />,
   },
   {
     id: "development",
     title: "Nature-Led Land Development",
-    icon: <Palmtree className="w-9 h-9 sm:w-10 sm:h-10 text-[#1F2922]" strokeWidth={1.75} />,
+    icon: <Palmtree className="w-9 h-9 sm:w-10 sm:h-10 text-[#1F2922]" strokeWidth={1} />,
   },
 ];
 
@@ -56,8 +57,8 @@ export default function TheStoryOfSeadSection() {
           {/* EYEBROW                                                */}
           {/* ====================================================== */}
           <div className="inline-flex items-center justify-center gap-2 text-[#B3482B]">
-            <Home className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" strokeWidth={2.2} aria-hidden="true" />
-            <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px]">
+            <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+            <span className="font-medium tracking-[0.14em] uppercase text-[11px] md:text-[12px]">
               THE STORY OF SEAD REALTY
             </span>
           </div>
@@ -65,7 +66,7 @@ export default function TheStoryOfSeadSection() {
           {/* ====================================================== */}
           {/* HEADLINE                                               */}
           {/* ====================================================== */}
-          <h2 className="font-serif !font-normal text-[#1F2922] text-[28px] xs:text-[32px] sm:text-[38px] md:text-[44px] lg:text-[48px] leading-[1.18] tracking-[-0.01em]">
+          <h2 className="font-serif !font-normal text-[#1F2922] text-[24px] sm:text-[30px] md:text-[36px] leading-[1.18] tracking-[-0.01em]">
             A Journey Built Over Two Decades.
           </h2>
 
@@ -75,7 +76,7 @@ export default function TheStoryOfSeadSection() {
           <div className="flex flex-col space-y-4 max-w-[740px] mx-auto">
             <p
               style={{ color: "#5C6051" }}
-              className="font-sans text-[15px] sm:text-[16px] md:text-[17px] leading-[1.65] font-normal"
+              className="font-sans text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal"
             >
               SEAD Realty&apos;s roots trace back over 2 decades to Shreeram
               Estates &amp; Developers, a real estate advisory business built on
@@ -84,7 +85,7 @@ export default function TheStoryOfSeadSection() {
             </p>
             <p
               style={{ color: "#5C6051" }}
-              className="font-sans text-[15px] sm:text-[16px] md:text-[17px] leading-[1.65] font-normal"
+              className="font-sans text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal"
             >
               Experience revealed a deeper truth: families wanted healthier
               environments and a real way to reconnect with life. That shift
@@ -105,7 +106,7 @@ export default function TheStoryOfSeadSection() {
                 <div className="flex items-center justify-center h-10 sm:h-12">
                   {item.icon}
                 </div>
-                <p className="font-sans text-[12px] sm:text-[13px] md:text-[14px] font-medium text-[#1F2922] leading-[1.3] max-w-[150px]">
+                <p className="font-sans text-[11px] sm:text-[12px] md:text-[13px] font-normal text-[#1F2922] leading-[1.3] max-w-[150px]">
                   {item.title}
                 </p>
               </div>
@@ -118,7 +119,7 @@ export default function TheStoryOfSeadSection() {
           <div className="pt-3 sm:pt-5">
             <Link
               href="/nirvaana-hills"
-              className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-medium text-[15px] sm:text-[16px] px-8 py-3.5 sm:px-10 sm:py-4 rounded-full transition-all duration-300 shadow-xs active:scale-95 inline-flex items-center justify-center text-center"
+              className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] transition-all duration-300 shadow-xs active:scale-95 inline-flex items-center justify-center text-center"
             >
               Explore Nirvaana Hills
             </Link>

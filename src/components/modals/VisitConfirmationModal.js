@@ -148,47 +148,33 @@ export default function VisitConfirmationModal() {
               <X className="w-4 h-4" />
             </button>
 
-            {/* Top Leaf Logo / Sprout Icon */}
-            <div className="mb-4 sm:mb-5 text-[#243323] flex items-center justify-center">
-              <svg
-                width="64"
-                height="64"
-                viewBox="0 0 64 64"
-                fill="none"
-                className="w-14 h-14 text-[#263524]"
-              >
-                <path
-                  d="M20 44C20 30 24 16 38 16C48 16 52 24 52 36V46"
-                  stroke="currentColor"
-                  strokeWidth="5"
-                  strokeLinecap="round"
+            {/* Top Brand Logo */}
+            <div className="mb-5 sm:mb-6 flex items-center justify-center">
+              <div className="relative w-[150px] sm:w-[175px] h-[36px] sm:h-[42px]">
+                <Image
+                  src="/logo-new.png"
+                  alt="Nirvaana Hills"
+                  fill
+                  priority
+                  unoptimized
+                  className="object-contain object-center"
                 />
-                <path
-                  d="M20 38C20 25 28 20 36 27C36 36 27 42 20 44Z"
-                  fill="currentColor"
-                />
-                <path
-                  d="M27 28C27 34 23 39 20 42"
-                  stroke="#E8E9DC"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                />
-              </svg>
+              </div>
             </div>
 
             {/* Headline */}
-            <h2 className="font-serif !font-normal text-[#1F2922] text-[23px] sm:text-[27px] leading-[1.2] tracking-[0.02em] uppercase mb-4">
+            <h2 className="font-serif !font-normal text-[#1F2922] text-[20px] sm:text-[24px] leading-[1.2] tracking-[0.02em] uppercase mb-4">
               YOUR VISIT IS CONFIRMED
             </h2>
 
             {/* Description Paragraph */}
-            <p className="font-sans text-[#4A5443] text-[14.5px] sm:text-[15.5px] leading-[1.6] max-w-[340px] font-normal">
+            <p className="font-sans text-[#4A5443] text-[13px] sm:text-[14.5px] leading-[1.6] max-w-[340px] font-normal">
               Come walk the land, breathe the air, explore the surroundings and
               experience what Nirvaana Hills feels like for yourself.
             </p>
 
             {/* Italic Tagline */}
-            <p className="font-serif italic text-[#4A5443] text-[15px] sm:text-[16px] font-normal mt-4 mb-7">
+            <p className="font-serif italic text-[#4A5443] text-[14px] sm:text-[15px] font-normal mt-4 mb-7">
               Bring your family. Take your time.
             </p>
 
@@ -196,7 +182,7 @@ export default function VisitConfirmationModal() {
             <button
               type="button"
               onClick={handleBackToHome}
-              className="w-full sm:w-auto min-w-[200px] py-3.5 px-8 rounded-full bg-[#AFEB63] hover:bg-[#9de04e] active:scale-[0.98] text-[#1F2922] font-semibold text-[15px] transition-all duration-200 shadow-sm cursor-pointer"
+              className="w-full sm:w-auto min-w-[180px] py-2.5 sm:py-3 px-6 sm:px-8 rounded-[14px] md:rounded-[16px] bg-[#AFEB63] hover:bg-[#9de04e] active:scale-[0.98] text-[#1F2922] font-normal text-[12px] md:text-[16px] transition-all duration-200 shadow-sm cursor-pointer"
             >
               Back To Home
             </button>

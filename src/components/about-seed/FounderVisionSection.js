@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Home } from "lucide-react";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export default function FounderVisionSection() {
   const sectionRef = useRef(null);
@@ -57,21 +57,21 @@ export default function FounderVisionSection() {
         >
           {/* Eyebrow */}
           <div className="inline-flex items-center justify-center gap-2.5 text-white/95">
-            <Home className="w-4.5 h-4.5 sm:w-5 sm:h-5 shrink-0" strokeWidth={2.2} aria-hidden="true" />
-            <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px] whitespace-nowrap">
+            <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+            <span className="font-medium tracking-[0.14em] uppercase text-[11px] md:text-[12px] whitespace-nowrap">
               FOUNDER VISION
             </span>
           </div>
 
           {/* Quote Headline */}
-          <blockquote className="font-serif !font-normal text-white text-[24px] xs:text-[28px] sm:text-[34px] md:text-[40px] lg:text-[46px] leading-[1.22] tracking-[-0.01em] max-w-[840px]">
+          <blockquote className="font-serif !font-normal text-white text-[20px] xs:text-[24px] sm:text-[28px] md:text-[34px] leading-[1.22] tracking-[-0.01em] max-w-[840px]">
             &ldquo;We are not simply developing land. We are shaping environments
             families can return to for generations. A place designed to become a
             destination for everyone.&rdquo;
           </blockquote>
 
           {/* Attribution */}
-          <p className="font-serif italic text-white/90 text-[18px] sm:text-[22px] md:text-[26px] tracking-wide pt-1 sm:pt-2">
+          <p className="font-serif italic text-white/90 text-[15px] sm:text-[17px] md:text-[19px] tracking-wide pt-1 sm:pt-2">
             ~ Neeraj Bansal
           </p>
         </motion.div>

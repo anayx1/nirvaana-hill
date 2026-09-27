@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
@@ -25,29 +26,20 @@ export default function PhasesOfNirvaanaSection() {
         >
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 text-secondary">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-4 h-4 md:w-5 md:h-5 shrink-0"
-              aria-hidden="true"
-            >
-              <path d="M12 3l-8 7h16l-8-7z" />
-              <path d="M5 14c2.5-1.5 5-1.5 7 0s4.5 1.5 7 0" />
-              <path d="M5 19c2.5-1.5 5-1.5 7 0s4.5 1.5 7 0" />
-            </svg>
-            <span className="text-[12px] sm:text-[13px] md:text-[14px] font-semibold tracking-[0.14em] uppercase whitespace-nowrap">
+            <Image
+              src="/farm.svg"
+              alt="farm"
+              width={18}
+              height={18}
+              className="w-4 h-4 md:w-5 md:h-5 shrink-0 [filter:brightness(0)_saturate(100%)_invert(47%)_sepia(18%)_saturate(1175%)_hue-rotate(37deg)_brightness(94%)_contrast(89%)]"
+            />
+            <span className="text-[11px] sm:text-[12px] font-medium tracking-[0.14em] uppercase whitespace-nowrap">
               PHASES OF NIRVAANA HILLS
             </span>
           </div>
 
           {/* Headline */}
-          <h2 className="font-serif !font-normal text-[#1F2922] text-[32px] sm:text-[40px] md:text-[48px] lg:text-[54px] leading-[1.14] tracking-[-0.01em]">
+          <h2 className="font-serif !font-normal text-[#1F2922] text-[26px] sm:text-[34px] md:text-[42px] leading-[1.14] tracking-[-0.01em]">
             A Community Built In Stages,
             <br className="hidden sm:inline" />
             Trusted Right From The Start.
@@ -71,27 +63,27 @@ export default function PhasesOfNirvaanaSection() {
           >
             {/* Top row: Number and Sold Out badge */}
             <div className="flex items-start justify-between mb-4 sm:mb-6">
-              <span className="font-serif text-[48px] sm:text-[56px] leading-none text-white/90 font-normal">
+              <span className="font-serif text-[40px] sm:text-[48px] leading-none text-white/90 font-normal">
                 01
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/20 text-white/90 text-[11px] sm:text-[12px] font-medium tracking-wide uppercase">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/20 text-white/90 text-[10.5px] sm:text-[11.5px] font-medium tracking-wide uppercase">
                 <span className="w-1.5 h-1.5 rounded-full bg-white/60" />
                 SOLD OUT
               </span>
             </div>
 
             {/* Subtitle */}
-            <p className="text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.14em] text-white/80 mb-1.5">
+            <p className="text-[10.5px] sm:text-[11.5px] font-medium uppercase tracking-[0.14em] text-white/80 mb-1.5">
               PHASE 1
             </p>
 
             {/* Title */}
-            <h3 className="font-serif !font-normal text-white text-[24px] sm:text-[28px] md:text-[30px] leading-snug mb-3">
+            <h3 className="font-serif !font-normal text-white text-[20px] sm:text-[24px] md:text-[26px] leading-snug mb-2">
               Phase 1 Is Now Fully Reserved.
             </h3>
 
             {/* Description */}
-            <p className="text-white/85 text-[14px] sm:text-[15px] leading-relaxed">
+            <p className="text-white/85 text-[13px] sm:text-[14px] leading-relaxed">
               Launched September 2025 with 87 farmland parcels.
             </p>
           </motion.div>
@@ -116,27 +108,27 @@ export default function PhasesOfNirvaanaSection() {
           >
             {/* Top row: Number and Now Open badge */}
             <div className="flex items-start justify-between mb-4 sm:mb-6">
-              <span className="font-serif text-[48px] sm:text-[56px] leading-none text-white font-normal">
+              <span className="font-serif text-[40px] sm:text-[48px] leading-none text-white font-normal">
                 02
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/25 text-white text-[11px] sm:text-[12px] font-medium tracking-wide uppercase">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/25 text-white text-[10.5px] sm:text-[11.5px] font-medium tracking-wide uppercase">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#AFEB63]" />
                 NOW OPEN
               </span>
             </div>
 
             {/* Subtitle */}
-            <p className="text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.14em] text-white/85 mb-1.5">
+            <p className="text-[10.5px] sm:text-[11.5px] font-medium uppercase tracking-[0.14em] text-white/85 mb-1.5">
               PHASE 2
             </p>
 
             {/* Title */}
-            <h3 className="font-serif !font-normal text-white text-[24px] sm:text-[28px] md:text-[30px] leading-snug mb-3">
+            <h3 className="font-serif !font-normal text-white text-[20px] sm:text-[24px] md:text-[26px] leading-snug mb-2">
               Limited Inventory Now Open.
             </h3>
 
             {/* Description */}
-            <div className="space-y-3 text-white/90 text-[14px] sm:text-[15px] leading-relaxed">
+            <div className="space-y-2.5 text-white/90 text-[13px] sm:text-[14px] leading-relaxed">
               <p>
                 Launched June 2026, carefully planned, limited in availability,
                 and designed for families seeking both lifestyle value and
@@ -149,17 +141,17 @@ export default function PhasesOfNirvaanaSection() {
             </div>
 
             {/* Divider */}
-            <div className="border-t border-white/20 my-5 sm:my-6" />
+            <div className="border-t border-white/20 my-4 sm:my-5" />
 
             {/* Pricing Details */}
-            <div className="space-y-1 mb-6">
-              <p className="text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.14em] text-white/80">
+            <div className="space-y-1 mb-5">
+              <p className="text-[10.5px] sm:text-[11.5px] font-medium uppercase tracking-[0.14em] text-white/80">
                 STARTING FROM
               </p>
-              <p className="font-serif text-[32px] sm:text-[38px] md:text-[44px] leading-tight text-white font-normal">
+              <p className="font-serif text-[28px] sm:text-[34px] md:text-[38px] leading-tight text-white font-normal">
                 ₹1.29 Cr
               </p>
-              <p className="text-[12px] text-white/70 italic">
+              <p className="text-[11.5px] text-white/70 italic">
                 *Indicative
               </p>
             </div>
@@ -167,8 +159,8 @@ export default function PhasesOfNirvaanaSection() {
             {/* CTA Button */}
             <div>
               <Link
-                href="/contact-us"
-                className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-medium text-[15px] sm:text-[16px] px-8 sm:px-9 py-3.5 rounded-full transition-all duration-300 shadow-xs inline-flex items-center justify-center active:scale-95"
+                href="/faqs#phases"
+                className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] transition-all duration-300 shadow-xs inline-flex items-center justify-center active:scale-95"
               >
                 Find Your Answers
               </Link>

@@ -78,27 +78,83 @@ export default function TestimonialsSection() {
   const [activeStoryIndex, setActiveStoryIndex] = useState(0);
   const [activeReviewIndex, setActiveReviewIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
+  const [isInView, setIsInView] = useState(false);
   const [progress, setProgress] = useState(0);
 
+  const sectionRef = useRef(null);
   const videoRef = useRef(null);
+  const isMutedRef = useRef(false);
+  isMutedRef.current = isMuted;
+
   const totalStories = STORY_TESTIMONIALS.length;
 
   const currentStory = STORY_TESTIMONIALS[activeStoryIndex];
   const currentReview = WRITTEN_TESTIMONIALS[activeReviewIndex];
 
-  // Play / Pause handling on active video
+  // IntersectionObserver: Only active when user is in the Testimonials section
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      {
+        threshold: 0.2, // Triggers when at least 20% of the section is visible
+      }
+    );
+
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // User interaction listener to ensure audio plays unmuted as soon as user interacts
+  useEffect(() => {
+    const handleFirstInteraction = () => {
+      if (videoRef.current && !isMutedRef.current) {
+        videoRef.current.muted = false;
+        if (isInView) {
+          videoRef.current.play().catch(() => {});
+        }
+      }
+    };
+
+    window.addEventListener("click", handleFirstInteraction, { once: true });
+    window.addEventListener("touchstart", handleFirstInteraction, { once: true });
+    window.addEventListener("scroll", handleFirstInteraction, { once: true });
+    window.addEventListener("pointerdown", handleFirstInteraction, { once: true });
+
+    return () => {
+      window.removeEventListener("click", handleFirstInteraction);
+      window.removeEventListener("touchstart", handleFirstInteraction);
+      window.removeEventListener("scroll", handleFirstInteraction);
+      window.removeEventListener("pointerdown", handleFirstInteraction);
+    };
+  }, [isInView]);
+
+  // Play / Pause handling on active video based on viewport presence
   useEffect(() => {
     if (!videoRef.current) return;
-    if (isPlaying) {
-      videoRef.current.play().catch(() => {
-        // Autoplay policy fallback
-        setIsPlaying(false);
-      });
+    videoRef.current.muted = isMuted;
+
+    if (isInView && isPlaying) {
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Fallback if browser policy holds unmuted playback before interaction
+          if (videoRef.current) {
+            videoRef.current.muted = true;
+            videoRef.current.play().catch(() => {
+              setIsPlaying(false);
+            });
+          }
+        });
+      }
     } else {
+      // Pause video and silence audio when out of section
       videoRef.current.pause();
     }
-  }, [isPlaying, activeStoryIndex]);
+  }, [isInView, isPlaying, activeStoryIndex, isMuted]);
 
   // Video time tracking for progress bar
   const handleTimeUpdate = () => {
@@ -133,14 +189,16 @@ export default function TestimonialsSection() {
 
   const toggleMute = (e) => {
     e?.stopPropagation();
+    const newMuted = !isMuted;
     if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
+      videoRef.current.muted = newMuted;
     }
-    setIsMuted((prev) => !prev);
+    setIsMuted(newMuted);
   };
 
   return (
     <section
+      ref={sectionRef}
       id="testimonials"
       className="w-full bg-[#FAF9F5] py-14 sm:py-16 md:py-24 lg:py-32 overflow-hidden select-none"
     >

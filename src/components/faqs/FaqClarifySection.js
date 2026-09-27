@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export default function FaqClarifySection() {
   return (
@@ -35,43 +36,27 @@ export default function FaqClarifySection() {
         >
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 text-[#B3482B]">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-4 h-4 shrink-0"
-              aria-hidden="true"
-            >
-              <path d="M3 10.5L12 3l9 7.5" />
-              <path d="M5 9v11a1 1 0 001 1h12a1 1 0 001-1V9" />
-              <path d="M3 21c4-2 8-2 12 0" />
-              <path d="M9 17c2-1 4-1 6 0" />
-            </svg>
-            <span className="font-semibold tracking-[0.14em] uppercase text-[12px] md:text-[13px] whitespace-nowrap">
+            <FarmIcon className="w-4 h-4 shrink-0" />
+            <span className="font-medium tracking-[0.14em] uppercase text-[11px] md:text-[12px] whitespace-nowrap">
               QUESTIONS ARE ALWAYS WELCOME
             </span>
           </div>
 
           {/* Headline */}
-          <h2 className="font-serif !font-normal text-[#1F2922] text-[28px] md:text-[44px] lg:text-[50px] leading-[1.15] tracking-[-0.01em]">
+          <h2 className="font-serif !font-normal text-[#1F2922] text-[24px] sm:text-[30px] md:text-[36px] leading-[1.15] tracking-[-0.01em]">
             Questions Are Part Of The Journey.
           </h2>
 
           {/* Narrative Body */}
           <div className="space-y-3 text-[#313116] font-normal">
-            <p className="text-[14px] leading-tight">
+            <p className="text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65]">
               Whether you&apos;re curious about ownership, development progress,
               location, lifestyle possibilities, or the philosophy behind
               Nirvaana Hills - clarity should always come first. You&apos;ll find
               detailed answers here: clear, transparent, without unnecessary
               complexity.
             </p>
-            <p className="italic text-gray-800 font-light pt-1 text-[14px] leading-tight">
+            <p className="italic text-gray-800 font-light pt-1 text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.6]">
               Because important decisions deserve complete understanding.
             </p>
           </div>
@@ -80,7 +65,7 @@ export default function FaqClarifySection() {
           <div className="pt-3 md:pt-4">
             <Link
               href="/contact-us"
-              className="bg-[#AFEB63] hover:bg-[#9EE837] text-[#1F2922] font-sans font-medium text-[15px] md:text-[16px] px-8 md:px-9 py-3.5 md:py-4 rounded-[14px] md:rounded-[18px] transition-all duration-300 shadow-xs active:scale-95 inline-flex items-center justify-center text-center"
+              className="bg-[#AFEB63] hover:bg-[#9EE837] text-[#1F2922] font-sans font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] transition-all duration-300 shadow-xs active:scale-95 inline-flex items-center justify-center text-center"
             >
               Get More Clarity
             </Link>

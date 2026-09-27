@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Home } from "lucide-react";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export default function MuskaanCareSection() {
   const sectionRef = useRef(null);
@@ -70,19 +70,19 @@ export default function MuskaanCareSection() {
 
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2.5 text-white/95">
-            <Home className="w-4.5 h-4.5 sm:w-5 sm:h-5 shrink-0" strokeWidth={2.2} aria-hidden="true" />
-            <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px] whitespace-nowrap">
+            <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+            <span className="font-medium tracking-[0.14em] uppercase text-[11px] md:text-[12px] whitespace-nowrap">
               MUSKAAN CARE FOUNDATION
             </span>
           </div>
 
           {/* Headline */}
-          <h2 className="font-serif !font-normal text-white text-[28px] xs:text-[34px] sm:text-[40px] md:text-[48px] lg:text-[54px] leading-[1.15] tracking-[-0.01em]">
+          <h2 className="font-serif !font-normal text-white text-[28px] xs:text-[34px] sm:text-[42px] md:text-[48px] lg:text-[54px] leading-[1.15] tracking-[-0.01em]">
             Creating Meaningful Impact For Over 16 Years.
           </h2>
 
           {/* Narrative Paragraphs */}
-          <div className="flex flex-col space-y-4 text-white/90 font-sans text-[15px] sm:text-[16px] md:text-[17px] leading-[1.65] font-normal max-w-xl">
+          <div className="flex flex-col space-y-4 text-white/90 font-sans text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal max-w-xl">
             <p>
               For 16+ years, Muskaan Care Foundation has held one belief: every
               child deserves education. At its heart is Naya Sawera Public

@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 // ========================================================
 // STACKING CARDS DATA
@@ -78,37 +79,21 @@ export default function WhatMakesDifferentSection() {
         >
           {/* Eyebrow */}
           <div className="inline-flex items-center justify-center gap-2 text-secondary text-center">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-4 h-4 sm:w-5 sm:h-5 shrink-0"
-              aria-hidden="true"
-            >
-              <path d="M3 10.5L12 3l9 7.5" />
-              <path d="M5 9v11a1 1 0 001 1h12a1 1 0 001-1V9" />
-              <path d="M3 21c4-2 8-2 12 0" />
-              <path d="M9 17c2-1 4-1 6 0" />
-            </svg>
-            <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px] whitespace-nowrap">
+            <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+            <span className="font-medium tracking-[0.14em] uppercase text-[11px] sm:text-[12px] whitespace-nowrap">
               WHAT MAKES NIRVAANA HILLS DIFFERENT
             </span>
           </div>
 
           {/* Headline */}
-          <h2 className="font-serif !font-normal text-[#1F2922] tracking-[-0.01em]">
+          <h2 className="font-serif !font-normal text-[#1F2922] text-[26px] sm:text-[34px] md:text-[42px] tracking-[-0.01em]">
             Land Can Be Owned.
             <br />
             A Place Must Be Lived.
           </h2>
 
           {/* Description */}
-          <p className="text-[#313116] leading-relaxed max-w-2xl text-center">
+          <p className="text-[#313116] text-[13.5px] sm:text-[14.5px] md:text-[15.5px] leading-relaxed max-w-2xl text-center font-normal">
             Raw farmland offers possession - but possession alone doesn&apos;t
             create usage. Nirvaana Hills brings land, planning, infrastructure,
             accessibility, community, and long-term vision into one integrated
@@ -129,19 +114,19 @@ export default function WhatMakesDifferentSection() {
                 key={card.id}
                 style={{ zIndex: index + 1 }}
                 className={`sticky top-20 sm:top-24 md:top-28 w-full ${
-                  !isLast ? "mb-12 sm:mb-16 md:mb-20" : "mb-0"
+                  !isLast ? "mb-8 sm:mb-12 md:mb-16" : "mb-0"
                 }`}
               >
-                <div className="w-full h-[370px] xs:h-[400px] sm:h-[450px] md:h-[490px] rounded-[24px] sm:rounded-[32px] bg-[#E5E8D8] p-5 sm:p-7 md:p-8 border border-black/5 shadow-none flex flex-col justify-between">
+                <div className="w-full h-[275px] xs:h-[300px] sm:h-[350px] md:h-[390px] rounded-[22px] sm:rounded-[28px] bg-[#E5E8D8] p-4 sm:p-6 md:p-7 border border-black/5 shadow-none flex flex-col justify-between">
                   {/* Card Title with uniform height to prevent top/bottom shifts */}
-                  <div className="h-[54px] sm:h-[64px] flex items-center shrink-0 mb-3 sm:mb-4">
-                    <h3 className="font-serif !font-normal text-[#1F2922] text-[19px] xs:text-[21px] sm:text-[25px] md:text-[27px] leading-snug line-clamp-2">
+                  <div className="h-[44px] sm:h-[52px] flex items-center shrink-0 mb-2.5 sm:mb-3">
+                    <h3 className="font-serif !font-normal text-[#1F2922] text-[16px] xs:text-[18px] sm:text-[21px] md:text-[23px] leading-snug line-clamp-2">
                       {card.title}
                     </h3>
                   </div>
 
                   {/* Card Image with uniform flex fill */}
-                  <div className="flex-1 w-full relative rounded-[18px] sm:rounded-[22px] overflow-hidden bg-[#242A1F] shadow-none">
+                  <div className="flex-1 w-full relative rounded-[15px] sm:rounded-[18px] overflow-hidden bg-[#242A1F] shadow-none">
                     <Image
                       src={card.image}
                       alt={card.alt}
@@ -167,7 +152,7 @@ export default function WhatMakesDifferentSection() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center max-w-2xl mx-auto pt-4 sm:pt-6 md:pt-8 pb-2 px-2"
         >
-          <p className="font-sans italic text-[#353D2C] text-[15px] sm:text-[17px] md:text-[19px] leading-[1.65]">
+          <p className="font-sans italic text-[#353D2C] text-[13.5px] sm:text-[15px] md:text-[16px] leading-[1.65]">
             Because for many families, value isn&apos;t only what they own -
             it&apos;s how often they return to it, and how naturally it becomes
             part of life.

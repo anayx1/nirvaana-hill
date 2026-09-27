@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 const AMENITIES = [
   {
@@ -95,7 +96,7 @@ export default function ForestLivingAmenitiesSection() {
   return (
     <section
       id="forest-living-amenities"
-      className="w-full bg-[#FAF9F5] py-14 sm:py-18 md:py-24 overflow-visible select-none"
+      className="w-full bg-[#FAF9F5] py-12 sm:py-16 md:py-20 overflow-visible select-none"
     >
       <div className="container max-w-[1200px] px-4 sm:px-6 mx-auto">
         {/* ======================================================== */}
@@ -106,39 +107,23 @@ export default function ForestLivingAmenitiesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col items-center text-center max-w-2xl mx-auto mb-10 sm:mb-14 md:mb-16"
+          className="flex flex-col items-center text-center max-w-2xl mx-auto mb-10 sm:mb-12 md:mb-14"
         >
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 text-[#B05B3B] mb-3 sm:mb-4">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0"
-              aria-hidden="true"
-            >
-              <path d="M3 10.5L12 3l9 7.5" />
-              <path d="M5 9v11a1 1 0 001 1h12a1 1 0 001-1V9" />
-              <path d="M3 21c4-2 8-2 12 0" />
-              <path d="M9 17c2-1 4-1 6 0" />
-            </svg>
-            <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px]">
+            <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+            <span className="font-medium tracking-[0.14em] uppercase text-[11px] sm:text-[12px]">
               FOREST LIVING AMENITIES
             </span>
           </div>
 
           {/* Headline */}
-          <h2 className="font-serif !font-normal text-[#1F2922] text-[30px] xs:text-[36px] sm:text-[42px] md:text-[48px] leading-[1.15] tracking-[-0.01em] mb-4">
+          <h2 className="font-serif !font-normal text-[#1F2922] text-[24px] xs:text-[28px] sm:text-[34px] md:text-[38px] leading-[1.15] tracking-[-0.01em] mb-4">
             Not a Promise. Already Built.
           </h2>
 
           {/* Subtitle */}
-          <p className="font-sans text-[#525E50] text-[14px] xs:text-[15px] sm:text-[16px] leading-relaxed max-w-xl mx-auto">
+          <p className="font-sans text-[#525E50] text-[13px] xs:text-[14px] sm:text-[15px] leading-relaxed max-w-xl mx-auto">
             Infrastructure that&apos;s delivered - not brochure promises. Every
             amenity at Nirvaana Hills Phase 2 is designed to elevate forest living.
           </p>
@@ -147,21 +132,17 @@ export default function ForestLivingAmenitiesSection() {
         {/* ======================================================== */}
         {/* COMPLETE STACKING STICKY CARDS CONTAINER                 */}
         {/* ======================================================== */}
-        <div className="relative max-w-[620px] sm:max-w-[680px] mx-auto flex flex-col pb-8 sm:pb-12">
+        <div className="relative max-w-[680px] md:max-w-[760px] mx-auto flex flex-col pb-[200px] sm:pb-[220px] md:pb-[230px]">
           {AMENITIES.map((card, index) => {
-            const isLast = index === AMENITIES.length - 1;
-
             return (
               <div
                 key={card.id}
                 style={{ zIndex: index + 1 }}
-                className={`sticky top-20 sm:top-24 md:top-28 w-full ${
-                  !isLast ? "mb-8 sm:mb-12 md:mb-14" : "mb-0"
-                }`}
+                className="sticky top-20 sm:top-24 md:top-28 w-full mb-8 sm:mb-12 md:mb-16"
               >
-                <div className="w-full rounded-[24px] sm:rounded-[32px] bg-[#E5EAD9] p-6 xs:p-8 sm:p-10 border border-[#D5DFC6] shadow-sm flex flex-col justify-start space-y-3 sm:space-y-4">
+                <div className="w-full h-[225px] xs:h-[240px] sm:h-[265px] md:h-[285px] rounded-[22px] sm:rounded-[28px] bg-[#E5EAD9] p-5 xs:p-6 sm:p-7 md:p-8 border border-black/5 shadow-none flex flex-col justify-between">
                   {/* Icon */}
-                  <div className="relative w-11 h-11 sm:w-13 sm:h-13">
+                  <div className="relative w-9 h-9 sm:w-11 sm:h-11 shrink-0">
                     <Image
                       src={card.icon}
                       alt={card.title}
@@ -171,20 +152,35 @@ export default function ForestLivingAmenitiesSection() {
                     />
                   </div>
 
-                  {/* Title */}
-                  <h3 className="font-serif !font-normal text-[#1F2922] text-[22px] xs:text-[24px] sm:text-[28px] md:text-[30px] leading-tight">
-                    {card.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="font-sans text-[#4A5546] text-[14px] sm:text-[15.5px] leading-relaxed">
-                    {card.description}
-                  </p>
+                  {/* Title & Description */}
+                  <div className="flex flex-col space-y-1.5 sm:space-y-2">
+                    <h3 className="font-serif !font-normal text-[#1F2922] text-[17px] xs:text-[19px] sm:text-[21px] md:text-[23px] leading-tight">
+                      {card.title}
+                    </h3>
+                    <p className="font-sans text-[#4A5546] text-[12px] xs:text-[13px] sm:text-[14px] leading-relaxed">
+                      {card.description}
+                    </p>
+                  </div>
                 </div>
               </div>
             );
           })}
         </div>
+
+        {/* ======================================================== */}
+        {/* CONCLUDING PHILOSOPHY LINE (Ensures Clean Scroll Exit)   */}
+        {/* ======================================================== */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center max-w-2xl mx-auto -mt-[170px] sm:-mt-[190px] md:-mt-[200px] pt-2 sm:pt-4 pb-2 px-2"
+        >
+          <p className="font-sans italic text-[#525E50] text-[13.5px] sm:text-[15px] md:text-[16px] leading-[1.65]">
+            Every amenity is built to last, deeply integrated with the natural landscape, and ready for you and your family from day one.
+          </p>
+        </motion.div>
       </div>
     </section>
   );

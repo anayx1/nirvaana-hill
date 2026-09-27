@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export default function CareerHeroSection() {
   return (
@@ -24,35 +25,19 @@ export default function CareerHeroSection() {
           >
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2.5 text-white/90">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="w-4.5 h-4.5 sm:w-5 sm:h-5 shrink-0"
-                aria-hidden="true"
-              >
-                <path d="M3 10.5L12 3l9 7.5" />
-                <path d="M5 9v11a1 1 0 001 1h12a1 1 0 001-1V9" />
-                <path d="M3 21c4-2 8-2 12 0" />
-                <path d="M9 17c2-1 4-1 6 0" />
-              </svg>
-              <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px] whitespace-nowrap">
+              <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+              <span className="font-medium tracking-[0.14em] uppercase text-[11px] md:text-[12px] whitespace-nowrap">
                 CAREER
               </span>
             </div>
 
             {/* Headline */}
-            <h1 className="font-serif !font-normal text-white text-[32px] xs:text-[38px] sm:text-[44px] md:text-[50px] lg:text-[56px] leading-[1.15] tracking-[-0.01em]">
+            <h1 className="font-serif !font-normal text-white text-[28px] xs:text-[34px] sm:text-[42px] md:text-[48px] lg:text-[54px] leading-[1.15] tracking-[-0.01em]">
               Careers at SEAD Realty
             </h1>
 
             {/* Narrative Body */}
-            <div className="space-y-4 font-sans text-white/90 text-[15px] sm:text-[16px] md:text-[17px] leading-[1.65] font-normal">
+            <div className="space-y-4 font-sans text-white/90 text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal">
               <p>
                 At SEAD Realty, we&apos;re building more than exceptional real
                 estate projects&mdash;we&apos;re building a team of passionate,

@@ -17,7 +17,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
  */
 export default function ExperienceSlideCard({
   slide,
-  aspectRatio = "aspect-[4/3.2] sm:aspect-[4/3]",
+  aspectRatio = "aspect-[4/2.9] md:aspect-[4/3]",
   priority = false,
 }) {
   const items = slide?.items || [];
@@ -64,9 +64,9 @@ export default function ExperienceSlideCard({
         </motion.div>
       </AnimatePresence>
 
-      {/* Subtle Natural Dark and Sage Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-transparent to-transparent pointer-events-none" />
+      {/* Dark Natural Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#182310]/85 via-transparent to-transparent pointer-events-none" />
 
       {/* Navigation Arrows (rendered if more than 1 item) */}
       {total > 1 && (
@@ -91,8 +91,8 @@ export default function ExperienceSlideCard({
         </>
       )}
 
-      {/* Card Content (Bottom-Left) */}
-      <div className="absolute bottom-4 sm:bottom-5 md:bottom-6 left-4 sm:left-5 md:left-6 right-16 z-10 text-white">
+      {/* Card Content (Shifted Upward from Bottom) */}
+      <div className="absolute bottom-6 md:bottom-7 left-4 sm:left-5 md:left-6 right-4 sm:right-5 md:right-6 z-10 text-white">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentItem.id || currentIndex}
@@ -101,38 +101,17 @@ export default function ExperienceSlideCard({
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.25 }}
           >
-            <h3 className="font-serif !font-normal text-white text-[20px] sm:text-[22px] md:text-[24px] lg:text-[26px] leading-tight mb-1">
+            <h3 className="font-serif !font-normal text-white text-[17px] sm:text-[19px] md:text-[21px] lg:text-[23px] leading-tight mb-1">
               {currentItem.title}
             </h3>
             {subtitle && (
-              <p className="font-sans text-[12px] sm:text-[13px] md:text-[14px] text-white/90 font-normal">
+              <p className="font-sans text-[11.5px] sm:text-[12.5px] md:text-[13px] text-white/90 font-normal">
                 {subtitle}
               </p>
             )}
           </motion.div>
         </AnimatePresence>
       </div>
-
-      {/* Dot Indicators (Bottom-Right) */}
-      {total > 1 && (
-        <div className="absolute bottom-4 sm:bottom-5 md:bottom-6 right-4 sm:right-5 md:right-6 z-10 flex items-center gap-1.5">
-          {items.map((item, idx) => (
-            <button
-              key={item.id || idx}
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                setCurrentIndex(idx);
-              }}
-              aria-label={`Go to ${item.title}`}
-              className={`transition-all duration-300 rounded-full ${idx === currentIndex
-                ? "w-4 h-1.5 bg-[#AFEB63]"
-                : "w-1.5 h-1.5 bg-white/50 hover:bg-white/80"
-                }`}
-            />
-          ))}
-        </div>
-      )}
     </div>
   );
 }

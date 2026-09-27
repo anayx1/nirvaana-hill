@@ -3,6 +3,7 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export default function OurVisionSection() {
   const sectionRef = useRef(null);
@@ -54,36 +55,20 @@ export default function OurVisionSection() {
         >
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2.5 text-white/90">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-4 h-4 md:w-5 md:h-5 shrink-0"
-              aria-hidden="true"
-            >
-              <path d="M3 10.5L12 3l9 7.5" />
-              <path d="M5 9v11a1 1 0 001 1h12a1 1 0 001-1V9" />
-              <path d="M3 21c4-2 8-2 12 0" />
-              <path d="M9 17c2-1 4-1 6 0" />
-            </svg>
-            <span className="font-semibold tracking-[0.14em] uppercase text-[12px] md:text-[13px] whitespace-nowrap">
+            <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+            <span className="font-medium tracking-[0.14em] uppercase text-[11px] md:text-[12px] whitespace-nowrap">
               OUR VISION
             </span>
           </div>
 
           {/* Headline */}
-          <h2 className="font-serif !font-normal text-white text-[30px] md:text-[48px] lg:text-[56px] leading-[1.12] tracking-[-0.01em]">
+          <h2 className="font-serif !font-normal text-white text-[28px] xs:text-[34px] sm:text-[42px] md:text-[48px] lg:text-[54px] leading-[1.12] tracking-[-0.01em]">
             Reimagining The Future Of Living For Families.
           </h2>
 
           {/* Narrative Paragraph */}
           <div className="md:pl-8 space-y-4">
-            <p className="font-sans text-white/90 text-[15px] md:text-[18px] leading-[1.65] max-w-2xl font-normal">
+            <p className="font-sans text-white/90 text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] max-w-2xl font-normal">
               To become one of India&apos;s most trusted names in farmhouse and
               farmland communities - because nature, wellness, and slower living
               should never feel inaccessible. That belief shapes how we think,
@@ -100,27 +85,27 @@ export default function OurVisionSection() {
                   transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                   className="overflow-hidden space-y-3 pt-2"
                 >
-                  <h3 className="font-sans font-semibold text-white text-[16px] md:text-[19px] tracking-wide pt-1">
+                  <h3 className="font-sans font-medium text-white text-[14px] md:text-[16px] tracking-wide pt-1">
                     Vision Pillars:
                   </h3>
 
-                  <ul className="space-y-3 text-white/90 font-sans text-[14.5px] md:text-[16.5px] leading-[1.6]">
+                  <ul className="space-y-3 text-white/90 font-sans text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.6]">
                     <li className="flex items-start gap-2.5">
                       <span className="text-[#AFEB63] shrink-0 text-[16px] leading-tight mt-0.5">✦</span>
                       <span>
-                        <strong className="text-white font-semibold">Integrated Farmland Communities</strong> - Long-term living, meaningful ownership, premium experiences
+                        <strong className="text-white font-medium">Integrated Farmland Communities</strong> - Long-term living, meaningful ownership, premium experiences
                       </span>
                     </li>
                     <li className="flex items-start gap-2.5">
                       <span className="text-[#AFEB63] shrink-0 text-[16px] leading-tight mt-0.5">✦</span>
                       <span>
-                        <strong className="text-white font-semibold">Sustainable Infrastructure</strong> - Development that respects biodiversity and natural systems
+                        <strong className="text-white font-medium">Sustainable Infrastructure</strong> - Development that respects biodiversity and natural systems
                       </span>
                     </li>
                     <li className="flex items-start gap-2.5">
                       <span className="text-[#AFEB63] shrink-0 text-[16px] leading-tight mt-0.5">✦</span>
                       <span>
-                        <strong className="text-white font-semibold">Holistic Living Ecosystems</strong> - Organic farming, wellness, recreation, and lifestyle balance
+                        <strong className="text-white font-medium">Holistic Living Ecosystems</strong> - Organic farming, wellness, recreation, and lifestyle balance
                       </span>
                     </li>
                   </ul>
@@ -134,7 +119,7 @@ export default function OurVisionSection() {
                 <button
                   type="button"
                   onClick={() => setIsExpanded(true)}
-                  className="font-sans italic text-[22px] md:text-[28px] text-white/95 hover:text-white transition-opacity inline-block tracking-tight cursor-pointer focus:outline-none"
+                  className="font-sans italic text-[16px] md:text-[20px] text-white/95 hover:text-white transition-opacity inline-block tracking-tight cursor-pointer focus:outline-none"
                 >
                   read more
                 </button>

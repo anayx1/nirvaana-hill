@@ -5,13 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  Home,
   Headphones,
   HandHeart,
   Handshake,
   Users,
   Briefcase,
 } from "lucide-react";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export const DIRECTORY_ITEMS = [
   {
@@ -177,21 +177,21 @@ export default function VisitNirvaanaSection() {
         >
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 text-[#B3482B]">
-            <Home className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" strokeWidth={2.2} aria-hidden="true" />
-            <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px]">
+            <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+            <span className="font-medium tracking-[0.14em] uppercase text-[11px] sm:text-[12px]">
               VISIT NIRVAANA
             </span>
           </div>
 
           {/* Headline */}
-          <h2 className="font-serif !font-normal text-[#1F2922] text-[28px] xs:text-[34px] sm:text-[40px] md:text-[46px] leading-[1.15] tracking-[-0.01em]">
+          <h2 className="font-serif !font-normal text-[#1F2922] text-[24px] sm:text-[30px] md:text-[36px] leading-[1.15] tracking-[-0.01em]">
             See It For Yourself.
           </h2>
 
           {/* Description */}
           <p
             style={{ color: "#5C6051" }}
-            className="font-sans text-[15px] sm:text-[16px] md:text-[17px] leading-[1.65] font-normal max-w-2xl"
+            className="font-sans text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal max-w-2xl"
           >
             Some things are better experienced than explained. Walk the land.
             Explore the surroundings. See the progress. Take your time.
@@ -202,7 +202,7 @@ export default function VisitNirvaanaSection() {
         {/* CARDS LIST                                             */}
         {/* ====================================================== */}
         <div className="flex flex-col space-y-6 sm:space-y-8">
-          
+
           {/* ---------------- CARD 1: PROJECT SITE ---------------- */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -211,13 +211,13 @@ export default function VisitNirvaanaSection() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="w-full bg-[#E4EAD9] rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 md:p-10 border border-[#D5DDC9] shadow-xs flex flex-col space-y-4"
           >
-            <h3 className="font-serif !font-normal text-[#1F2922] text-[22px] sm:text-[25px] md:text-[27px]">
+            <h3 className="font-serif !font-normal text-[#1F2922] text-[19px] sm:text-[22px] md:text-[24px]">
               Project Site
             </h3>
 
             <div
               style={{ color: "#4A5447" }}
-              className="font-sans text-[14.5px] sm:text-[15.5px] md:text-[16px] leading-[1.6] space-y-0.5"
+              className="font-sans text-[13.5px] sm:text-[14.5px] md:text-[15px] leading-[1.6] space-y-0.5"
             >
               <p className="font-medium text-[#1F2922]">Nirvaana Hills</p>
               <p>Akoda, Near Mahendragarh,</p>
@@ -234,13 +234,28 @@ export default function VisitNirvaanaSection() {
             {/* CTA Button */}
             <div>
               <Link
-                href="https://maps.google.com/?q=Nirvaana+Hills+Akoda+Mahendragarh+Haryana"
+                href="https://www.google.com/maps/search/?api=1&query=Nirvaana+Hills+by+SEAD+Realty&query_place_id=ChIJOSPvPKyJRW0RlOh5Pwjdzb4"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-medium text-[14px] sm:text-[15px] px-7 py-3 sm:px-8 sm:py-3.5 rounded-full transition-all duration-300 shadow-xs active:scale-95 inline-flex items-center justify-center text-center"
+                className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] transition-all duration-300 shadow-xs active:scale-95 inline-flex items-center justify-center text-center"
               >
                 Map Location
               </Link>
+            </div>
+
+            {/* Nirvaana Hills Interactive Google Map */}
+            <div className="relative w-full aspect-[4/3] xs:aspect-[4/3.2] sm:aspect-[16/10] rounded-[20px] sm:rounded-[24px] overflow-hidden bg-[#D3DEC6] shadow-sm mt-3 ring-1 ring-black/5">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.508893632435!2d76.0706328!3d28.403897599999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d45898c3ccf2339%3A0xbcdd42083f79e894!2sNirvaana%20Hills%20by%20SEAD%20Realty!5e0!3m2!1sen!2sin!4v1790501903936!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                title="Nirvaana Hills by SEAD Realty Google Maps"
+                className="w-full h-full"
+              />
             </div>
           </motion.div>
 
@@ -254,12 +269,12 @@ export default function VisitNirvaanaSection() {
           >
             {/* Sales Office */}
             <div className="space-y-2">
-              <h3 className="font-serif !font-normal text-[#1F2922] text-[22px] sm:text-[25px] md:text-[27px]">
+              <h3 className="font-serif !font-normal text-[#1F2922] text-[19px] sm:text-[22px] md:text-[24px]">
                 Sales Office
               </h3>
               <div
                 style={{ color: "#4A5447" }}
-                className="font-sans text-[14.5px] sm:text-[15.5px] md:text-[16px] leading-[1.6] space-y-0.5"
+                className="font-sans text-[13.5px] sm:text-[14.5px] md:text-[15px] leading-[1.6] space-y-0.5"
               >
                 <p className="font-medium text-[#1F2922]">SEAD Realty</p>
                 <p>812, Magnum Global Park,</p>
@@ -270,12 +285,12 @@ export default function VisitNirvaanaSection() {
 
             {/* Working Hours */}
             <div className="space-y-2 pt-2">
-              <h4 className="font-serif !font-normal text-[#1F2922] text-[20px] sm:text-[22px] md:text-[24px]">
+              <h4 className="font-serif !font-normal text-[#1F2922] text-[17px] sm:text-[19px] md:text-[21px]">
                 Working Hours
               </h4>
               <div
                 style={{ color: "#4A5447" }}
-                className="font-sans text-[14px] sm:text-[15px] md:text-[15.5px] leading-[1.65] space-y-1"
+                className="font-sans text-[13px] sm:text-[14px] md:text-[14.5px] leading-[1.65] space-y-1"
               >
                 <p>
                   <strong className="text-[#1F2922] font-semibold">Office Hours:</strong>{" "}
@@ -285,7 +300,7 @@ export default function VisitNirvaanaSection() {
                   <strong className="text-[#1F2922] font-semibold">Site Visits:</strong>{" "}
                   Monday-Sunday (6:00 AM-4:00 PM)
                 </p>
-                <p className="italic text-[#5C6051] text-[13.5px] sm:text-[14px]">
+                <p className="italic text-[#5C6051] text-[12.5px] sm:text-[13px]">
                   (By prior appointment only)
                 </p>
               </div>
@@ -301,13 +316,28 @@ export default function VisitNirvaanaSection() {
             {/* CTA Button */}
             <div>
               <Link
-                href="https://maps.google.com/?q=Magnum+Global+Park+Sector+58+Gurgaon"
+                href="https://www.google.com/maps/search/?api=1&query=SEAD+Realty&query_place_id=ChIJVytZXz4xDToRA0JMOmLWkzM"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-medium text-[14px] sm:text-[15px] px-7 py-3 sm:px-8 sm:py-3.5 rounded-full transition-all duration-300 shadow-xs active:scale-95 inline-flex items-center justify-center text-center"
+                className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] transition-all duration-300 shadow-xs active:scale-95 inline-flex items-center justify-center text-center"
               >
                 Get Directions To Our Office
               </Link>
+            </div>
+
+            {/* SEAD Realty Interactive Google Map */}
+            <div className="relative w-full aspect-[4/3] xs:aspect-[4/3.2] sm:aspect-[16/10] rounded-[20px] sm:rounded-[24px] overflow-hidden bg-[#D3DEC6] shadow-sm mt-3 ring-1 ring-black/5">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d33385.22319188453!2d77.05148373641299!3d28.413543965116855!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d213e5f592b57%3A0x3393d6823a4c4203!2sSEAD%20Realty!5e0!3m2!1sen!2sin!4v1790502054317!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                title="SEAD Realty Sales Office Google Maps"
+                className="w-full h-full"
+              />
             </div>
 
             {/* Sales Office Lobby Photo */}
@@ -334,7 +364,7 @@ export default function VisitNirvaanaSection() {
             {/* Header */}
             <div className="space-y-2 sm:space-y-3">
               <div className="inline-flex items-center gap-2 text-[#B3482B]">
-                <Home className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" strokeWidth={2.2} aria-hidden="true" />
+                <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
                 <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px]">
                   CONTACT DIRECTORY
                 </span>

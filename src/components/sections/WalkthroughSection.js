@@ -6,79 +6,78 @@ import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 
 // ========================================================
-// 5 ORBIT IMAGES (Mathematically positioned on R = 38%)
-// Orbit center: (50%, 50%), Orbit Ring: width/height = 76% (inset 12%)
+// 5 ORBIT IMAGES (Balanced orbital distribution matching design)
 // ========================================================
 const ORBIT_ITEMS = [
   {
-    id: "orbit-img-1",
+    id: "orbit-img-clubhouse",
     src: "/homepage/orbit-section/1.webp",
     alt: "Nirvaana Hills Architecture and Clubhouse",
-    // Top-Right: -30 deg
-    x: 82.9,
-    y: 31.0,
+    // Top-Right: ~1:15 o'clock (Hero prominent image)
+    x: 72.0,
+    y: 15.0,
     sizeClass:
-      "w-[76px] h-[76px] xs:w-[88px] xs:h-[88px] sm:w-[120px] sm:h-[120px] md:w-[155px] md:h-[155px] lg:w-[185px] lg:h-[185px]",
-    roundedClass: "rounded-xl sm:rounded-2xl md:rounded-3xl",
-    floatDelay: 0,
-    floatDuration: 5.2,
-    entryDelay: 0.15,
+      "w-[102px] h-[90px] xs:w-[114px] xs:h-[100px] sm:w-[150px] sm:h-[132px] md:w-[180px] md:h-[158px] lg:w-[205px] lg:h-[180px]",
+    roundedClass: "rounded-2xl md:rounded-3xl",
+    floatDelay: 1.2,
+    floatDuration: 3.8,
+    entryDelay: 0.1,
   },
   {
-    id: "orbit-img-2",
-    src: "/homepage/orbit-section/2.webp",
-    alt: "Green Pathway and Jogging Trails",
-    // Mid-Right: +35 deg
-    x: 81.1,
-    y: 71.8,
+    id: "orbit-img-kids",
+    src: "/homepage/orbit-section/5.webp",
+    alt: "Outdoor Recreation and Lawn Games",
+    // Top-Left: ~10:30 o'clock
+    x: 20.0,
+    y: 28.0,
     sizeClass:
-      "w-[72px] h-[80px] xs:w-[82px] xs:h-[92px] sm:w-[110px] sm:h-[125px] md:w-[145px] md:h-[165px] lg:w-[170px] lg:h-[195px]",
-    roundedClass: "rounded-xl sm:rounded-2xl md:rounded-3xl",
-    floatDelay: 0.7,
-    floatDuration: 5.8,
+      "w-[82px] h-[82px] xs:w-[92px] xs:h-[92px] sm:w-[120px] sm:h-[120px] md:w-[145px] md:h-[145px] lg:w-[170px] lg:h-[170px]",
+    roundedClass: "rounded-2xl md:rounded-3xl",
+    floatDelay: 0,
+    floatDuration: 3.6,
+    entryDelay: 0.2,
+  },
+  {
+    id: "orbit-img-sunset",
+    src: "/homepage/orbit-section/4.webp",
+    alt: "Sunset Gathering and Community",
+    // Mid-Left: ~8:00 o'clock (Edge position)
+    x: 9.0,
+    y: 66.0,
+    sizeClass:
+      "w-[82px] h-[90px] xs:w-[92px] xs:h-[100px] sm:w-[120px] sm:h-[130px] md:w-[145px] md:h-[156px] lg:w-[170px] lg:h-[182px]",
+    roundedClass: "rounded-2xl md:rounded-3xl",
+    floatDelay: 0.6,
+    floatDuration: 4.0,
     entryDelay: 0.3,
   },
   {
-    id: "orbit-img-3",
+    id: "orbit-img-trail",
+    src: "/homepage/orbit-section/2.webp",
+    alt: "Green Pathway and Jogging Trails",
+    // Mid-Right: ~3:30 o'clock (Edge position)
+    x: 90.0,
+    y: 56.0,
+    sizeClass:
+      "w-[82px] h-[88px] xs:w-[92px] xs:h-[98px] sm:w-[120px] sm:h-[128px] md:w-[145px] md:h-[152px] lg:w-[170px] lg:h-[178px]",
+    roundedClass: "rounded-2xl md:rounded-3xl",
+    floatDelay: 1.8,
+    floatDuration: 4.2,
+    entryDelay: 0.4,
+  },
+  {
+    id: "orbit-img-meditate",
     src: "/homepage/orbit-section/3.webp",
     alt: "Forest Nature and Wellness",
-    // Bottom-Center: +90 deg
-    x: 50.0,
+    // Bottom-Center: ~5:30 o'clock
+    x: 60.0,
     y: 88.0,
     sizeClass:
-      "w-[76px] h-[76px] xs:w-[88px] xs:h-[88px] sm:w-[120px] sm:h-[120px] md:w-[150px] md:h-[150px] lg:w-[180px] lg:h-[180px]",
-    roundedClass: "rounded-xl sm:rounded-2xl md:rounded-3xl",
-    floatDelay: 1.3,
-    floatDuration: 5.4,
-    entryDelay: 0.45,
-  },
-  {
-    id: "orbit-img-4",
-    src: "/homepage/orbit-section/4.webp",
-    alt: "Sunset Gathering and Community",
-    // Bottom-Left: +155 deg
-    x: 15.6,
-    y: 66.1,
-    sizeClass:
-      "w-[72px] h-[80px] xs:w-[82px] xs:h-[92px] sm:w-[110px] sm:h-[125px] md:w-[145px] md:h-[165px] lg:w-[170px] lg:h-[195px]",
-    roundedClass: "rounded-xl sm:rounded-2xl md:rounded-3xl",
-    floatDelay: 1.9,
-    floatDuration: 6.2,
-    entryDelay: 0.6,
-  },
-  {
-    id: "orbit-img-5",
-    src: "/homepage/orbit-section/5.webp",
-    alt: "Outdoor Recreation and Lawn Games",
-    // Top-Left: +215 deg (-145 deg)
-    x: 18.9,
-    y: 28.2,
-    sizeClass:
-      "w-[76px] h-[76px] xs:w-[88px] xs:h-[88px] sm:w-[120px] sm:h-[120px] md:w-[150px] md:h-[150px] lg:w-[180px] lg:h-[180px]",
-    roundedClass: "rounded-xl sm:rounded-2xl md:rounded-3xl",
-    floatDelay: 1.1,
-    floatDuration: 5.6,
-    entryDelay: 0.75,
+      "w-[82px] h-[82px] xs:w-[92px] xs:h-[92px] sm:w-[120px] sm:h-[120px] md:w-[145px] md:h-[145px] lg:w-[170px] lg:h-[170px]",
+    roundedClass: "rounded-2xl md:rounded-3xl",
+    floatDelay: 0.9,
+    floatDuration: 3.5,
+    entryDelay: 0.5,
   },
 ];
 
@@ -93,9 +92,9 @@ export default function WalkthroughSection({
   return (
     <section
       id="walkthrough-vision"
-      className={`w-full bg-[#FAF9F5] py-14 sm:py-16 md:py-24 lg:py-32 overflow-hidden select-none ${className}`}
+      className={`w-full bg-[#FAF9F5] pt-14 sm:pt-16 md:pt-24 lg:pt-32 pb-20 sm:pb-24 md:pb-32 lg:pb-36 overflow-x-clip overflow-y-visible select-none ${className}`}
     >
-      <div className="container max-w-[1400px] px-4 sm:px-6">
+      <div className="container max-w-[1400px] px-2 sm:px-6 overflow-visible">
         {/* ======================================================== */}
         {/* SECTION HEADER                                          */}
         {/* ======================================================== */}
@@ -104,40 +103,31 @@ export default function WalkthroughSection({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col items-center text-center space-y-3 md:space-y-4 mb-8 sm:mb-12 md:mb-16 max-w-3xl mx-auto"
+          className="flex flex-col items-center text-center space-y-3 md:space-y-4 mb-8 sm:mb-12 md:mb-16 max-w-3xl mx-auto px-2 sm:px-0"
         >
           {/* Eyebrow / Tag */}
           <div className="flex items-center gap-2 text-secondary">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-4 h-4 md:w-5 md:h-5 shrink-0"
-              aria-hidden="true"
-            >
-              <path d="M12 3l-8 7h16l-8-7z" />
-              <path d="M5 14c2.5-1.5 5-1.5 7 0s4.5 1.5 7 0" />
-              <path d="M5 19c2.5-1.5 5-1.5 7 0s4.5 1.5 7 0" />
-            </svg>
-            <span className="text-[12px] sm:text-[13px] md:text-[14px] font-semibold tracking-[0.14em] uppercase">
+            <Image
+              src="/farm.svg"
+              alt="farm"
+              width={18}
+              height={18}
+              className="w-4 h-4 md:w-5 md:h-5 shrink-0 [filter:brightness(0)_saturate(100%)_invert(47%)_sepia(18%)_saturate(1175%)_hue-rotate(37deg)_brightness(94%)_contrast(89%)]"
+            />
+            <span className="text-[11px] md:text-[12px] font-medium tracking-[0.14em] uppercase">
               WALK THROUGH THE FUTURE
             </span>
           </div>
 
           {/* Main Headline */}
-          <h2 className="font-serif !font-normal text-[#1F2922] !text-[32px] sm:!text-[40px] md:!text-[48px] lg:!text-[56px] leading-[1.12] tracking-[-0.01em]">
+          <h2 className="font-serif !font-normal text-[#1F2922] text-[26px] sm:text-[34px] md:text-[42px] leading-[1.12] tracking-[-0.01em]">
             Imagine What’s Coming.
             <br />
             Walk Through The Vision.
           </h2>
 
           {/* Subheading Narrative */}
-          <p className="text-[#313116] text-[15px] sm:text-[17px] md:text-[19px] font-normal leading-relaxed max-w-2xl pt-1 text-center">
+          <p className="text-[#313116] text-[13.5px] sm:text-[15px] md:text-[16px] font-normal leading-relaxed max-w-2xl pt-1 text-center">
             See Nirvaana Hills as it is being brought to life. Take a visual
             journey through the roads, farms, green spaces, clubhouse,
             experiences and everyday moments that are shaping the future of the
@@ -148,14 +138,14 @@ export default function WalkthroughSection({
         {/* ======================================================== */}
         {/* ORBIT VISUAL CONTAINER                                   */}
         {/* ======================================================== */}
-        <div className="relative w-full max-w-[360px] xs:max-w-[420px] sm:max-w-[560px] md:max-w-[700px] lg:max-w-[800px] mx-auto aspect-square flex items-center justify-center">
+        <div className="relative w-full max-w-[420px] xs:max-w-[460px] sm:max-w-[580px] md:max-w-[720px] lg:max-w-[820px] mx-auto aspect-square flex items-center justify-center overflow-visible">
           {/* Orbital Circle Ring Line */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.85 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-[12%] left-[12%] w-[76%] h-[76%] rounded-full border border-[#9EB84E]/35 pointer-events-none"
+            className="absolute top-[8%] left-[8%] w-[84%] h-[84%] rounded-full border border-[#9EB84E]/40 pointer-events-none"
           />
 
           {/* Center Button */}
@@ -174,12 +164,14 @@ export default function WalkthroughSection({
             }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="relative z-20 w-[120px] h-[120px] xs:w-[135px] xs:h-[135px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px] lg:w-[250px] lg:h-[250px] rounded-full bg-[#AFEB63] hover:bg-[#A3E553] text-[#1F2922] flex flex-col items-center justify-center p-3 sm:p-5 text-center shadow-lg shadow-[#AFEB63]/25 transition-colors cursor-pointer group no-underline"
+            className="relative z-20 w-[108px] h-[108px] xs:w-[120px] xs:h-[120px] sm:w-[150px] sm:h-[150px] md:w-[180px] md:h-[180px] lg:w-[205px] lg:h-[205px] rounded-full bg-[#AFEB63] hover:bg-[#A3E553] text-[#1F2922] flex flex-col items-center justify-center p-3 text-center shadow-lg shadow-[#AFEB63]/25 transition-colors cursor-pointer group no-underline"
           >
-            <div className="flex items-center justify-center gap-1.5 sm:gap-2">
-              <Play className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 fill-[#1F2922] stroke-none shrink-0 transition-transform group-hover:scale-110" />
-              <span className="font-sans font-semibold text-[9px] xs:text-[10px] sm:text-[12px] md:text-[13px] lg:text-[14px] tracking-[0.08em] uppercase text-[#1F2922] leading-tight">
-                {buttonText}
+            <div className="flex items-center justify-center gap-1.5">
+              <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 fill-[#1F2922] stroke-none shrink-0 transition-transform group-hover:scale-110" />
+              <span className="font-sans font-bold text-[8px] xs:text-[9px] sm:text-[11px] md:text-[12.5px] tracking-[0.06em] uppercase text-[#1F2922] text-left leading-[1.15]">
+                WATCH THE
+                <br />
+                WALKTHROUGH
               </span>
             </div>
           </motion.a>
@@ -196,7 +188,7 @@ export default function WalkthroughSection({
               className="z-10 -translate-x-1/2 -translate-y-1/2 pointer-events-auto"
             >
               <motion.div
-                initial={{ opacity: 0, scale: 0.3 }}
+                initial={{ opacity: 0, scale: 0.4 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{
@@ -206,11 +198,10 @@ export default function WalkthroughSection({
                   delay: item.entryDelay,
                 }}
               >
-                {/* Floating Animation Wrapper */}
+                {/* Smooth 4-5px Floating Animation on Y-axis */}
                 <motion.div
                   animate={{
-                    y: [0, -5, 0, 5, 0],
-                    rotate: [0, 1, 0, -1, 0],
+                    y: [-4, 4, -4],
                   }}
                   transition={{
                     duration: item.floatDuration,

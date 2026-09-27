@@ -200,7 +200,7 @@ export default function LocationConnectivityTabsSection() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-8 sm:mb-10"
         >
-          <h2 className="font-serif !font-normal text-[#1F2922] text-[32px] xs:text-[38px] sm:text-[46px] md:text-[52px] leading-[1.15] tracking-[-0.01em]">
+          <h2 className="font-serif !font-normal text-[#1F2922] text-[26px] sm:text-[34px] md:text-[42px] leading-[1.15] tracking-[-0.01em]">
             Connected Today.
             <br />
             Growing Closer Tomorrow.
@@ -210,7 +210,7 @@ export default function LocationConnectivityTabsSection() {
         {/* ====================================================== */}
         {/* TABS NAVIGATION                                        */}
         {/* ====================================================== */}
-        <div className="flex items-center justify-center gap-6 sm:gap-10 border-b border-[#5C6051]/20 pb-2 mb-8 sm:mb-10">
+        <div className="sticky top-[56px] lg:top-[64px] z-20 bg-[#FAF9F5]/95 backdrop-blur-sm pt-4 pb-2 mb-8 sm:mb-10 flex items-center justify-center gap-6 sm:gap-10 border-b border-[#5C6051]/20">
           {TABS.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
@@ -218,8 +218,8 @@ export default function LocationConnectivityTabsSection() {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className={`relative pb-3 text-[15px] sm:text-[17px] font-sans transition-colors cursor-pointer ${isActive
-                  ? "text-[#1F2922] font-semibold"
+                className={`relative pb-3 text-[13px] sm:text-[15px] font-sans transition-colors cursor-pointer ${isActive
+                  ? "text-[#1F2922] font-medium"
                   : "text-[#5C6051]/60 hover:text-[#1F2922] font-normal"
                   }`}
               >
@@ -250,21 +250,21 @@ export default function LocationConnectivityTabsSection() {
               className="flex flex-col divide-y divide-dashed divide-[#5C6051]/20"
             >
               {TODAY_HIGHWAYS.map((item) => (
-                <div key={item.id} className="py-5 sm:py-6 first:pt-0 flex flex-col space-y-2">
+                <div key={item.id} className="py-4 sm:py-5 first:pt-0 flex flex-col space-y-1.5">
                   {/* Highway */}
-                  <p className="font-sans text-[14.5px] sm:text-[16px] leading-relaxed">
+                  <p className="font-sans text-[13px] sm:text-[14.5px] leading-relaxed">
                     <span className="text-[#B3482B] font-medium mr-1.5">Highway:</span>
                     <span style={{ color: "#5C6051" }} className="font-medium">{item.highway}</span>
                   </p>
 
                   {/* Complete Route */}
-                  <p className="font-sans text-[14.5px] sm:text-[16px] leading-relaxed">
+                  <p className="font-sans text-[13px] sm:text-[14.5px] leading-relaxed">
                     <span className="text-[#B3482B] font-medium mr-1.5">Complete Route:</span>
                     <span style={{ color: "#5C6051" }}>{item.route}</span>
                   </p>
 
                   {/* How It Helps Movement */}
-                  <p className="font-sans text-[14.5px] sm:text-[16px] leading-relaxed">
+                  <p className="font-sans text-[13px] sm:text-[14.5px] leading-relaxed">
                     <span className="text-[#B3482B] font-medium mr-1.5">How It Helps Movement:</span>
                     <span style={{ color: "#5C6051" }}>{item.impact}</span>
                   </p>
@@ -283,21 +283,21 @@ export default function LocationConnectivityTabsSection() {
               className="flex flex-col divide-y divide-dashed divide-[#5C6051]/20"
             >
               {UNDER_DEVELOPMENT_HIGHWAYS.map((item) => (
-                <div key={item.id} className="py-5 sm:py-6 first:pt-0 flex flex-col space-y-2">
+                <div key={item.id} className="py-4 sm:py-5 first:pt-0 flex flex-col space-y-1.5">
                   {/* Highway */}
-                  <p className="font-sans text-[14.5px] sm:text-[16px] leading-relaxed">
+                  <p className="font-sans text-[13px] sm:text-[14.5px] leading-relaxed">
                     <span className="text-[#B3482B] font-medium mr-1.5">Highway:</span>
                     <span style={{ color: "#5C6051" }} className="font-medium">{item.highway}</span>
                   </p>
 
                   {/* Complete Route */}
-                  <p className="font-sans text-[14.5px] sm:text-[16px] leading-relaxed">
+                  <p className="font-sans text-[13px] sm:text-[14.5px] leading-relaxed">
                     <span className="text-[#B3482B] font-medium mr-1.5">Complete Route:</span>
                     <span style={{ color: "#5C6051" }}>{item.route}</span>
                   </p>
 
                   {/* How It Helps Movement */}
-                  <p className="font-sans text-[14.5px] sm:text-[16px] leading-relaxed">
+                  <p className="font-sans text-[13px] sm:text-[14.5px] leading-relaxed">
                     <span className="text-[#B3482B] font-medium mr-1.5">How It Helps Movement:</span>
                     <span style={{ color: "#5C6051" }}>{item.impact}</span>
                   </p>
@@ -316,21 +316,21 @@ export default function LocationConnectivityTabsSection() {
               className="flex flex-col divide-y divide-dashed divide-[#5C6051]/20"
             >
               {FUTURE_HIGHWAYS.map((item) => (
-                <div key={item.id} className="py-5 sm:py-6 first:pt-0 flex flex-col space-y-2">
+                <div key={item.id} className="py-4 sm:py-5 first:pt-0 flex flex-col space-y-1.5">
                   {/* Highway */}
-                  <p className="font-sans text-[14.5px] sm:text-[16px] leading-relaxed">
+                  <p className="font-sans text-[13px] sm:text-[14.5px] leading-relaxed">
                     <span className="text-[#B3482B] font-medium mr-1.5">Highway:</span>
                     <span style={{ color: "#5C6051" }} className="font-medium">{item.highway}</span>
                   </p>
 
                   {/* Complete Route */}
-                  <p className="font-sans text-[14.5px] sm:text-[16px] leading-relaxed">
+                  <p className="font-sans text-[13px] sm:text-[14.5px] leading-relaxed">
                     <span className="text-[#B3482B] font-medium mr-1.5">Complete Route:</span>
                     <span style={{ color: "#5C6051" }}>{item.route}</span>
                   </p>
 
                   {/* How It Helps Movement */}
-                  <p className="font-sans text-[14.5px] sm:text-[16px] leading-relaxed">
+                  <p className="font-sans text-[13px] sm:text-[14.5px] leading-relaxed">
                     <span className="text-[#B3482B] font-medium mr-1.5">How It Helps Movement:</span>
                     <span style={{ color: "#5C6051" }}>{item.impact}</span>
                   </p>
@@ -352,20 +352,20 @@ export default function LocationConnectivityTabsSection() {
         >
           {/* Bottom Heading */}
           <div className="flex flex-col space-y-2">
-            <h3 className="font-serif !font-normal text-[#1F2922] text-[28px] xs:text-[34px] sm:text-[40px] md:text-[46px] leading-[1.15]">
+            <h3 className="font-serif !font-normal text-[#1F2922] text-[22px] sm:text-[28px] md:text-[34px] leading-[1.15]">
               Today, You&apos;re 2 Hours Away.
             </h3>
-            <p style={{ color: "#5C6051" }} className="font-sans text-[15px] sm:text-[17px] md:text-[18px] font-normal">
+            <p style={{ color: "#5C6051" }} className="font-sans text-[13.5px] sm:text-[15px] md:text-[16px] font-normal">
               Tomorrow, The Region Gets Even More Connected.
             </p>
           </div>
 
           {/* Action CTAs Row */}
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 pt-2">
+          <div className="flex flex-row items-center justify-center gap-3.5 md:gap-8 pt-2">
             {/* Book A Site Visit Button */}
             <a
               href="#site-visit"
-              className="inline-flex items-center justify-center bg-[#AFEB63] text-[#1F2922] font-sans font-semibold text-[15px] sm:text-[16px] px-8 py-3.5 rounded-2xl hover:bg-[#9de04e] active:scale-[0.98] transition-all duration-300 shadow-sm"
+              className="inline-flex items-center justify-center bg-[#AFEB63] text-[#1F2922] font-sans font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] hover:bg-[#9de04e] active:scale-[0.98] transition-all duration-300 shadow-xs whitespace-nowrap shrink-0"
             >
               Book A Site Visit
             </a>
@@ -373,12 +373,12 @@ export default function LocationConnectivityTabsSection() {
             {/* Explore The Route Link with Underline Accent */}
             <a
               href="#location-overview"
-              className="group inline-flex flex-col items-start gap-1 text-[#1F2922] hover:text-[#1F2922] transition-colors duration-300 cursor-pointer"
+              className="group inline-flex flex-col items-start gap-0.5 md:gap-1 text-[#1F2922] hover:text-[#1F2922] transition-colors duration-300 cursor-pointer whitespace-nowrap shrink-0"
             >
-              <div className="flex items-center gap-2 font-sans text-[17px] sm:text-[19px] font-medium tracking-tight">
+              <div className="flex items-center gap-1.5 md:gap-2 font-sans text-[12px] md:text-[16px] font-normal tracking-tight">
                 <span>Explore The Route</span>
                 <svg
-                  className="w-5 h-5 text-[#AFEB63] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                  className="w-3.5 h-3.5 md:w-5 md:h-5 text-[#AFEB63] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -393,9 +393,9 @@ export default function LocationConnectivityTabsSection() {
               </div>
 
               {/* Signature Accent: Dot + Line */}
-              <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#AFEB63]" />
-                <span className="w-8 h-[2.5px] rounded-full bg-[#AFEB63] transition-all duration-300 group-hover:w-12" />
+              <div className="flex items-center gap-1 md:gap-1.5">
+                <span className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-[#AFEB63]" />
+                <span className="w-5 md:w-8 h-[2px] md:h-[2.5px] rounded-full bg-[#AFEB63] transition-all duration-300 group-hover:w-8 md:group-hover:w-12" />
               </div>
             </a>
           </div>

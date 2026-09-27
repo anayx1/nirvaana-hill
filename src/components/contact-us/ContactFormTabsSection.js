@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Home, Info, Check, ChevronDown } from "lucide-react";
+import { Info, Check, ChevronDown } from "lucide-react";
+import FarmIcon from "@/components/icons/FarmIcon";
 import { executeRecaptcha } from "@/lib/recaptcha";
 import { openVisitModal } from "@/components/modals/VisitConfirmationModal";
 
@@ -43,6 +44,38 @@ export default function ContactFormTabsSection() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+  // Sync active tab with URL hash or query params on load and on hashchange
+  useEffect(() => {
+    const handleHashOrSearch = () => {
+      if (typeof window === "undefined") return;
+      const hash = window.location.hash.toLowerCase();
+      const params = new URLSearchParams(window.location.search);
+      const tabParam = params.get("tab")?.toLowerCase();
+
+      let targetTab = null;
+      if (hash.includes("channel-partner") || tabParam === "channel-partner") {
+        targetTab = "channel-partner";
+      } else if (hash.includes("enquiry") || tabParam === "enquiry") {
+        targetTab = "enquiry";
+      }
+
+      if (targetTab) {
+        setActiveTab(targetTab);
+        setSubmitted(false);
+        const el = document.getElementById("enquiry-form");
+        if (el) {
+          setTimeout(() => {
+            el.scrollIntoView({ behavior: "smooth" });
+          }, 150);
+        }
+      }
+    };
+
+    handleHashOrSearch();
+    window.addEventListener("hashchange", handleHashOrSearch);
+    return () => window.removeEventListener("hashchange", handleHashOrSearch);
+  }, []);
 
   const handleEnquirySubmit = async (e) => {
     e.preventDefault();
@@ -139,8 +172,11 @@ export default function ContactFormTabsSection() {
   return (
     <section
       id="enquiry-form"
-      className="w-full bg-[#FAF9F5] py-14 sm:py-18 md:py-22 lg:py-26 text-[#1F2922] select-none"
+      className="w-full bg-[#FAF9F5] py-14 sm:py-18 md:py-22 lg:py-26 text-[#1F2922] select-none scroll-mt-14 sm:scroll-mt-16 lg:scroll-mt-20 relative"
     >
+      <div id="channel-partner" className="absolute -top-16 sm:-top-20 pointer-events-none" />
+      <div id="channel-partner-form" className="absolute -top-16 sm:-top-20 pointer-events-none" />
+      <div id="enquiry" className="absolute -top-16 sm:-top-20 pointer-events-none" />
       <div className="container max-w-[1280px] px-4 sm:px-6">
 
         {/* ====================================================== */}
@@ -153,11 +189,10 @@ export default function ContactFormTabsSection() {
               setActiveTab("enquiry");
               setSubmitted(false);
             }}
-            className={`font-sans text-[15px] sm:text-[17px] font-medium pb-1.5 transition-all relative cursor-pointer ${
-              activeTab === "enquiry"
-                ? "text-[#1F2922]"
-                : "text-[#5C6051]/70 hover:text-[#1F2922]"
-            }`}
+            className={`font-sans text-[12px] md:text-[16px] font-normal pb-1.5 transition-all relative cursor-pointer ${activeTab === "enquiry"
+              ? "text-[#1F2922]"
+              : "text-[#5C6051]/70 hover:text-[#1F2922]"
+              }`}
           >
             Enquiry Form
             {activeTab === "enquiry" && (
@@ -174,11 +209,10 @@ export default function ContactFormTabsSection() {
               setActiveTab("channel-partner");
               setSubmitted(false);
             }}
-            className={`font-sans text-[15px] sm:text-[17px] font-medium pb-1.5 transition-all relative cursor-pointer ${
-              activeTab === "channel-partner"
-                ? "text-[#1F2922]"
-                : "text-[#5C6051]/70 hover:text-[#1F2922]"
-            }`}
+            className={`font-sans text-[12px] md:text-[16px] font-normal pb-1.5 transition-all relative cursor-pointer ${activeTab === "channel-partner"
+              ? "text-[#1F2922]"
+              : "text-[#5C6051]/70 hover:text-[#1F2922]"
+              }`}
           >
             Channel Partner Program Form
             {activeTab === "channel-partner" && (
@@ -195,7 +229,7 @@ export default function ContactFormTabsSection() {
         {/* ====================================================== */}
         {activeTab === "enquiry" && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-20 items-start">
-            
+
             {/* Left: Form Area */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -205,21 +239,21 @@ export default function ContactFormTabsSection() {
             >
               {/* Eyebrow */}
               <div className="inline-flex items-center gap-2 text-[#B3482B]">
-                <Home className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" strokeWidth={2.2} aria-hidden="true" />
-                <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px]">
+                <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+                <span className="font-medium tracking-[0.14em] uppercase text-[11px] md:text-[12px]">
                   ENQUIRY FORM
                 </span>
               </div>
 
               {/* Headline */}
-              <h2 className="font-serif !font-normal text-[#1F2922] text-[28px] xs:text-[34px] sm:text-[40px] md:text-[46px] leading-[1.15] tracking-[-0.01em]">
+              <h2 className="font-serif !font-normal text-[#1F2922] text-[24px] sm:text-[30px] md:text-[36px] leading-[1.15] tracking-[-0.01em]">
                 Tell Us How We Can Help.
               </h2>
 
               {/* Description */}
               <p
                 style={{ color: "#5C6051" }}
-                className="font-sans text-[14.5px] sm:text-[15.5px] md:text-[16px] leading-[1.65] font-normal"
+                className="font-sans text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal"
               >
                 Have questions about ownership, pricing, availability,
                 development progress, farming opportunities, weekend living, or
@@ -232,22 +266,22 @@ export default function ContactFormTabsSection() {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="bg-[#E4EAD9] border border-primary rounded-[20px] sm:rounded-[24px] p-6 sm:p-8 flex flex-col items-center text-center space-y-3 shadow-sm"
+                  className="bg-[#E4EAD9] border border-primary rounded-[18px] sm:rounded-[20px] p-6 sm:p-8 flex flex-col items-center text-center space-y-3 shadow-sm"
                 >
                   <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-[#1F2922]">
                     <Check className="w-6 h-6" strokeWidth={2.5} />
                   </div>
-                  <h3 className="font-serif text-[22px] sm:text-[24px] text-[#1F2922]">
+                  <h3 className="font-serif text-[20px] sm:text-[22px] text-[#1F2922]">
                     Enquiry Received
                   </h3>
-                  <p className="font-sans text-[#5C6051] text-[15px] max-w-md">
+                  <p className="font-sans text-[#5C6051] text-[13px] sm:text-[14.5px] max-w-md">
                     Thank you for reaching out. Our team will get in touch with
                     you during working hours.
                   </p>
                   <button
                     type="button"
                     onClick={() => setSubmitted(false)}
-                    className="text-primary font-medium underline text-[14px] pt-2 cursor-pointer"
+                    className="text-primary font-normal underline text-[12px] md:text-[14px] pt-2 cursor-pointer"
                   >
                     Submit another response
                   </button>
@@ -255,7 +289,7 @@ export default function ContactFormTabsSection() {
               ) : (
                 <form onSubmit={handleEnquirySubmit} className="space-y-4 sm:space-y-5">
                   {errorMessage && (
-                    <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-[14px] text-[14px]">
+                    <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-[14px] text-[13px]">
                       {errorMessage}
                     </div>
                   )}
@@ -263,7 +297,7 @@ export default function ContactFormTabsSection() {
                   {/* Row 1: Full Name & Mobile Number */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                     <div className="flex flex-col space-y-1.5">
-                      <label className="font-sans text-[12px] sm:text-[13px] font-medium text-[#1F2922]">
+                      <label className="font-sans text-[12px] sm:text-[13px] font-normal text-[#1F2922]">
                         Full Name
                       </label>
                       <input
@@ -274,12 +308,12 @@ export default function ContactFormTabsSection() {
                           setEnquiryData({ ...enquiryData, fullName: e.target.value })
                         }
                         placeholder="Your full name"
-                        className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[16px] sm:rounded-[18px] px-4 sm:px-5 py-3.5 sm:py-4 font-sans text-[14px] sm:text-[15px] text-[#1F2922] placeholder:text-[#5C6051]/60 outline-none transition-all shadow-xs"
+                        className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[14px] md:rounded-[16px] px-4 sm:px-5 py-3 sm:py-3.5 font-sans text-[13px] sm:text-[14.5px] text-[#1F2922] placeholder:text-[#5C6051]/60 outline-none transition-all shadow-xs"
                       />
                     </div>
 
                     <div className="flex flex-col space-y-1.5">
-                      <label className="font-sans text-[12px] sm:text-[13px] font-medium text-[#1F2922]">
+                      <label className="font-sans text-[12px] sm:text-[13px] font-normal text-[#1F2922]">
                         Mobile Number
                       </label>
                       <input
@@ -290,7 +324,7 @@ export default function ContactFormTabsSection() {
                           setEnquiryData({ ...enquiryData, mobileNumber: e.target.value })
                         }
                         placeholder="+91 00000 00000"
-                        className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[16px] sm:rounded-[18px] px-4 sm:px-5 py-3.5 sm:py-4 font-sans text-[14px] sm:text-[15px] text-[#1F2922] placeholder:text-[#5C6051]/60 outline-none transition-all shadow-xs"
+                        className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[14px] md:rounded-[16px] px-4 sm:px-5 py-3 sm:py-3.5 font-sans text-[13px] sm:text-[14.5px] text-[#1F2922] placeholder:text-[#5C6051]/60 outline-none transition-all shadow-xs"
                       />
                     </div>
                   </div>
@@ -298,7 +332,7 @@ export default function ContactFormTabsSection() {
                   {/* Row 2: Email Address & City */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                     <div className="flex flex-col space-y-1.5">
-                      <label className="font-sans text-[12px] sm:text-[13px] font-medium text-[#1F2922]">
+                      <label className="font-sans text-[12px] sm:text-[13px] font-normal text-[#1F2922]">
                         Email Address
                       </label>
                       <input
@@ -308,12 +342,12 @@ export default function ContactFormTabsSection() {
                           setEnquiryData({ ...enquiryData, emailAddress: e.target.value })
                         }
                         placeholder="your@email.com"
-                        className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[16px] sm:rounded-[18px] px-4 sm:px-5 py-3.5 sm:py-4 font-sans text-[14px] sm:text-[15px] text-[#1F2922] placeholder:text-[#5C6051]/60 outline-none transition-all shadow-xs"
+                        className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[14px] md:rounded-[16px] px-4 sm:px-5 py-3 sm:py-3.5 font-sans text-[13px] sm:text-[14.5px] text-[#1F2922] placeholder:text-[#5C6051]/60 outline-none transition-all shadow-xs"
                       />
                     </div>
 
                     <div className="flex flex-col space-y-1.5">
-                      <label className="font-sans text-[12px] sm:text-[13px] font-medium text-[#1F2922]">
+                      <label className="font-sans text-[12px] sm:text-[13px] font-normal text-[#1F2922]">
                         City
                       </label>
                       <input
@@ -323,14 +357,14 @@ export default function ContactFormTabsSection() {
                           setEnquiryData({ ...enquiryData, city: e.target.value })
                         }
                         placeholder="Your city"
-                        className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[16px] sm:rounded-[18px] px-4 sm:px-5 py-3.5 sm:py-4 font-sans text-[14px] sm:text-[15px] text-[#1F2922] placeholder:text-[#5C6051]/60 outline-none transition-all shadow-xs"
+                        className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[14px] md:rounded-[16px] px-4 sm:px-5 py-3 sm:py-3.5 font-sans text-[13px] sm:text-[14.5px] text-[#1F2922] placeholder:text-[#5C6051]/60 outline-none transition-all shadow-xs"
                       />
                     </div>
                   </div>
 
                   {/* Row 3: Interested In Dropdown */}
                   <div className="flex flex-col space-y-1.5">
-                    <label className="font-sans text-[12px] sm:text-[13px] font-medium text-[#1F2922]">
+                    <label className="font-sans text-[12px] sm:text-[13px] font-normal text-[#1F2922]">
                       I&apos;m Interested In
                     </label>
                     <div className="relative">
@@ -339,7 +373,7 @@ export default function ContactFormTabsSection() {
                         onChange={(e) =>
                           setEnquiryData({ ...enquiryData, interestedIn: e.target.value })
                         }
-                        className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[16px] sm:rounded-[18px] px-4 sm:px-5 py-3.5 sm:py-4 font-sans text-[14px] sm:text-[15px] text-[#1F2922] appearance-none outline-none transition-all cursor-pointer shadow-xs pr-10"
+                        className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[14px] md:rounded-[16px] px-4 sm:px-5 py-3 sm:py-3.5 font-sans text-[13px] sm:text-[14.5px] text-[#1F2922] appearance-none outline-none transition-all cursor-pointer shadow-xs pr-10"
                       >
                         <option value="">Select an option</option>
                         {INTEREST_OPTIONS.map((opt) => (
@@ -354,7 +388,7 @@ export default function ContactFormTabsSection() {
 
                   {/* Row 4: Additional Message */}
                   <div className="flex flex-col space-y-1.5">
-                    <label className="font-sans text-[12px] sm:text-[13px] font-medium text-[#1F2922]">
+                    <label className="font-sans text-[12px] sm:text-[13px] font-normal text-[#1F2922]">
                       Additional Message
                     </label>
                     <textarea
@@ -364,7 +398,7 @@ export default function ContactFormTabsSection() {
                         setEnquiryData({ ...enquiryData, message: e.target.value })
                       }
                       placeholder="Tell us anything specific you'd like to know."
-                      className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[16px] sm:rounded-[18px] px-4 sm:px-5 py-3.5 sm:py-4 font-sans text-[14px] sm:text-[15px] text-[#1F2922] placeholder:text-[#5C6051]/60 outline-none transition-all shadow-xs resize-y min-h-[110px]"
+                      className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[14px] md:rounded-[16px] px-4 sm:px-5 py-3 sm:py-3.5 font-sans text-[13px] sm:text-[14.5px] text-[#1F2922] placeholder:text-[#5C6051]/60 outline-none transition-all shadow-xs resize-y min-h-[110px]"
                     />
                   </div>
 
@@ -373,7 +407,7 @@ export default function ContactFormTabsSection() {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full bg-primary hover:bg-[#9EE837] text-[#1F2922] font-medium text-[15px] sm:text-[16px] py-4 rounded-full transition-all duration-300 shadow-xs active:scale-[0.99] disabled:opacity-60 cursor-pointer flex items-center justify-center"
+                      className="w-full bg-primary hover:bg-[#9EE837] text-[#1F2922] font-normal text-[12px] md:text-[16px] py-3.5 sm:py-4 rounded-[14px] md:rounded-[16px] transition-all duration-300 shadow-xs active:scale-[0.99] disabled:opacity-60 cursor-pointer flex items-center justify-center"
                     >
                       {loading ? "Submitting..." : "Submit Enquiry"}
                     </button>
@@ -382,7 +416,7 @@ export default function ContactFormTabsSection() {
                   {/* Info Note */}
                   <div className="flex items-center gap-2 pt-1 text-[#5C6051]">
                     <Info className="w-4 h-4 shrink-0" />
-                    <span className="font-sans text-[13px] sm:text-[14px]">
+                    <span className="font-sans text-[12px] sm:text-[13px]">
                       Our team typically responds during working hours.
                     </span>
                   </div>
@@ -425,21 +459,21 @@ export default function ContactFormTabsSection() {
             >
               {/* Eyebrow */}
               <div className="inline-flex items-center gap-2 text-[#B3482B]">
-                <Home className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" strokeWidth={2.2} aria-hidden="true" />
-                <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px]">
+                <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+                <span className="font-medium tracking-[0.14em] uppercase text-[11px] md:text-[12px]">
                   CHANNEL PARTNER PROGRAM
                 </span>
               </div>
 
               {/* Headline */}
-              <h2 className="font-serif !font-normal text-[#1F2922] text-[28px] xs:text-[34px] sm:text-[40px] md:text-[46px] leading-[1.15] tracking-[-0.01em]">
+              <h2 className="font-serif !font-normal text-[#1F2922] text-[24px] sm:text-[30px] md:text-[36px] leading-[1.15] tracking-[-0.01em]">
                 Grow With Nirvaana Hills.
               </h2>
 
               {/* Description */}
               <p
                 style={{ color: "#5C6051" }}
-                className="font-sans text-[14.5px] sm:text-[15.5px] md:text-[16px] leading-[1.65] font-normal"
+                className="font-sans text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal"
               >
                 We work with consultants, brokers and channel partners who
                 believe in thoughtful ownership and meaningful client
@@ -451,22 +485,22 @@ export default function ContactFormTabsSection() {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="bg-[#E4EAD9] border border-primary rounded-[20px] sm:rounded-[24px] p-6 sm:p-8 flex flex-col items-center text-center space-y-3 shadow-sm"
+                  className="bg-[#E4EAD9] border border-primary rounded-[18px] sm:rounded-[20px] p-6 sm:p-8 flex flex-col items-center text-center space-y-3 shadow-sm"
                 >
                   <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-[#1F2922]">
                     <Check className="w-6 h-6" strokeWidth={2.5} />
                   </div>
-                  <h3 className="font-serif text-[22px] sm:text-[24px] text-[#1F2922]">
+                  <h3 className="font-serif text-[20px] sm:text-[22px] text-[#1F2922]">
                     Application Received
                   </h3>
-                  <p className="font-sans text-[#5C6051] text-[15px] max-w-md">
+                  <p className="font-sans text-[#5C6051] text-[13px] sm:text-[14.5px] max-w-md">
                     Thank you for applying to our Channel Partner Program. Our
                     institutional desk will connect with you shortly.
                   </p>
                   <button
                     type="button"
                     onClick={() => setSubmitted(false)}
-                    className="text-primary font-medium underline text-[14px] pt-2 cursor-pointer"
+                    className="text-primary font-normal underline text-[12px] md:text-[14px] pt-2 cursor-pointer"
                   >
                     Submit another application
                   </button>
@@ -474,7 +508,7 @@ export default function ContactFormTabsSection() {
               ) : (
                 <form onSubmit={handlePartnerSubmit} className="space-y-4 sm:space-y-5">
                   {errorMessage && (
-                    <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-[14px] text-[14px]">
+                    <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-[14px] text-[13px]">
                       {errorMessage}
                     </div>
                   )}
@@ -482,7 +516,7 @@ export default function ContactFormTabsSection() {
                   {/* Row 1: Full Name & Company Name */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                     <div className="flex flex-col space-y-1.5">
-                      <label className="font-sans text-[12px] sm:text-[13px] font-medium text-[#1F2922]">
+                      <label className="font-sans text-[12px] sm:text-[13px] font-normal text-[#1F2922]">
                         Full Name
                       </label>
                       <input
@@ -493,12 +527,12 @@ export default function ContactFormTabsSection() {
                           setPartnerData({ ...partnerData, fullName: e.target.value })
                         }
                         placeholder="Your full name"
-                        className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[16px] sm:rounded-[18px] px-4 sm:px-5 py-3.5 sm:py-4 font-sans text-[14px] sm:text-[15px] text-[#1F2922] placeholder:text-[#5C6051]/60 outline-none transition-all shadow-xs"
+                        className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[14px] md:rounded-[16px] px-4 sm:px-5 py-3 sm:py-3.5 font-sans text-[13px] sm:text-[14.5px] text-[#1F2922] placeholder:text-[#5C6051]/60 outline-none transition-all shadow-xs"
                       />
                     </div>
 
                     <div className="flex flex-col space-y-1.5">
-                      <label className="font-sans text-[12px] sm:text-[13px] font-medium text-[#1F2922]">
+                      <label className="font-sans text-[12px] sm:text-[13px] font-normal text-[#1F2922]">
                         Company Name
                       </label>
                       <input
@@ -509,7 +543,7 @@ export default function ContactFormTabsSection() {
                           setPartnerData({ ...partnerData, companyName: e.target.value })
                         }
                         placeholder="Your company"
-                        className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[16px] sm:rounded-[18px] px-4 sm:px-5 py-3.5 sm:py-4 font-sans text-[14px] sm:text-[15px] text-[#1F2922] placeholder:text-[#5C6051]/60 outline-none transition-all shadow-xs"
+                        className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[14px] md:rounded-[16px] px-4 sm:px-5 py-3 sm:py-3.5 font-sans text-[13px] sm:text-[14.5px] text-[#1F2922] placeholder:text-[#5C6051]/60 outline-none transition-all shadow-xs"
                       />
                     </div>
                   </div>
@@ -517,7 +551,7 @@ export default function ContactFormTabsSection() {
                   {/* Row 2: Mobile Number & Email Address */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                     <div className="flex flex-col space-y-1.5">
-                      <label className="font-sans text-[12px] sm:text-[13px] font-medium text-[#1F2922]">
+                      <label className="font-sans text-[12px] sm:text-[13px] font-normal text-[#1F2922]">
                         Mobile Number
                       </label>
                       <input
@@ -528,12 +562,12 @@ export default function ContactFormTabsSection() {
                           setPartnerData({ ...partnerData, mobileNumber: e.target.value })
                         }
                         placeholder="+91 00000 00000"
-                        className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[16px] sm:rounded-[18px] px-4 sm:px-5 py-3.5 sm:py-4 font-sans text-[14px] sm:text-[15px] text-[#1F2922] placeholder:text-[#5C6051]/60 outline-none transition-all shadow-xs"
+                        className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[14px] md:rounded-[16px] px-4 sm:px-5 py-3 sm:py-3.5 font-sans text-[13px] sm:text-[14.5px] text-[#1F2922] placeholder:text-[#5C6051]/60 outline-none transition-all shadow-xs"
                       />
                     </div>
 
                     <div className="flex flex-col space-y-1.5">
-                      <label className="font-sans text-[12px] sm:text-[13px] font-medium text-[#1F2922]">
+                      <label className="font-sans text-[12px] sm:text-[13px] font-normal text-[#1F2922]">
                         Email Address
                       </label>
                       <input
@@ -543,14 +577,14 @@ export default function ContactFormTabsSection() {
                           setPartnerData({ ...partnerData, emailAddress: e.target.value })
                         }
                         placeholder="your@email.com"
-                        className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[16px] sm:rounded-[18px] px-4 sm:px-5 py-3.5 sm:py-4 font-sans text-[14px] sm:text-[15px] text-[#1F2922] placeholder:text-[#5C6051]/60 outline-none transition-all shadow-xs"
+                        className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[14px] md:rounded-[16px] px-4 sm:px-5 py-3 sm:py-3.5 font-sans text-[13px] sm:text-[14.5px] text-[#1F2922] placeholder:text-[#5C6051]/60 outline-none transition-all shadow-xs"
                       />
                     </div>
                   </div>
 
                   {/* Row 3: City */}
                   <div className="flex flex-col space-y-1.5">
-                    <label className="font-sans text-[12px] sm:text-[13px] font-medium text-[#1F2922]">
+                    <label className="font-sans text-[12px] sm:text-[13px] font-normal text-[#1F2922]">
                       City
                     </label>
                     <input
@@ -560,7 +594,7 @@ export default function ContactFormTabsSection() {
                         setPartnerData({ ...partnerData, city: e.target.value })
                       }
                       placeholder="Your city"
-                      className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[16px] sm:rounded-[18px] px-4 sm:px-5 py-3.5 sm:py-4 font-sans text-[14px] sm:text-[15px] text-[#1F2922] placeholder:text-[#5C6051]/60 outline-none transition-all shadow-xs"
+                      className="w-full bg-[#E5E8D8] border border-transparent focus:border-primary focus:bg-[#FAF9F5] rounded-[14px] md:rounded-[16px] px-4 sm:px-5 py-3 sm:py-3.5 font-sans text-[13px] sm:text-[14.5px] text-[#1F2922] placeholder:text-[#5C6051]/60 outline-none transition-all shadow-xs"
                     />
                   </div>
 
@@ -569,7 +603,7 @@ export default function ContactFormTabsSection() {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full bg-primary hover:bg-[#9EE837] text-[#1F2922] font-medium text-[15px] sm:text-[16px] py-4 rounded-full transition-all duration-300 shadow-xs active:scale-[0.99] disabled:opacity-60 cursor-pointer flex items-center justify-center"
+                      className="w-full bg-primary hover:bg-[#9EE837] text-[#1F2922] font-normal text-[12px] md:text-[16px] py-3.5 sm:py-4 rounded-[14px] md:rounded-[16px] transition-all duration-300 shadow-xs active:scale-[0.99] disabled:opacity-60 cursor-pointer flex items-center justify-center"
                     >
                       {loading ? "Submitting Application..." : "Become A Channel Partner"}
                     </button>

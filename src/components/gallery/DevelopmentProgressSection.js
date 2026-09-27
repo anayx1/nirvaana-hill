@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 const MARQUEE_TEXT = "Because promises matter less when progress becomes visible.";
 
@@ -29,30 +30,14 @@ export default function DevelopmentProgressSection() {
         >
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 text-[#B3482B]">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0"
-              aria-hidden="true"
-            >
-              <path d="M3 10.5L12 3l9 7.5" />
-              <path d="M5 9v11a1 1 0 001 1h12a1 1 0 001-1V9" />
-              <path d="M3 21c4-2 8-2 12 0" />
-              <path d="M9 17c2-1 4-1 6 0" />
-            </svg>
-            <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px]">
+            <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+            <span className="font-medium tracking-[0.14em] uppercase text-[11px] sm:text-[12px]">
               DEVELOPMENT PROGRESS
             </span>
           </div>
 
           {/* Headline */}
-          <h2 className="font-serif !font-normal text-[#1F2922] text-[30px] xs:text-[36px] sm:text-[42px] md:text-[48px] leading-[1.15] tracking-[-0.01em]">
+          <h2 className="font-serif !font-normal text-[#1F2922] text-[24px] sm:text-[30px] md:text-[36px] leading-[1.15] tracking-[-0.01em]">
             Don&apos;t Take Our Word For It.
             <br className="hidden sm:inline" /> Watch It Happen.
           </h2>
@@ -60,7 +45,7 @@ export default function DevelopmentProgressSection() {
           {/* Description */}
           <p
             style={{ color: "#5C6051" }}
-            className="font-sans text-[15px] sm:text-[16px] md:text-[17px] leading-[1.65] font-normal pt-1 max-w-xl"
+            className="font-sans text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal pt-1 max-w-xl"
           >
             Every meaningful project reveals its credibility through progress that can actually be seen. Track the real evolution of Nirvaana Hills - plantation growth, road development, and community spaces taking shape on the ground.
           </p>

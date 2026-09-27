@@ -3,7 +3,8 @@
 import React, { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Home, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export default function StoryBehindNirvaanaSection() {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -65,8 +66,8 @@ export default function StoryBehindNirvaanaSection() {
           {/* EYEBROW                                                */}
           {/* ====================================================== */}
           <div className="inline-flex items-center justify-center gap-2 text-[#B3482B]">
-            <Home className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" strokeWidth={2.2} aria-hidden="true" />
-            <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px]">
+            <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+            <span className="font-medium tracking-[0.14em] uppercase text-[11px] md:text-[12px]">
               THE STORY BEHIND NIRVAANA HILLS
             </span>
           </div>
@@ -74,7 +75,7 @@ export default function StoryBehindNirvaanaSection() {
           {/* ====================================================== */}
           {/* HEADLINE                                               */}
           {/* ====================================================== */}
-          <h2 className="font-serif !font-normal text-[#1F2922] text-[28px] xs:text-[32px] sm:text-[38px] md:text-[44px] lg:text-[48px] leading-[1.18] tracking-[-0.01em]">
+          <h2 className="font-serif !font-normal text-[#1F2922] text-[24px] sm:text-[30px] md:text-[36px] leading-[1.18] tracking-[-0.01em]">
             Sometimes The Best Projects Begin By Observing What People Truly Need.
           </h2>
 
@@ -84,7 +85,7 @@ export default function StoryBehindNirvaanaSection() {
           <div className="flex flex-col space-y-5 max-w-[740px] mx-auto">
             <p
               style={{ color: "#5C6051" }}
-              className="font-sans text-[15px] sm:text-[16px] md:text-[17px] leading-[1.65] font-normal"
+              className="font-sans text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal"
             >
               For over 2+ decades, SEAD Realty has helped Delhi families buy
               farmhouses and agricultural land. Over time, something quietly
@@ -95,7 +96,7 @@ export default function StoryBehindNirvaanaSection() {
             </p>
             <p
               style={{ color: "#5C6051" }}
-              className="font-sans text-[15px] sm:text-[16px] md:text-[17px] leading-[1.65] font-normal"
+              className="font-sans text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal"
             >
               Then we discovered a pristine 200-acre stretch surrounded by
               hills and forest - and saw the chance to build something

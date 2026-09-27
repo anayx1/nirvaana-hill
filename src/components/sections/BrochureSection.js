@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Compass, Wallet, Camera, FileText, ChevronDown, Check, Info } from "lucide-react";
+import FarmIcon from "@/components/icons/FarmIcon";
 import { executeRecaptcha } from "@/lib/recaptcha";
 
 const BROCHURE_FEATURES = [
@@ -64,7 +65,7 @@ export default function BrochureSection() {
     city: "Select your city",
     budget: "Select budget range",
     purpose: "Select purpose",
-    agreed: true,
+    agreed: false,
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -107,7 +108,7 @@ export default function BrochureSection() {
           city: "Select your city",
           budget: "Select budget range",
           purpose: "Select purpose",
-          agreed: true,
+          agreed: false,
         });
         setTimeout(() => {
           setIsSubmitted(false);
@@ -146,24 +147,8 @@ export default function BrochureSection() {
             {/* Header / Eyebrow */}
             <div className="flex flex-col space-y-3 sm:space-y-4">
               <div className="inline-flex items-center gap-2 text-secondary">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="w-4 h-4 sm:w-5 sm:h-5 shrink-0"
-                  aria-hidden="true"
-                >
-                  <path d="M3 10.5L12 3l9 7.5" />
-                  <path d="M5 9v11a1 1 0 001 1h12a1 1 0 001-1V9" />
-                  <path d="M3 21c4-2 8-2 12 0" />
-                  <path d="M9 17c2-1 4-1 6 0" />
-                </svg>
-                <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px] whitespace-nowrap">
+                <FarmIcon className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+                <span className="font-medium tracking-[0.14em] uppercase text-[11px] md:text-[12px] whitespace-nowrap">
                   DOWNLOAD PHASE 2 BROCHURE
                 </span>
               </div>
@@ -187,7 +172,7 @@ export default function BrochureSection() {
                     <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#E5E8D8] flex items-center justify-center shrink-0">
                       <IconComponent className="w-4 h-4 text-[#2E3527]" />
                     </div>
-                    <span className="font-sans text-[#2A3123] text-[15px] sm:text-[16px] font-normal leading-snug">
+                    <span className="font-sans text-[#2A3123] text-[13.5px] sm:text-[14.5px] font-normal leading-snug">
                       {item.text}
                     </span>
                   </div>
@@ -394,7 +379,7 @@ export default function BrochureSection() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-primary hover:bg-[#9EE837] text-[#1F2922] font-medium text-[16px] sm:text-[17px] py-4 rounded-full transition-all duration-300 cursor-pointer shadow-xs active:scale-[0.99] mt-2 flex items-center justify-center disabled:opacity-60"
+                  className="w-full bg-primary hover:bg-[#9EE837] text-[#1F2922] font-normal text-[12px] md:text-[16px] py-3 md:py-3.5 rounded-[14px] md:rounded-[16px] transition-all duration-300 cursor-pointer shadow-xs active:scale-[0.99] mt-2 flex items-center justify-center disabled:opacity-60"
                 >
                   {isLoading
                     ? "Submitting Request..."

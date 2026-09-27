@@ -93,32 +93,33 @@ export default function RoiCalculatorModal({ isOpen, onClose }) {
             aria-modal="true"
             className="relative w-full max-w-4xl max-h-[92vh] overflow-y-auto bg-[#FAF9F5] border border-[#E5E8D8] rounded-[24px] sm:rounded-[32px] md:rounded-[36px] p-5 sm:p-8 md:p-10 shadow-2xl z-10 select-none my-auto"
           >
-            {/* Close Button */}
-            <button
-              type="button"
-              onClick={onClose}
-              aria-label="Close calculator"
-              className="absolute top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 rounded-full bg-white/80 hover:bg-white border border-[#E5E8D8] text-[#1F2922] hover:text-black flex items-center justify-center transition-all duration-200 shadow-xs cursor-pointer active:scale-95"
-            >
-              <X className="w-5 h-5 stroke-[2.2]" />
-            </button>
+            {/* Sticky Close Button */}
+            <div className="sticky top-0 z-30 flex justify-end -mt-1 -mr-1 sm:-mt-3 sm:-mr-3 mb-2 sm:mb-0 pointer-events-none">
+              <button
+                type="button"
+                onClick={onClose}
+                aria-label="Close calculator"
+                className="pointer-events-auto w-10 h-10 rounded-full bg-white/90 hover:bg-white backdrop-blur-md border border-[#E5E8D8] text-[#1F2922] hover:text-black flex items-center justify-center transition-all duration-200 shadow-sm cursor-pointer active:scale-95"
+              >
+                <X className="w-5 h-5 stroke-[2.2]" />
+              </button>
+            </div>
 
             {/* Header / Eyebrow */}
             <div className="flex items-center gap-2 text-secondary mb-2">
-              <span className="w-6 h-[1.5px] bg-secondary" aria-hidden="true" />
-              <span className="text-[11px] sm:text-[12px] md:text-[13px] font-semibold tracking-[0.14em] uppercase">
+              <span className="font-sans text-[11px] md:text-[12px] font-medium tracking-[0.14em] uppercase">
                 ROI CALCULATOR
               </span>
             </div>
 
             {/* Title */}
-            <h2 className="font-serif !font-normal text-[#1F2922] text-[24px] sm:text-[30px] md:text-[36px] leading-[1.2] mb-2 sm:mb-3">
+            <h2 className="font-serif !font-normal text-[#1F2922] text-[22px] sm:text-[26px] md:text-[30px] leading-[1.2] mb-2 sm:mb-3">
               Calculate Your{" "}
-              <span className="italic text-secondary">Forest Dividend</span>
+              <span className="font-serif italic text-secondary">Forest Dividend</span>
             </h2>
 
             {/* Subtitle */}
-            <p className="font-sans text-[#424A3B] text-[13px] sm:text-[15px] md:text-[16px] leading-relaxed max-w-2xl mb-6 sm:mb-8">
+            <p className="font-sans text-[#424A3B] text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-relaxed max-w-2xl mb-6 sm:mb-8 font-normal">
               See exactly what your investment returns — from rental income to
               capital appreciation over your chosen horizon.
             </p>
@@ -128,10 +129,10 @@ export default function RoiCalculatorModal({ isOpen, onClose }) {
               {/* Slider 1: Plot Size */}
               <div className="flex flex-col space-y-2.5">
                 <div className="flex items-center justify-between">
-                  <label className="font-sans text-[12px] sm:text-[13px] font-semibold text-[#1F2922] uppercase tracking-[0.06em]">
+                  <label className="font-sans text-[12px] sm:text-[13px] font-normal text-[#1F2922] uppercase tracking-[0.06em]">
                     Plot Size (Sq Yards)
                   </label>
-                  <span className="font-serif font-bold text-[#1F2922] text-[15px] sm:text-[16px] bg-[#E5E8D8]/70 px-2.5 py-0.5 rounded-md">
+                  <span className="font-sans font-normal text-[#1F2922] text-[13px] sm:text-[14px] bg-[#E5E8D8]/80 px-2.5 py-0.5 rounded-md">
                     {plotSize.toLocaleString("en-IN")} sq yd
                   </span>
                 </div>
@@ -144,7 +145,7 @@ export default function RoiCalculatorModal({ isOpen, onClose }) {
                   onChange={(e) => setPlotSize(Number(e.target.value))}
                   className="w-full h-2 bg-[#E5E8D8] rounded-lg appearance-none cursor-pointer accent-[#72BF2B] focus:outline-none"
                 />
-                <div className="flex justify-between text-[11px] sm:text-[12px] text-[#757D6D] font-medium">
+                <div className="flex justify-between font-sans text-[11px] sm:text-[12px] text-[#757D6D] font-normal">
                   <span>1,250 sq yd</span>
                   <span>5,000 sq yd</span>
                 </div>
@@ -153,10 +154,10 @@ export default function RoiCalculatorModal({ isOpen, onClose }) {
               {/* Slider 2: Price Per Sq Yard */}
               <div className="flex flex-col space-y-2.5">
                 <div className="flex items-center justify-between">
-                  <label className="font-sans text-[12px] sm:text-[13px] font-semibold text-[#1F2922] uppercase tracking-[0.06em]">
+                  <label className="font-sans text-[12px] sm:text-[13px] font-normal text-[#1F2922] uppercase tracking-[0.06em]">
                     Price Per Sq Yard (₹)
                   </label>
-                  <span className="font-serif font-bold text-[#1F2922] text-[15px] sm:text-[16px] bg-[#E5E8D8]/70 px-2.5 py-0.5 rounded-md">
+                  <span className="font-sans font-normal text-[#1F2922] text-[13px] sm:text-[14px] bg-[#E5E8D8]/80 px-2.5 py-0.5 rounded-md">
                     ₹{pricePerSqYd.toLocaleString("en-IN")}
                   </span>
                 </div>
@@ -169,7 +170,7 @@ export default function RoiCalculatorModal({ isOpen, onClose }) {
                   onChange={(e) => setPricePerSqYd(Number(e.target.value))}
                   className="w-full h-2 bg-[#E5E8D8] rounded-lg appearance-none cursor-pointer accent-[#72BF2B] focus:outline-none"
                 />
-                <div className="flex justify-between text-[11px] sm:text-[12px] text-[#757D6D] font-medium">
+                <div className="flex justify-between font-sans text-[11px] sm:text-[12px] text-[#757D6D] font-normal">
                   <span>₹7,999</span>
                   <span>₹12,000</span>
                 </div>
@@ -178,10 +179,10 @@ export default function RoiCalculatorModal({ isOpen, onClose }) {
               {/* Slider 3: Annual Appreciation */}
               <div className="flex flex-col space-y-2.5">
                 <div className="flex items-center justify-between">
-                  <label className="font-sans text-[12px] sm:text-[13px] font-semibold text-[#1F2922] uppercase tracking-[0.06em]">
+                  <label className="font-sans text-[12px] sm:text-[13px] font-normal text-[#1F2922] uppercase tracking-[0.06em]">
                     Annual Appreciation (%)
                   </label>
-                  <span className="font-serif font-bold text-[#1F2922] text-[15px] sm:text-[16px] bg-[#E5E8D8]/70 px-2.5 py-0.5 rounded-md">
+                  <span className="font-sans font-normal text-[#1F2922] text-[13px] sm:text-[14px] bg-[#E5E8D8]/80 px-2.5 py-0.5 rounded-md">
                     {appreciationRate}%
                   </span>
                 </div>
@@ -194,7 +195,7 @@ export default function RoiCalculatorModal({ isOpen, onClose }) {
                   onChange={(e) => setAppreciationRate(Number(e.target.value))}
                   className="w-full h-2 bg-[#E5E8D8] rounded-lg appearance-none cursor-pointer accent-[#72BF2B] focus:outline-none"
                 />
-                <div className="flex justify-between text-[11px] sm:text-[12px] text-[#757D6D] font-medium">
+                <div className="flex justify-between font-sans text-[11px] sm:text-[12px] text-[#757D6D] font-normal">
                   <span>10%</span>
                   <span>25%</span>
                 </div>
@@ -203,10 +204,10 @@ export default function RoiCalculatorModal({ isOpen, onClose }) {
               {/* Slider 4: Investment Horizon */}
               <div className="flex flex-col space-y-2.5">
                 <div className="flex items-center justify-between">
-                  <label className="font-sans text-[12px] sm:text-[13px] font-semibold text-[#1F2922] uppercase tracking-[0.06em]">
+                  <label className="font-sans text-[12px] sm:text-[13px] font-normal text-[#1F2922] uppercase tracking-[0.06em]">
                     Investment Horizon (Years)
                   </label>
-                  <span className="font-serif font-bold text-[#1F2922] text-[15px] sm:text-[16px] bg-[#E5E8D8]/70 px-2.5 py-0.5 rounded-md">
+                  <span className="font-sans font-normal text-[#1F2922] text-[13px] sm:text-[14px] bg-[#E5E8D8]/80 px-2.5 py-0.5 rounded-md">
                     {horizonYears} years
                   </span>
                 </div>
@@ -219,7 +220,7 @@ export default function RoiCalculatorModal({ isOpen, onClose }) {
                   onChange={(e) => setHorizonYears(Number(e.target.value))}
                   className="w-full h-2 bg-[#E5E8D8] rounded-lg appearance-none cursor-pointer accent-[#72BF2B] focus:outline-none"
                 />
-                <div className="flex justify-between text-[11px] sm:text-[12px] text-[#757D6D] font-medium">
+                <div className="flex justify-between font-sans text-[11px] sm:text-[12px] text-[#757D6D] font-normal">
                   <span>3 yr</span>
                   <span>10 yr</span>
                 </div>
@@ -230,47 +231,47 @@ export default function RoiCalculatorModal({ isOpen, onClose }) {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
               {/* Card 1: Total Investment */}
               <div className="bg-white border border-[#E5E8D8] rounded-2xl p-3.5 sm:p-4 text-center shadow-xs flex flex-col justify-center">
-                <span className="font-serif !font-normal text-[#1F2922] text-[20px] sm:text-[24px] md:text-[26px] leading-tight block mb-1">
+                <span className="font-serif !font-normal text-[#1F2922] text-[20px] sm:text-[22px] md:text-[24px] leading-tight block mb-1">
                   {formatINR(totalInvestment)}
                 </span>
-                <span className="font-sans text-[10px] sm:text-[11px] md:text-[12px] text-[#6E7766] uppercase tracking-[0.06em] font-semibold">
+                <span className="font-sans text-[10px] sm:text-[11px] md:text-[12px] text-[#6E7766] uppercase tracking-[0.06em] font-normal">
                   Total Investment
                 </span>
               </div>
 
               {/* Card 2: Estimated Value */}
               <div className="bg-white border border-[#E5E8D8] rounded-2xl p-3.5 sm:p-4 text-center shadow-xs flex flex-col justify-center">
-                <span className="font-serif !font-normal text-[#1F2922] text-[20px] sm:text-[24px] md:text-[26px] leading-tight block mb-1">
+                <span className="font-serif !font-normal text-[#1F2922] text-[20px] sm:text-[22px] md:text-[24px] leading-tight block mb-1">
                   {formatINR(estimatedValue)}
                 </span>
-                <span className="font-sans text-[10px] sm:text-[11px] md:text-[12px] text-[#6E7766] uppercase tracking-[0.06em] font-semibold">
+                <span className="font-sans text-[10px] sm:text-[11px] md:text-[12px] text-[#6E7766] uppercase tracking-[0.06em] font-normal">
                   Est. Value in {horizonYears} Yrs
                 </span>
               </div>
 
               {/* Card 3: Cumulative Rental Income */}
               <div className="bg-white border border-[#E5E8D8] rounded-2xl p-3.5 sm:p-4 text-center shadow-xs flex flex-col justify-center">
-                <span className="font-serif !font-normal text-[#1F2922] text-[20px] sm:text-[24px] md:text-[26px] leading-tight block mb-1">
+                <span className="font-serif !font-normal text-[#1F2922] text-[20px] sm:text-[22px] md:text-[24px] leading-tight block mb-1">
                   {formatINR(cumulativeRental)}
                 </span>
-                <span className="font-sans text-[10px] sm:text-[11px] md:text-[12px] text-[#6E7766] uppercase tracking-[0.06em] font-semibold">
+                <span className="font-sans text-[10px] sm:text-[11px] md:text-[12px] text-[#6E7766] uppercase tracking-[0.06em] font-normal">
                   Cumulative Yield
                 </span>
               </div>
 
               {/* Card 4: Total ROI */}
               <div className="bg-white border border-[#E5E8D8] rounded-2xl p-3.5 sm:p-4 text-center shadow-xs flex flex-col justify-center">
-                <span className="font-serif !font-normal text-secondary text-[20px] sm:text-[24px] md:text-[26px] leading-tight block mb-1">
+                <span className="font-serif !font-normal text-secondary text-[20px] sm:text-[22px] md:text-[24px] leading-tight block mb-1">
                   {totalRoiPercent}%
                 </span>
-                <span className="font-sans text-[10px] sm:text-[11px] md:text-[12px] text-[#6E7766] uppercase tracking-[0.06em] font-semibold">
+                <span className="font-sans text-[10px] sm:text-[11px] md:text-[12px] text-[#6E7766] uppercase tracking-[0.06em] font-normal">
                   Total ROI
                 </span>
               </div>
             </div>
 
             {/* Disclaimer */}
-            <p className="font-sans text-[11px] sm:text-[12px] text-[#757D6D] text-center leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8">
+            <p className="font-sans text-[11px] sm:text-[12px] text-[#757D6D] text-center leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8 font-normal">
               *Calculations are indicative estimates based on your inputs.
               Actual returns depend on market conditions, development, and rental
               performance. This is not financial advice. Consult our advisor
@@ -283,21 +284,8 @@ export default function RoiCalculatorModal({ isOpen, onClose }) {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-semibold text-[14px] sm:text-[15px] px-8 sm:px-10 py-3.5 sm:py-4 rounded-full transition-all duration-300 shadow-md inline-flex items-center justify-center gap-2.5 active:scale-95 uppercase tracking-[0.04em]"
+                className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] transition-all duration-300 shadow-md inline-flex items-center justify-center gap-2.5 active:scale-95 uppercase tracking-[0.04em]"
               >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#1F2922"
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-                </svg>
                 <span>Discuss My ROI With An Advisor</span>
               </a>
             </div>

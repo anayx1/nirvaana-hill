@@ -4,7 +4,8 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Home, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export default function ContactUsHeroSection() {
   return (
@@ -27,25 +28,25 @@ export default function ContactUsHeroSection() {
           >
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2.5 text-white/90">
-              <Home className="w-4.5 h-4.5 sm:w-5 sm:h-5 shrink-0" strokeWidth={2.2} aria-hidden="true" />
-              <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px] whitespace-nowrap">
+              <FarmIcon className="w-4.5 h-4.5 sm:w-5 sm:h-5 shrink-0 text-white" />
+              <span className="font-medium tracking-[0.14em] uppercase text-[11px] sm:text-[12px] whitespace-nowrap">
                 CONTACT US
               </span>
             </div>
 
             {/* Headline */}
-            <h1 className="font-serif !font-normal text-white text-[30px] xs:text-[36px] sm:text-[42px] md:text-[48px] lg:text-[54px] leading-[1.15] tracking-[-0.01em]">
+            <h1 className="font-serif !font-normal text-white text-[28px] xs:text-[34px] sm:text-[42px] md:text-[48px] lg:text-[54px] leading-[1.15] tracking-[-0.01em]">
               Let&apos;s Start The Conversation.
             </h1>
 
             {/* Narrative Body */}
-            <p className="font-sans text-white/90 text-[15px] sm:text-[16px] md:text-[17px] lg:text-[18px] leading-[1.65] max-w-xl font-normal">
+            <p className="font-sans text-white/90 text-[13.5px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] max-w-xl font-normal">
               Have a question about Nirvaana Hills? Want to see the land,
               understand ownership, or explore Phase 2?
             </p>
 
             {/* Sub-tagline */}
-            <p className="font-sans italic text-white/85 text-[15px] sm:text-[16px] md:text-[17px] leading-[1.6] font-normal">
+            <p className="font-sans italic text-white/85 text-[13.5px] sm:text-[14.5px] leading-[1.6] font-normal">
               We&apos;re here to help.
             </p>
 
@@ -55,7 +56,7 @@ export default function ContactUsHeroSection() {
               <div>
                 <Link
                   href="#enquiry-form"
-                  className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-medium text-[15px] sm:text-[16px] px-8 py-3.5 sm:px-9 sm:py-4 rounded-full transition-all duration-300 shadow-xs active:scale-95 inline-flex items-center justify-center text-center"
+                  className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] transition-all duration-300 shadow-xs active:scale-95 inline-flex items-center justify-center text-center"
                 >
                   Book A Site Visit
                 </Link>
@@ -67,10 +68,10 @@ export default function ContactUsHeroSection() {
                   href="https://wa.me/919589585050"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-white hover:text-white/90 font-sans text-[18px] sm:text-[20px] font-medium transition-colors"
+                  className="inline-flex items-center gap-1.5 text-white hover:text-white/90 font-sans text-[12px] md:text-[16px] font-normal transition-colors"
                 >
                   <span>Chat On WhatsApp</span>
-                  <ArrowUpRight className="w-5 h-5 text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
                 {/* Decorative Pill Accent */}
                 <div className="flex items-center gap-1.5 mt-2">
@@ -80,7 +81,7 @@ export default function ContactUsHeroSection() {
               </div>
 
               {/* Footnote */}
-              <p className="font-sans italic text-white/80 text-[14px] sm:text-[15px] md:text-[16px] pt-1">
+              <p className="font-sans italic text-white/80 text-[12px] sm:text-[13.5px] pt-1">
                 Private guided site visits available by prior appointment.
               </p>
             </div>

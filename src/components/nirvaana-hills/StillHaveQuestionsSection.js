@@ -34,12 +34,12 @@ export default function StillHaveQuestionsSection() {
           className="flex flex-col items-start space-y-4 max-w-xl"
         >
           {/* Headline */}
-          <h2 className="font-serif !font-normal text-[#1F2922] text-[32px] sm:text-[42px] md:text-[50px] lg:text-[56px] leading-[1.12] tracking-[-0.01em]">
+          <h2 className="font-serif !font-normal text-[#1F2922] text-[26px] sm:text-[34px] md:text-[42px] leading-[1.12] tracking-[-0.01em]">
             Still Have Questions?
           </h2>
 
           {/* Description */}
-          <p className="text-[#313116] text-[15px] sm:text-[17px] md:text-[19px] leading-relaxed font-normal max-w-lg">
+          <p className="text-[#313116] text-[13.5px] sm:text-[15px] md:text-[16px] leading-relaxed font-normal max-w-lg">
             Land that offers more than ownership - a place to use, enjoy and hold
             for the long term.
           </p>
@@ -47,8 +47,8 @@ export default function StillHaveQuestionsSection() {
           {/* CTA Button */}
           <div className="pt-2 sm:pt-4">
             <Link
-              href="/faqs"
-              className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-medium text-[15px] sm:text-[16px] px-8 sm:px-9 py-3.5 sm:py-4 rounded-full transition-all duration-300 shadow-xs inline-flex items-center justify-center active:scale-95"
+              href="/faqs#faq-list"
+              className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] transition-all duration-300 shadow-xs inline-flex items-center justify-center active:scale-95"
             >
               Explore All FAQs
             </Link>

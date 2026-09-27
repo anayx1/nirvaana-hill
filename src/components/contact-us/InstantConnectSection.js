@@ -3,7 +3,8 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Home, ArrowUpRight, Phone, Mail } from "lucide-react";
+import { ArrowUpRight, Phone, Mail, MessageCircle } from "lucide-react";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export const CONNECT_CHANNELS = [
   {
@@ -11,7 +12,7 @@ export const CONNECT_CHANNELS = [
     title: "Call Us",
     subtitle: "Speak directly with our relationship team",
     href: "tel:+919589585050",
-    icon: <Phone className="w-6 h-6 sm:w-7 sm:h-7 text-[#1F2922]" strokeWidth={1.8} />,
+    icon: <Phone className="w-3 h-3 sm:w-7 sm:h-7 text-[#1F2922]" strokeWidth={1.8} />,
   },
   {
     id: "whatsapp",
@@ -19,29 +20,15 @@ export const CONNECT_CHANNELS = [
     subtitle: "Ask questions instantly, request brochures, or plan your visit",
     href: "https://wa.me/919589585050",
     isExternal: true,
-    icon: (
-      <svg
-        width="26"
-        height="26"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#1F2922"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="w-6 h-6 sm:w-7 sm:h-7"
-        aria-hidden="true"
-      >
-        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-      </svg>
-    ),
+
+    icon: <MessageCircle className="w-3 h-3 sm:w-7 sm:h-7 text-[#1F2922]" strokeWidth={1.8} />,
   },
   {
     id: "email",
     title: "Send An Email",
     subtitle: "Prefer writing? Send us your questions anytime",
     href: "mailto:info@seadrealty.com",
-    icon: <Mail className="w-6 h-6 sm:w-7 sm:h-7 text-[#1F2922]" strokeWidth={1.8} />,
+    icon: <Mail className="w-3 h-3 sm:w-7 sm:h-7 text-[#1F2922]" strokeWidth={1.8} />,
   },
 ];
 
@@ -64,21 +51,21 @@ export default function InstantConnectSection() {
         >
           {/* Eyebrow */}
           <div className="inline-flex items-center justify-center gap-2 text-[#B3482B]">
-            <Home className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" strokeWidth={2.2} aria-hidden="true" />
-            <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px]">
+            <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+            <span className="font-medium tracking-[0.14em] uppercase text-[11px] sm:text-[12px]">
               INSTANT CONNECT
             </span>
           </div>
 
           {/* Headline */}
-          <h2 className="font-serif !font-normal text-[#1F2922] text-[28px] xs:text-[34px] sm:text-[40px] md:text-[46px] leading-[1.15] tracking-[-0.01em]">
+          <h2 className="font-serif !font-normal text-[#1F2922] text-[24px] sm:text-[30px] md:text-[36px] leading-[1.15] tracking-[-0.01em]">
             Prefer To Speak First?
           </h2>
 
           {/* Description */}
           <p
             style={{ color: "#5C6051" }}
-            className="font-sans text-[15px] sm:text-[16px] md:text-[17px] leading-[1.65] font-normal max-w-xl mx-auto"
+            className="font-sans text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal max-w-xl mx-auto"
           >
             Not everyone is ready to schedule a site visit immediately. If
             you&apos;d like to understand the project better, we&apos;re
@@ -90,7 +77,7 @@ export default function InstantConnectSection() {
         {/* ====================================================== */}
         {/* CHANNELS CARDS LIST                                    */}
         {/* ====================================================== */}
-        <div className="flex flex-col space-y-4 sm:space-y-5 max-w-[720px] mx-auto">
+        <div className="flex flex-col space-y-4 sm:space-y-5 max-w-[720px] mx-auto pr-3 sm:pr-6">
           {CONNECT_CHANNELS.map((item, index) => (
             <motion.div
               key={item.id}
@@ -102,38 +89,39 @@ export default function InstantConnectSection() {
                 delay: index * 0.08,
                 ease: [0.22, 1, 0.36, 1],
               }}
+              className="relative"
             >
               <Link
                 href={item.href}
                 target={item.isExternal ? "_blank" : undefined}
                 rel={item.isExternal ? "noopener noreferrer" : undefined}
-                className="group w-full bg-[#E4EAD9] hover:bg-[#DEE5D2] border border-[#D5DDC9] rounded-[22px] sm:rounded-[28px] p-4 sm:p-5 md:p-6 flex items-center justify-between transition-all duration-300 shadow-xs hover:shadow-md active:scale-[0.99]"
+                className="group relative w-full bg-[#E4EAD9] hover:bg-[#DEE5D2] border border-[#D5DDC9] rounded-[20px] sm:rounded-[28px] p-3.5 sm:p-5 md:p-6 pr-8 sm:pr-12 flex items-center justify-between transition-all duration-300 shadow-xs hover:shadow-md active:scale-[0.99]"
               >
                 {/* Left Content with Channel Icon & Text */}
-                <div className="flex items-center gap-3.5 sm:gap-4 md:gap-5 min-w-0">
+                <div className="flex items-center gap-3 sm:gap-4 md:gap-5 min-w-0 flex-1">
                   {/* Rounded Lime Icon Box */}
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-[14px] sm:rounded-[18px] bg-primary flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform duration-300">
+                  <div className="w-8 h-8 sm:w-14 sm:h-14 rounded-[10px] sm:rounded-[18px] bg-primary flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform duration-300">
                     {item.icon}
                   </div>
 
                   {/* Text Details */}
-                  <div className="flex flex-col min-w-0 pr-2">
+                  <div className="flex flex-col min-w-0 pr-1">
                     <span
                       style={{ color: "#5C6051" }}
-                      className="font-sans text-[12px] sm:text-[13px] font-normal truncate"
+                      className="font-sans text-[10px] sm:text-[12.5px] font-normal leading-tight sm:leading-normal"
                     >
                       {item.subtitle}
                     </span>
-                    <h3 className="font-serif !font-normal text-[#1F2922] text-[18px] sm:text-[20px] md:text-[22px] tracking-tight">
+                    <h3 className="font-serif !font-normal text-[#1F2922] text-[15px] xs:text-[17px] sm:text-[19px] md:text-[21px] tracking-tight leading-tight mt-0.5 sm:mt-1">
                       {item.title}
                     </h3>
                   </div>
                 </div>
 
-                {/* Right Arrow CTA Box */}
-                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-[14px] sm:rounded-[18px] bg-primary flex items-center justify-center text-[#1F2922] shrink-0 shadow-xs group-hover:scale-110 transition-transform duration-300">
+                {/* Right Arrow CTA Box Floating Off Edge */}
+                <div className="absolute top-1/2 -translate-y-1/2 right-0 translate-x-1/2 w-9 h-9 sm:w-12 sm:h-12 rounded-[12px] sm:rounded-[18px] bg-primary flex items-center justify-center text-[#1F2922] shrink-0 shadow-sm group-hover:scale-110 transition-transform duration-300">
                   <ArrowUpRight
-                    className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    className="w-4.5 h-4.5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     strokeWidth={2.2}
                   />
                 </div>

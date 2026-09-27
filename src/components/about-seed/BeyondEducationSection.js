@@ -48,20 +48,20 @@ export default function BeyondEducationSection() {
           {/* NARRATIVE HEADER                                       */}
           {/* ====================================================== */}
           <div className="flex flex-col space-y-3 sm:space-y-4">
-            <h2 className="font-sans font-semibold text-[#1F2922] text-[20px] sm:text-[22px] md:text-[24px] tracking-tight">
+            <h2 className="font-serif !font-normal text-[#1F2922] text-[18px] sm:text-[20px] md:text-[22px] tracking-tight">
               Beyond Education
             </h2>
 
             <p
               style={{ color: "#5C6051" }}
-              className="font-sans text-[15px] sm:text-[16px] md:text-[17px] leading-[1.65] font-normal"
+              className="font-sans text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal"
             >
               Plantation Drives· Project Human Aid – Rabb Da Dhaba · Blood &amp;
               Clothes Donation Drives · Project Waqif Awareness Campaigns ·
               Large-Scale COVID Relief
             </p>
 
-            <p className="font-sans font-medium text-[#1F2922] text-[16px] sm:text-[17px] md:text-[18px] pt-1">
+            <p className="font-sans font-medium text-[#1F2922] text-[14px] sm:text-[15px] md:text-[16px] pt-1">
               Because meaningful success creates responsibility.
             </p>
           </div>
@@ -129,7 +129,7 @@ export default function BeyondEducationSection() {
         <div className="pt-2 sm:pt-4">
           <Link
             href="https://muskaancare.in/"
-            className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-medium text-[15px] sm:text-[16px] px-8 py-3.5 sm:px-10 sm:py-4 rounded-full transition-all duration-300 shadow-xs active:scale-95 inline-flex items-center justify-center text-center"
+            className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] transition-all duration-300 shadow-xs active:scale-95 inline-flex items-center justify-center text-center"
           >
             Explore The Foundation
           </Link>

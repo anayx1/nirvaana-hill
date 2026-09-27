@@ -16,7 +16,7 @@ export const TOP_NAV_ITEMS = [
   {
     id: "about-nirvaana-hills",
     label: "About Nirvaana Hills",
-    href: "/nirvaana-hills",
+    href: "#",
     isItalic: true,
     isSubheading: true,
   },
@@ -29,12 +29,12 @@ export const TOP_NAV_ITEMS = [
   {
     id: "features",
     label: "FEATURES & AMENITIES",
-    href: "/landing#forest-living-amenities",
+    href: "/nirvaana-hills#features-amenities",
   },
   { id: "meaning", label: "THE MEANING OF NIRVAANA", href: "/nirvaana-hills#meaning" },
   { id: "phases", label: "PHASES OF NIRVAANA HILLS", href: "/nirvaana-hills#phases" },
   { id: "master-plan", label: "MASTER PLAN", href: "/nirvaana-hills#master-plan" },
-  { id: "price", label: "PRICE", href: "/landing#landing-pricing" },
+  { id: "price", label: "PRICE", href: "/nirvaana-hills#pricing" },
   {
     id: "roi",
     label: "ROI & FOREST DIVIDEND INSIGHT",
@@ -55,8 +55,8 @@ export const INSIGHTS_ITEMS = [
 ];
 
 export const CONTACT_ITEMS = [
-  { id: "enquiry", label: "ENQUIRY FORM", href: "/contact-us" },
-  { id: "channel-partner", label: "CHANNEL PARTNER", href: "/contact-us" },
+  { id: "enquiry", label: "ENQUIRY FORM", href: "/contact-us#enquiry-form" },
+  { id: "channel-partner", label: "CHANNEL PARTNER", href: "/contact-us#channel-partner" },
   { id: "careers", label: "CAREERS", href: "/career" },
 ];
 
@@ -387,9 +387,8 @@ export default function Header() {
                           setActiveId(item.id);
                           closeMenu();
                         }}
-                        className={`nav-menu-link uppercase text-[15px] xl:text-[17px] py-1.5 xl:py-2 tracking-[0.03em] font-normal block transition-colors ${
-                          isActive ? "active" : ""
-                        }`}
+                        className={`nav-menu-link uppercase text-[15px] xl:text-[17px] py-1.5 xl:py-2 tracking-[0.03em] font-normal block transition-colors ${isActive ? "active" : ""
+                          }`}
                       >
                         {item.label}
                       </Link>
@@ -424,9 +423,8 @@ export default function Header() {
                           setActiveId(item.id);
                           closeMenu();
                         }}
-                        className={`nav-menu-link uppercase text-[15px] xl:text-[17px] py-1.5 xl:py-2 tracking-[0.03em] font-normal block transition-colors ${
-                          isActive ? "active" : ""
-                        }`}
+                        className={`nav-menu-link uppercase text-[15px] xl:text-[17px] py-1.5 xl:py-2 tracking-[0.03em] font-normal block transition-colors ${isActive ? "active" : ""
+                          }`}
                       >
                         {item.label}
                       </Link>
@@ -474,6 +472,11 @@ export default function Header() {
                           onClick={() => {
                             setActiveId(item.id);
                             closeMenu();
+                            if (typeof window !== "undefined" && pathname === "/contact-us") {
+                              if (item.id === "enquiry" || item.id === "channel-partner") {
+                                window.location.hash = item.id === "channel-partner" ? "#channel-partner" : "#enquiry-form";
+                              }
+                            }
                           }}
                           className={`nav-menu-link uppercase text-[15px] xl:text-[17px] py-1.5 xl:py-2 tracking-[0.03em] font-normal block ${isActive ? "active" : ""
                             }`}
@@ -535,7 +538,7 @@ export default function Header() {
                     <Link
                       href="/contact-us"
                       onClick={closeMenu}
-                      className="inline-flex items-center justify-center bg-primary text-[#19241B] font-medium text-[15px] xl:text-[17px] px-6 py-3 rounded-xl hover:brightness-95 transition-all shadow-sm active:scale-[0.98] w-fit"
+                      className="inline-flex items-center justify-center bg-primary text-[#19241B] font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-7 md:py-3 rounded-[14px] md:rounded-[16px] hover:brightness-95 transition-all shadow-sm active:scale-[0.98] w-fit"
                     >
                       Book A Site Visit
                     </Link>
@@ -544,12 +547,12 @@ export default function Header() {
                       <Link
                         href="/#brochure"
                         onClick={closeMenu}
-                        className="nav-menu-link inline-flex items-center gap-1.5 text-[16px] xl:text-[18px] font-normal"
+                        className="nav-menu-link inline-flex items-center gap-1.5 text-[12px] md:text-[16px] font-normal"
                       >
                         <span>Download Brochure</span>
-                        <ArrowUpRight className="w-5 h-5 text-primary" />
+                        <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 text-primary" />
                       </Link>
-                      <span className="w-8 h-[3px] bg-primary rounded-full mt-1" />
+                      <span className="w-6 md:w-8 h-[2px] md:h-[3px] bg-primary rounded-full mt-1" />
                     </div>
                   </div>
                 </div>
@@ -586,9 +589,8 @@ export default function Header() {
                           setActiveId(item.id);
                           closeMenu();
                         }}
-                        className={`nav-menu-link uppercase text-[15px] md:text-[17px] py-1.5 md:py-2 tracking-[0.03em] font-normal block transition-colors ${
-                          isActive ? "active" : ""
-                        }`}
+                        className={`nav-menu-link uppercase text-[15px] md:text-[17px] py-1.5 md:py-2 tracking-[0.03em] font-normal block transition-colors ${isActive ? "active" : ""
+                          }`}
                       >
                         {item.label}
                       </Link>
@@ -635,6 +637,11 @@ export default function Header() {
                           onClick={() => {
                             setActiveId(item.id);
                             closeMenu();
+                            if (typeof window !== "undefined" && pathname === "/contact-us") {
+                              if (item.id === "enquiry" || item.id === "channel-partner") {
+                                window.location.hash = item.id === "channel-partner" ? "#channel-partner" : "#enquiry-form";
+                              }
+                            }
                           }}
                           className={`nav-menu-link uppercase text-[15px] md:text-[17px] py-1.5 md:py-2 tracking-[0.03em] font-normal block ${isActive ? "active" : ""
                             }`}
@@ -693,7 +700,7 @@ export default function Header() {
                   <Link
                     href="/contact-us"
                     onClick={closeMenu}
-                    className="inline-flex items-center justify-center bg-primary text-[#19241B] font-medium text-[15px] md:text-[17px] px-6 py-3 md:px-7 md:py-3.5 rounded-xl hover:brightness-95 transition-all shadow-sm active:scale-[0.98]"
+                    className="inline-flex items-center justify-center bg-primary text-[#19241B] font-normal text-[12px] md:text-[16px] px-5 py-2.5 md:px-7 md:py-3.5 rounded-[14px] md:rounded-[16px] hover:brightness-95 transition-all shadow-sm active:scale-[0.98]"
                   >
                     Book A Site Visit
                   </Link>
@@ -702,12 +709,12 @@ export default function Header() {
                     <Link
                       href="/#brochure"
                       onClick={closeMenu}
-                      className="nav-menu-link inline-flex items-center gap-1.5 text-[16px] md:text-[18px] font-normal"
+                      className="nav-menu-link inline-flex items-center gap-1.5 text-[12px] md:text-[16px] font-normal"
                     >
                       <span>Download Brochure</span>
-                      <ArrowUpRight className="w-5 h-5 text-primary" />
+                      <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 text-primary" />
                     </Link>
-                    <span className="w-8 h-[3px] bg-primary rounded-full mt-1" />
+                    <span className="w-6 md:w-8 h-[2px] md:h-[3px] bg-primary rounded-full mt-1" />
                   </div>
                 </div>
               </div>

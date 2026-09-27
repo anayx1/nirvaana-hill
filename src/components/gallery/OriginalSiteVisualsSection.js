@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export default function OriginalSiteVisualsSection({
   initialItems = [],
@@ -68,37 +69,21 @@ export default function OriginalSiteVisualsSection({
         >
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 text-[#B3482B]">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0"
-              aria-hidden="true"
-            >
-              <path d="M3 10.5L12 3l9 7.5" />
-              <path d="M5 9v11a1 1 0 001 1h12a1 1 0 001-1V9" />
-              <path d="M3 21c4-2 8-2 12 0" />
-              <path d="M9 17c2-1 4-1 6 0" />
-            </svg>
-            <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px]">
+            <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+            <span className="font-medium tracking-[0.14em] uppercase text-[11px] sm:text-[12px]">
               ORIGINAL SITE VISUALS
             </span>
           </div>
 
           {/* Headline */}
-          <h2 className="font-serif !font-normal text-[#1F2922] text-[30px] xs:text-[36px] sm:text-[42px] md:text-[48px] leading-[1.15] tracking-[-0.01em]">
+          <h2 className="font-serif !font-normal text-[#1F2922] text-[24px] sm:text-[30px] md:text-[36px] leading-[1.15] tracking-[-0.01em]">
             Walk The Land Before You Set Foot On It.
           </h2>
 
           {/* Description */}
           <p
             style={{ color: "#5C6051" }}
-            className="font-sans text-[15px] sm:text-[16px] md:text-[17px] leading-[1.65] font-normal pt-1"
+            className="font-sans text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal pt-1"
           >
             The land exactly as it exists - real footage, hill views, forest zones, and sunrise moments, captured directly from the ground.
           </p>
@@ -106,42 +91,44 @@ export default function OriginalSiteVisualsSection({
           {/* Italic Tagline */}
           <p
             style={{ color: "#5C6051" }}
-            className="font-serif italic text-[15px] sm:text-[16px] md:text-[17px] font-normal"
+            className="font-serif italic text-[13.5px] sm:text-[15px] font-normal"
           >
             No filters, no staged photography. Only reality.
           </p>
         </motion.div>
 
         {/* ====================================================== */}
-        {/* CATEGORY FILTER TABS                                   */}
+        {/* STICKY CATEGORY FILTER TABS BAR                        */}
         {/* ====================================================== */}
-        <div className="w-full flex flex-wrap items-center justify-center gap-x-5 gap-y-3 sm:gap-x-7 text-[13.5px] sm:text-[15px] font-sans mb-8 sm:mb-10">
-          {categories.map((cat) => {
-            const catKey = cat.slug || cat.id;
-            const catLabel = cat.name || cat.label;
-            const isActive = activeCategory === catKey;
-            return (
-              <button
-                key={catKey}
-                type="button"
-                onClick={() => handleCategoryChange(catKey)}
-                className={`relative pb-1.5 transition-colors cursor-pointer ${
-                  isActive
-                    ? "text-[#1F2922] font-semibold"
-                    : "text-[#5C6051]/60 hover:text-[#1F2922] font-normal"
-                }`}
-              >
-                <span>{catLabel}</span>
-                {isActive && (
-                  <motion.div
-                    layoutId="categoryActiveIndicator"
-                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#AFEB63] rounded-full"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </button>
-            );
-          })}
+        <div className="sticky top-[56px] lg:top-[64px] z-30 w-full bg-[#FAF9F5]/95 backdrop-blur-md py-3.5 sm:py-4 mb-6 sm:mb-8 border-b border-[#E5E8D8]/60 transition-all">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2.5 sm:gap-x-7 text-[12.5px] sm:text-[14px] font-sans">
+            {categories.map((cat) => {
+              const catKey = cat.slug || cat.id;
+              const catLabel = cat.name || cat.label;
+              const isActive = activeCategory === catKey;
+              return (
+                <button
+                  key={catKey}
+                  type="button"
+                  onClick={() => handleCategoryChange(catKey)}
+                  className={`relative pb-1.5 transition-colors cursor-pointer select-none ${
+                    isActive
+                      ? "text-[#1F2922] font-semibold"
+                      : "text-[#5C6051]/60 hover:text-[#1F2922] font-normal"
+                  }`}
+                >
+                  <span>{catLabel}</span>
+                  {isActive && (
+                    <motion.div
+                      layoutId="categoryActiveIndicator"
+                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#AFEB63] rounded-full"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* ====================================================== */}
@@ -223,7 +210,7 @@ export default function OriginalSiteVisualsSection({
         >
           <a
             href="/contact-us"
-            className="inline-flex items-center justify-center bg-[#AFEB63] text-[#1F2922] font-sans font-semibold text-[15px] sm:text-[16px] px-8 py-3.5 rounded-2xl hover:bg-[#9de04e] active:scale-[0.98] transition-all duration-300 shadow-sm"
+            className="inline-flex items-center justify-center bg-[#AFEB63] text-[#1F2922] font-sans font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] hover:bg-[#9de04e] active:scale-[0.98] transition-all duration-300 shadow-xs"
           >
             Discover Nirvaana
           </a>

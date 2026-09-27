@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export default function SiteVisitSection() {
   return (
@@ -21,30 +22,14 @@ export default function SiteVisitSection() {
           <div className="max-w-3xl flex flex-col space-y-6 sm:space-y-8">
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2 text-secondary">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="w-4 h-4 sm:w-5 sm:h-5 shrink-0"
-                aria-hidden="true"
-              >
-                <path d="M3 10.5L12 3l9 7.5" />
-                <path d="M5 9v11a1 1 0 001 1h12a1 1 0 001-1V9" />
-                <path d="M3 21c4-2 8-2 12 0" />
-                <path d="M9 17c2-1 4-1 6 0" />
-              </svg>
-              <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px] whitespace-nowrap">
+              <FarmIcon className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+              <span className="font-medium tracking-[0.14em] uppercase text-[11px] md:text-[12px] whitespace-nowrap">
                 SITE VISIT
               </span>
             </div>
 
             {/* Headline */}
-            <h2 className="font-serif !font-normal text-[#1F2922] text-[48px] xs:text-[58px] sm:text-[72px] md:text-[84px] lg:text-[96px] leading-[1.0] tracking-[-0.02em]">
+            <h2 className="font-serif !font-normal text-[#1F2922] text-[36px] xs:text-[44px] sm:text-[54px] md:text-[64px] lg:text-[72px] leading-[1.0] tracking-[-0.02em]">
               See It.
               <br />
               Feel It.
@@ -53,17 +38,17 @@ export default function SiteVisitSection() {
             </h2>
 
             {/* Description */}
-            <p className="font-sans text-[#353D2C] text-[15px] sm:text-[17px] md:text-[18px] leading-[1.65] max-w-xl">
+            <p className="font-sans text-[#353D2C] text-[13.5px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] max-w-xl">
               Walk the land. Feel the air. Imagine life at Nirvaana Hills. Bring
               your family, ask your questions, and see the progress for
               yourself.
             </p>
 
             {/* CTA Button */}
-            <div className="pt-2 sm:pt-4">
+            <div className="pt-2 sm:pt-3">
               <Link
                 href="/contact-us"
-                className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-medium text-[15px] sm:text-[16px] px-8 py-3.5 sm:px-9 sm:py-4 rounded-full transition-all duration-300 inline-flex items-center justify-center shadow-xs active:scale-95"
+                className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] transition-all duration-300 inline-flex items-center justify-center shadow-xs active:scale-95"
               >
                 Book A Site Visit
               </Link>

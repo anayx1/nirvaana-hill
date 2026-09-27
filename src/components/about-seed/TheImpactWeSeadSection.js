@@ -3,7 +3,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import {
-  Home,
   Leaf,
   Mountain,
   Handshake,
@@ -11,6 +10,7 @@ import {
   Briefcase,
   TrendingUp,
 } from "lucide-react";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export const IMPACT_CARDS = [
   {
@@ -76,21 +76,21 @@ export default function TheImpactWeSeadSection() {
         >
           {/* Eyebrow */}
           <div className="inline-flex items-center justify-center gap-2 text-[#B3482B]">
-            <Home className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" strokeWidth={2.2} aria-hidden="true" />
-            <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px]">
+            <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+            <span className="font-medium tracking-[0.14em] uppercase text-[11px] md:text-[12px]">
               THE IMPACT WE SEAD
             </span>
           </div>
 
           {/* Headline */}
-          <h2 className="font-serif !font-normal text-[#1F2922] text-[28px] xs:text-[34px] sm:text-[40px] md:text-[46px] lg:text-[50px] leading-[1.15] tracking-[-0.01em]">
+          <h2 className="font-serif !font-normal text-[#1F2922] text-[24px] sm:text-[30px] md:text-[36px] leading-[1.15] tracking-[-0.01em]">
             SEADing Goodness For Generations.
           </h2>
 
           {/* Description */}
           <p
             style={{ color: "#5C6051" }}
-            className="font-sans text-[15px] sm:text-[16px] md:text-[17px] leading-[1.65] font-normal"
+            className="font-sans text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal"
           >
             Every project should create environmental, social, and community
             impact that benefits generations long after us.
@@ -100,36 +100,33 @@ export default function TheImpactWeSeadSection() {
         {/* ====================================================== */}
         {/* STACKING CARDS CONTAINER (Matching WhatMakesDifferent) */}
         {/* ====================================================== */}
-        <div className="relative max-w-[680px] md:max-w-[740px] mx-auto flex flex-col pb-8 sm:pb-12">
+        <div className="relative max-w-[680px] md:max-w-[760px] mx-auto flex flex-col pb-[200px] sm:pb-[220px] md:pb-[230px]">
           {IMPACT_CARDS.map((card, index) => {
-            const isLast = index === IMPACT_CARDS.length - 1;
             const IconComponent = card.icon;
 
             return (
               <div
                 key={card.id}
                 style={{ zIndex: index + 1 }}
-                className={`sticky top-20 sm:top-24 md:top-28 w-full ${
-                  !isLast ? "mb-10 sm:mb-14 md:mb-16" : "mb-0"
-                }`}
+                className="sticky top-20 sm:top-24 md:top-28 w-full mb-8 sm:mb-12 md:mb-16"
               >
-                <div className="w-full rounded-[24px] sm:rounded-[32px] bg-[#E4EAD9] p-7 sm:p-9 md:p-11 border border-[#D5DDC9] shadow-md flex flex-col justify-between transition-all duration-300 min-h-[240px] sm:min-h-[270px]">
+                <div className="w-full h-[225px] xs:h-[240px] sm:h-[265px] md:h-[285px] rounded-[22px] sm:rounded-[28px] bg-[#E4EAD9] p-5 xs:p-6 sm:p-7 md:p-8 border border-black/5 shadow-none flex flex-col justify-between">
                   {/* Top Icon */}
                   <div className="flex items-center">
                     <IconComponent
-                      className="w-8 h-8 sm:w-10 sm:h-10 text-[#1F2922]"
+                      className="w-8 h-8 sm:w-9 sm:h-9 text-[#1F2922]"
                       strokeWidth={1.75}
                     />
                   </div>
 
                   {/* Bottom Text Content */}
-                  <div className="pt-6 sm:pt-8 flex flex-col space-y-2.5 sm:space-y-3">
-                    <h3 className="font-serif !font-normal text-[#1F2922] text-[22px] sm:text-[25px] md:text-[28px] leading-snug">
+                  <div className="flex flex-col space-y-1.5 sm:space-y-2">
+                    <h3 className="font-serif !font-normal text-[#1F2922] text-[18px] sm:text-[20px] md:text-[22px] leading-snug">
                       {card.title}
                     </h3>
                     <p
                       style={{ color: "#5C6051" }}
-                      className="font-sans text-[14px] sm:text-[15.5px] md:text-[16.5px] leading-[1.6] font-normal"
+                      className="font-sans text-[12.5px] sm:text-[13.5px] md:text-[14px] leading-relaxed font-normal"
                     >
                       {card.description}
                     </p>
@@ -148,20 +145,20 @@ export default function TheImpactWeSeadSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative max-w-[680px] md:max-w-[740px] mx-auto w-full mt-6 sm:mt-8 md:mt-10"
+          className="relative max-w-[680px] md:max-w-[740px] mx-auto w-full -mt-[170px] sm:-mt-[190px] md:-mt-[200px]"
         >
           <div className="w-full rounded-[24px] sm:rounded-[32px] bg-[#62735B] p-7 sm:p-9 md:p-11 text-white shadow-lg flex flex-col justify-between space-y-4 sm:space-y-5">
-            <h3 className="font-sans font-semibold text-white text-[20px] sm:text-[22px] md:text-[24px] tracking-tight">
+            <h3 className="font-serif !font-normal text-white text-[18px] sm:text-[20px] md:text-[22px] tracking-tight">
               A Legacy Of Impact
             </h3>
 
-            <p className="font-sans text-white/90 text-[14.5px] sm:text-[16px] md:text-[17px] leading-[1.65] font-normal">
+            <p className="font-sans text-white/90 text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal">
               An investment at Nirvaana Hills creates value beyond financial
               returns - because meaningful growth should benefit everyone
               connected to it.
             </p>
 
-            <p className="font-sans font-semibold text-white text-[16px] sm:text-[17px] md:text-[18px] pt-1">
+            <p className="font-sans font-medium text-white text-[14px] sm:text-[15px] md:text-[16px] pt-1">
               Thoughtfully Creating Value For Generations.
             </p>
           </div>

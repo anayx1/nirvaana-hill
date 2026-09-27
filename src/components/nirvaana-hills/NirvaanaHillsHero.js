@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export default function NirvaanaHillsHero() {
   return (
@@ -27,37 +28,21 @@ export default function NirvaanaHillsHero() {
           >
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2 text-white/90">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="w-4 h-4 sm:w-5 sm:h-5 shrink-0"
-                aria-hidden="true"
-              >
-                <path d="M3 10.5L12 3l9 7.5" />
-                <path d="M5 9v11a1 1 0 001 1h12a1 1 0 001-1V9" />
-                <path d="M3 21c4-2 8-2 12 0" />
-                <path d="M9 17c2-1 4-1 6 0" />
-              </svg>
-              <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px] whitespace-nowrap">
+              <FarmIcon className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 text-white" />
+              <span className="font-medium tracking-[0.14em] uppercase text-[11px] sm:text-[12px] whitespace-nowrap">
                 NIRVAANA HILLS
               </span>
             </div>
 
             {/* Headline */}
-            <h1 className="font-serif !font-normal text-white text-[32px] xs:text-[38px] sm:text-[46px] md:text-[54px] lg:text-[60px] leading-[1.12] tracking-[-0.01em]">
+            <h1 className="font-serif !font-normal text-white text-[28px] xs:text-[34px] sm:text-[42px] md:text-[48px] lg:text-[54px] leading-[1.12] tracking-[-0.01em]">
               More Than Farmland.
               <br />
               A 200-Acre Thoughtfully Planned, Nature-Led Community.
             </h1>
 
             {/* Narrative Body */}
-            <p className="font-sans text-white/90 text-[15px] sm:text-[16px] md:text-[18px] leading-[1.65] max-w-2xl font-normal">
+            <p className="font-sans text-white/90 text-[13.5px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] max-w-2xl font-normal">
               Nirvaana Hills is a farmland community near Delhi & Gurgaon, built
               around family, wellness, meaningful experiences, and long-term
               belonging - not simply a parcel of land, but a place designed to
@@ -66,15 +51,15 @@ export default function NirvaanaHillsHero() {
             </p>
 
             {/* Tagline */}
-            <p className="font-serif italic text-white/80 text-[17px] sm:text-[19px] md:text-[20px] font-normal">
+            <p className="font-serif italic text-white/80 text-[15px] sm:text-[17px] font-normal">
               A Forest Crafted For Living.
             </p>
 
             {/* CTA Group */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-2 sm:pt-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 pt-2 sm:pt-4">
               <Link
                 href="/contact-us"
-                className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-medium text-[15px] sm:text-[16px] px-8 py-3.5 sm:px-9 sm:py-4 rounded-full transition-all duration-300 inline-flex items-center justify-center shadow-xs active:scale-95"
+                className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] transition-all duration-300 inline-flex items-center justify-center shadow-xs active:scale-95"
               >
                 Book A Site Visit
               </Link>
@@ -83,10 +68,10 @@ export default function NirvaanaHillsHero() {
               <div className="flex flex-col items-start">
                 <Link
                   href="#different"
-                  className="inline-flex items-center gap-1.5 text-white hover:text-white/90 font-sans text-[15px] sm:text-[16px] font-medium transition-colors group"
+                  className="inline-flex items-center gap-1.5 text-white hover:text-white/90 font-sans text-[12px] md:text-[16px] font-normal transition-colors group"
                 >
                   <span>Explore The Community Vision</span>
-                  <ArrowUpRight className="w-5 h-5 text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
                 {/* Decorative Pill Accent */}
                 <div className="flex items-center gap-1.5 mt-2">

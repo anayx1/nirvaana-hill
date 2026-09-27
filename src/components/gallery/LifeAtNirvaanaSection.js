@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export const LIFE_AT_NIRVAANA_ITEMS = [
   {
@@ -82,37 +83,21 @@ export default function LifeAtNirvaanaSection() {
         >
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 text-[#B3482B]">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0"
-              aria-hidden="true"
-            >
-              <path d="M3 10.5L12 3l9 7.5" />
-              <path d="M5 9v11a1 1 0 001 1h12a1 1 0 001-1V9" />
-              <path d="M3 21c4-2 8-2 12 0" />
-              <path d="M9 17c2-1 4-1 6 0" />
-            </svg>
-            <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px]">
+            <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+            <span className="font-medium tracking-[0.14em] uppercase text-[11px] sm:text-[12px]">
               LIFE AT NIRVAANA
             </span>
           </div>
 
           {/* Headline */}
-          <h2 className="font-serif !font-normal text-[#1F2922] text-[30px] xs:text-[36px] sm:text-[42px] md:text-[48px] leading-[1.15] tracking-[-0.01em]">
+          <h2 className="font-serif !font-normal text-[#1F2922] text-[24px] sm:text-[30px] md:text-[36px] leading-[1.15] tracking-[-0.01em]">
             A Life That Grows Richer With Time.
           </h2>
 
           {/* Description */}
           <p
             style={{ color: "#5C6051" }}
-            className="font-sans text-[15px] sm:text-[16px] md:text-[17px] leading-[1.65] font-normal pt-1 max-w-xl"
+            className="font-sans text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] font-normal pt-1 max-w-xl"
           >
             Some places are visited. Some quietly become part of your story. Life here isn&apos;t measured by how much happens, but by what matters - long mornings, children growing up outdoors, time with people who matter most. Because the best places change how life feels.
           </p>
@@ -170,10 +155,10 @@ export default function LifeAtNirvaanaSection() {
                   <button
                     type="button"
                     onClick={() => toggleItem(item.id)}
-                    className="w-full py-4 sm:py-5 flex items-center justify-between text-left group cursor-pointer focus:outline-hidden"
+                    className="w-full py-3.5 sm:py-4 flex items-center justify-between text-left group cursor-pointer focus:outline-hidden"
                     aria-expanded={isOpen}
                   >
-                    <span className="font-serif text-[21px] sm:text-[24px] text-white tracking-[-0.01em] group-hover:text-[#AFEB63] transition-colors pr-4">
+                    <span className="font-serif text-[18px] sm:text-[21px] text-white tracking-[-0.01em] group-hover:text-[#AFEB63] transition-colors pr-4 font-normal">
                       {item.title}
                     </span>
 
@@ -196,7 +181,7 @@ export default function LifeAtNirvaanaSection() {
                         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                         className="overflow-hidden"
                       >
-                        <p className="font-sans text-[14.5px] sm:text-[15.5px] leading-[1.65] text-[#F3F5EC] pb-5 sm:pb-6 font-normal">
+                        <p className="font-sans text-[13px] sm:text-[14px] leading-[1.65] text-[#F3F5EC] pb-4 sm:pb-5 font-normal">
                           {item.description}
                         </p>
                       </motion.div>

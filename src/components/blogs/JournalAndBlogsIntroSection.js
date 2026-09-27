@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Home, Calendar, Clock, ChevronRight } from "lucide-react";
+import { Calendar, Clock, ChevronRight } from "lucide-react";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 // Format date into "August 03, 2026"
 function formatDate(dateStr) {
@@ -94,26 +95,26 @@ export default function JournalAndBlogsIntroSection({
         >
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 text-[#B3482B]">
-            <Home className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" strokeWidth={2.2} aria-hidden="true" />
-            <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px]">
+            <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+            <span className="font-medium tracking-[0.14em] uppercase text-[11px] md:text-[12px]">
               JOURNAL AND BLOGS
             </span>
           </div>
 
           {/* Headline */}
-          <h2 className="font-serif !font-normal text-[#1F2922] text-[28px] xs:text-[34px] sm:text-[40px] md:text-[44px] lg:text-[48px] leading-[1.18] tracking-[-0.01em]">
+          <h2 className="font-serif !font-normal text-[#1F2922] text-[24px] sm:text-[30px] md:text-[36px] leading-[1.18] tracking-[-0.01em]">
             Thoughtful Reads Around Living, Ownership &amp; Nature.
           </h2>
 
           {/* Subheading Lead Line */}
-          <p className="font-sans font-medium text-[#1F2922] text-[16px] sm:text-[17px] md:text-[18px] leading-[1.5]">
+          <p className="font-sans font-medium text-[#1F2922] text-[14px] sm:text-[15px] md:text-[16px] leading-[1.5]">
             Read. Reflect. Reconsider what &ldquo;home&rdquo; really means.
           </p>
 
           {/* Body Narrative */}
           <p
             style={{ color: "#5C6051" }}
-            className="font-sans text-[15px] sm:text-[16px] md:text-[17px] leading-[1.68] font-normal"
+            className="font-sans text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.68] font-normal"
           >
             At Nirvaana Hills, we believe buying farmland is never simply a
             transaction - it&apos;s often a shift in how people think about life
@@ -136,10 +137,10 @@ export default function JournalAndBlogsIntroSection({
                   key={category.slug}
                   type="button"
                   onClick={() => handleCategoryChange(category.slug)}
-                  className={`relative whitespace-nowrap pb-3 text-[14.5px] sm:text-[15.5px] transition-all cursor-pointer ${
+                  className={`relative whitespace-nowrap pb-3 text-[12px] md:text-[16px] transition-all cursor-pointer ${
                     isActive
-                      ? "text-[#1F2922] font-semibold"
-                      : "text-[#8C9280] hover:text-[#1F2922] font-medium"
+                      ? "text-[#1F2922] font-medium"
+                      : "text-[#8C9280] hover:text-[#1F2922] font-normal"
                   }`}
                 >
                   <span>{category.label}</span>
@@ -174,7 +175,7 @@ export default function JournalAndBlogsIntroSection({
                   >
                     <Link
                       href={`/blogs/${blog.slug}`}
-                      className="group flex flex-col h-full rounded-[24px] sm:rounded-3xl overflow-hidden bg-[#EBEEDD] border border-[#DDE2CD] transition-all duration-300 hover:shadow-xl hover:-translate-y-1 shadow-xs"
+                      className="group flex flex-col h-full rounded-[20px] sm:rounded-[24px] overflow-hidden bg-[#EBEEDD] border border-[#DDE2CD] transition-all duration-300 hover:shadow-xl hover:-translate-y-1 shadow-xs"
                     >
                       {/* Featured Image */}
                       {blog.featuredImage ? (
@@ -200,19 +201,19 @@ export default function JournalAndBlogsIntroSection({
                         <div className="space-y-3">
                           {/* Category Pill */}
                           <div>
-                            <span className="inline-block bg-[#AFEB63] text-[#1F2922] font-semibold !text-[12px] sm:!text-[12.5px] px-3.5 py-1 rounded-full capitalize shadow-2xs">
+                            <span className="inline-block bg-[#AFEB63] text-[#1F2922] font-medium text-[11px] md:text-[12px] px-3 py-1 rounded-full capitalize shadow-2xs">
                               {formatCategoryName(blog.category)}
                             </span>
                           </div>
 
                           {/* Article Title */}
-                          <h3 className="font-serif !font-normal text-[#1F2922] text-[20px] sm:text-[22px] lg:text-[24px] leading-[1.26] tracking-[-0.01em] group-hover:text-[#B3482B] transition-colors line-clamp-3">
+                          <h3 className="font-serif !font-normal text-[#1F2922] text-[18px] sm:text-[20px] md:text-[21px] leading-[1.26] tracking-[-0.01em] group-hover:text-[#B3482B] transition-colors line-clamp-3">
                             {blog.title}
                           </h3>
                         </div>
 
                         {/* Meta Footer */}
-                        <div className="flex items-center justify-between pt-3 border-t border-[#DDE2CD]/80 text-[#5C6051] !text-[12px] sm:!text-[12.5px] font-sans mt-auto">
+                        <div className="flex items-center justify-between pt-3 border-t border-[#DDE2CD]/80 text-[#5C6051] text-[11px] md:text-[12px] font-sans mt-auto">
                           {/* Date */}
                           <div className="flex items-center gap-1.5">
                             <Calendar className="w-3.5 h-3.5 text-[#5C6051]" />
@@ -236,13 +237,13 @@ export default function JournalAndBlogsIntroSection({
                 animate={{ opacity: 1 }}
                 className="py-16 text-center bg-[#EBEEDD]/50 border border-dashed border-[#D2D8C0] rounded-3xl p-8"
               >
-                <p className="text-[#5C6051] text-[16px] font-medium">
+                <p className="text-[#5C6051] text-[14px] sm:text-[15px] font-normal">
                   No articles found in this category yet.
                 </p>
                 <button
                   type="button"
                   onClick={() => handleCategoryChange("all")}
-                  className="mt-4 inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#1F2922] bg-[#AFEB63] px-4 py-2 rounded-xl hover:bg-[#9de04e] transition-colors cursor-pointer"
+                  className="mt-4 inline-flex items-center gap-1.5 text-[12px] md:text-[16px] font-normal text-[#1F2922] bg-[#AFEB63] px-5 py-2.5 rounded-[14px] md:rounded-[16px] hover:bg-[#9de04e] transition-colors cursor-pointer"
                 >
                   View All Articles
                 </button>
@@ -263,10 +264,10 @@ export default function JournalAndBlogsIntroSection({
             <button
               type="button"
               onClick={handleLoadMore}
-              className="px-9 py-3.5 sm:px-10 sm:py-4 rounded-full bg-[#AFEB63] hover:bg-[#9de04e] text-[#1F2922] font-semibold text-[14.5px] sm:text-[15.5px] transition-all shadow-sm hover:shadow-md active:scale-97 cursor-pointer inline-flex items-center gap-2"
+              className="px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] bg-[#AFEB63] hover:bg-[#9de04e] text-[#1F2922] font-normal text-[12px] md:text-[16px] transition-all shadow-sm hover:shadow-md active:scale-97 cursor-pointer inline-flex items-center gap-2"
             >
               <span>Load More Articles</span>
-              <span className="text-[12.5px] font-mono text-[#1F2922]/70">
+              <span className="text-[11px] md:text-[13px] font-mono text-[#1F2922]/70">
                 ({filteredBlogs.length - visibleCount} remaining)
               </span>
             </button>

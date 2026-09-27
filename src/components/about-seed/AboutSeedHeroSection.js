@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export default function AboutSeedHeroSection() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -27,37 +28,21 @@ export default function AboutSeedHeroSection() {
           >
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2.5 text-white/90">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="w-4 h-4 md:w-5 md:h-5 shrink-0"
-                aria-hidden="true"
-              >
-                <path d="M3 10.5L12 3l9 7.5" />
-                <path d="M5 9v11a1 1 0 001 1h12a1 1 0 001-1V9" />
-                <path d="M3 21c4-2 8-2 12 0" />
-                <path d="M9 17c2-1 4-1 6 0" />
-              </svg>
-              <span className="font-semibold tracking-[0.14em] uppercase text-[12px] md:text-[13px] whitespace-nowrap">
+              <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+              <span className="font-medium tracking-[0.14em] uppercase text-[11px] md:text-[12px] whitespace-nowrap">
                 ABOUT SEAD
               </span>
             </div>
 
             {/* Headline */}
-            <h1 className="font-serif !font-normal text-white text-[28px] md:text-[46px] lg:text-[54px] leading-[1.15] tracking-[-0.01em]">
+            <h1 className="font-serif !font-normal text-white text-[28px] xs:text-[34px] sm:text-[42px] md:text-[48px] lg:text-[54px] leading-[1.15] tracking-[-0.01em]">
               Building More Than Land.
               <br />
               Creating A Legacy Rooted In Purpose.
             </h1>
 
             {/* Paragraph 1 */}
-            <p className="font-sans text-white/90 text-[14.5px] md:text-[17px] leading-[1.65] max-w-xl font-normal">
+            <p className="font-sans text-white/90 text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] max-w-xl font-normal">
               Every meaningful place begins with a belief. At SEAD Realty, our
               work extends far beyond development - we believe land should
               create lasting value for families, communities, nature, and future
@@ -74,7 +59,7 @@ export default function AboutSeedHeroSection() {
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                   className="overflow-hidden"
                 >
-                  <p className="font-sans text-white/90 text-[14.5px] md:text-[17px] leading-[1.65] max-w-xl font-normal pt-1">
+                  <p className="font-sans text-white/90 text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] max-w-xl font-normal pt-1">
                     Nirvaana Hills reflects a vision shaped over decades: to create
                     environments where people reconnect with life, while
                     contributing to something far bigger than themselves. From
@@ -92,7 +77,7 @@ export default function AboutSeedHeroSection() {
                 <button
                   type="button"
                   onClick={() => setIsExpanded(true)}
-                  className="font-sans italic text-[22px] md:text-[26px] text-white/95 hover:text-white transition-opacity inline-block tracking-tight cursor-pointer focus:outline-none"
+                  className="font-sans italic text-[16px] md:text-[20px] text-white/95 hover:text-white transition-opacity inline-block tracking-tight cursor-pointer focus:outline-none"
                 >
                   read more
                 </button>

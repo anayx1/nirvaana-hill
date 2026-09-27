@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 // ========================================================
 // FAQ DATA
@@ -61,23 +63,8 @@ export default function FaqSection() {
         >
           {/* Eyebrow */}
           <div className="inline-flex items-center justify-center gap-2 text-secondary text-center">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-4 h-4 shrink-0"
-              aria-hidden="true"
-            >
-              <path d="M3 10.5L12 3l9 7.5" />
-              <path d="M5 9v11a1 1 0 001 1h12a1 1 0 001-1V9" />
-              <path d="M9 21V12h6v9" />
-            </svg>
-            <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px] whitespace-nowrap">
+            <FarmIcon className="w-4 h-4 shrink-0" />
+            <span className="font-medium tracking-[0.14em] uppercase text-[11px] md:text-[12px] whitespace-nowrap">
               FAQS
             </span>
           </div>
@@ -91,7 +78,7 @@ export default function FaqSection() {
         {/* ======================================================== */}
         {/* CHAT-STYLE FAQ ACCORDION                                */}
         {/* ======================================================== */}
-        <div className="flex flex-col space-y-5 sm:space-y-6 max-w-[680px] mx-auto">
+        <div className="flex flex-col space-y-4 sm:space-y-5 max-w-[680px] mx-auto">
           {FAQS_DATA.map((faq, index) => {
             const isOpen = openFaqIds.includes(faq.id);
 
@@ -106,7 +93,7 @@ export default function FaqSection() {
                   delay: index * 0.08,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="flex flex-col space-y-3.5"
+                className="flex flex-col space-y-3"
               >
                 {/* Question Bubble (Left Aligned with Tail) */}
                 <div className="flex items-center gap-3">
@@ -116,7 +103,7 @@ export default function FaqSection() {
                       onClick={() => toggleFaq(faq.id)}
                       aria-expanded={isOpen}
                       aria-controls={`faq-answer-${faq.id}`}
-                      className="relative z-10 text-left bg-[#E5E8D8] hover:bg-[#DFE3D1] transition-colors rounded-[20px] rounded-br-[6px] px-5 sm:px-6 py-3.5 sm:py-4 cursor-pointer text-[#252B20] font-sans font-medium text-[15px] sm:text-[16px] leading-snug shadow-2xs active:scale-[0.99]"
+                      className="relative z-10 text-left bg-[#E5E8D8] hover:bg-[#DFE3D1] transition-colors rounded-[18px] rounded-br-[6px] px-4.5 sm:px-5.5 py-3 sm:py-3.5 cursor-pointer text-[#252B20] font-sans font-normal text-[13.5px] sm:text-[14.5px] leading-snug shadow-2xs active:scale-[0.99]"
                     >
                       {faq.question}
                     </button>
@@ -169,8 +156,8 @@ export default function FaqSection() {
                       }}
                       className="overflow-hidden flex justify-end"
                     >
-                      <div className="bg-[#E5E8D8] rounded-[22px] sm:rounded-[26px] p-5 sm:p-7 md:p-8 max-w-[92%] sm:max-w-[85%] shadow-xs">
-                        <p className="font-sans text-[#3A4032] text-[14px] sm:text-[15px] md:text-[16px] font-normal leading-[1.65]">
+                      <div className="bg-[#E5E8D8] rounded-[20px] sm:rounded-[24px] p-4.5 sm:p-6 md:p-7 max-w-[92%] sm:max-w-[85%] shadow-xs">
+                        <p className="font-sans text-[#3A4032] text-[13px] sm:text-[14px] md:text-[14.5px] font-normal leading-[1.65]">
                           {faq.answer}
                         </p>
                       </div>
@@ -192,12 +179,12 @@ export default function FaqSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="flex justify-center mt-10 sm:mt-12 md:mt-14"
         >
-          <button
-            type="button"
-            className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-medium text-[15px] sm:text-[16px] px-8 py-3.5 sm:px-9 sm:py-4 rounded-full transition-all duration-300 cursor-pointer shadow-xs active:scale-95"
+          <Link
+            href="/faqs#faq-list"
+            className="inline-flex items-center justify-center bg-primary hover:bg-[#9EE837] text-[#1F2922] font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] transition-all duration-300 cursor-pointer shadow-xs active:scale-95 no-underline"
           >
             Explore All FAQs
-          </button>
+          </Link>
         </motion.div>
       </div>
     </section>

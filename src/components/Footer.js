@@ -70,12 +70,14 @@ export const CONTACT_DETAILS = [
 export const WORKING_HOURS = [
     {
         title: "OFFICE HOURS",
-        time: "Monday-Saturday (10:00 AM-5:00 PM)",
+        days: "Monday-Saturday",
+        hours: "(10:00 AM-5:00 PM)",
         note: null,
     },
     {
         title: "SITE VISIT HOURS",
-        time: "Monday-Sunday (6:00 AM-4:00 PM)",
+        days: "Monday-Sunday",
+        hours: "(6:00 AM-4:00 PM)",
         note: "(By prior appointment only)",
     },
 ];
@@ -172,6 +174,139 @@ export const SOCIAL_LINKS = [
 ];
 
 // ========================================================
+// SUB-COMPONENTS FOR CLEAN RESPONSIVE FOOTER LAYOUT
+// ========================================================
+
+function QuickLinksBlock() {
+    return (
+        <div className="flex flex-col">
+            <h3 className="font-serif italic text-secondary text-[15px] sm:text-[17px] font-normal mb-3">
+                Quick Links
+            </h3>
+            <ul className="flex flex-col space-y-2">
+                {QUICK_LINKS.map((item, idx) => (
+                    <li key={idx}>
+                        <Link
+                            href={item.href}
+                            className="font-sans text-[12px] sm:text-[13px] text-[#252B20] hover:text-[#5B8820] tracking-[0.02em] uppercase transition-colors leading-snug block"
+                        >
+                            {item.label}
+                        </Link>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+}
+
+function ContactAndHoursBlock() {
+    return (
+        <div className="flex flex-col">
+            <h3 className="font-serif italic text-secondary text-[15px] sm:text-[17px] font-normal mb-3">
+                Contact Information
+            </h3>
+
+            <div className="flex flex-col space-y-3.5">
+                {CONTACT_DETAILS.map((contact, idx) => (
+                    <div key={idx}>
+                        <span className="font-sans text-[12px] sm:text-[13px] font-semibold text-[#1F2922] uppercase tracking-[0.03em] block mb-0.5">
+                            {contact.title}
+                        </span>
+                        <div className="font-sans text-[12px] sm:text-[13px] text-[#424A3B] leading-[1.38]">
+                            {contact.items.map((item, itemIdx) => (
+                                <a
+                                    key={itemIdx}
+                                    href={item.href}
+                                    className="hover:underline block"
+                                >
+                                    {item.label}
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <div className="mt-7 sm:mt-8">
+                <h4 className="font-serif italic text-secondary text-[15px] sm:text-[17px] font-normal mb-3">
+                    Working Hours
+                </h4>
+                <div className="space-y-3.5">
+                    {WORKING_HOURS.map((wh, idx) => (
+                        <div key={idx}>
+                            <span className="font-sans text-[12px] sm:text-[13px] font-semibold text-[#1F2922] uppercase tracking-[0.03em] block mb-0.5">
+                                {wh.title}
+                            </span>
+                            <p className="font-sans text-[12px] sm:text-[13px] text-[#424A3B] leading-[1.38]">
+                                {wh.days}
+                            </p>
+                            {wh.hours && (
+                                <p className="font-sans text-[12px] sm:text-[13px] text-[#424A3B] leading-[1.38]">
+                                    {wh.hours}
+                                </p>
+                            )}
+                            {wh.note && (
+                                <span className="font-sans italic text-[#757D6D] text-[11.5px] sm:text-[12px] block mt-0.5">
+                                    {wh.note}
+                                </span>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function LocationBlock() {
+    return (
+        <div className="flex flex-col">
+            <h3 className="font-serif italic text-secondary text-[15px] sm:text-[17px] font-normal mb-3">
+                Location
+            </h3>
+            <div className="flex flex-col space-y-3.5">
+                {LOCATION_INFO.map((loc, idx) => (
+                    <div key={idx}>
+                        <span className="font-sans text-[12px] sm:text-[13px] font-semibold text-[#1F2922] uppercase tracking-[0.03em] block mb-0.5">
+                            {loc.title}
+                        </span>
+                        <p className="font-sans text-[12px] sm:text-[13px] text-[#424A3B] leading-[1.38]">
+                            {loc.lines.map((line, lineIdx) => (
+                                <span key={lineIdx} className="block">
+                                    {line}
+                                </span>
+                            ))}
+                        </p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+function LegalBlock() {
+    return (
+        <div className="flex flex-col">
+            <h3 className="font-serif italic text-secondary text-[15px] sm:text-[17px] font-normal mb-3">
+                Legal
+            </h3>
+            <ul className="flex flex-col space-y-2">
+                {LEGAL_LINKS.map((item, idx) => (
+                    <li key={idx}>
+                        <Link
+                            href={item.href}
+                            className="font-sans text-[12px] sm:text-[13px] text-[#252B20] hover:text-[#5B8820] tracking-[0.02em] uppercase transition-colors leading-snug block"
+                        >
+                            {item.label}
+                        </Link>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+}
+
+// ========================================================
 // FOOTER COMPONENT
 // ========================================================
 
@@ -226,18 +361,18 @@ export default function Footer() {
         <>
             <BrochureSection />
             <SiteVisitSection />
-            <footer className="w-full bg-[#FAF9F5] border-t border-black/5 pt-14 sm:pt-18 md:pt-24 pb-10 text-[#20261A] select-none relative">
+            <footer className="w-full bg-[#FAF9F5] border-t border-black/5 pt-10 sm:pt-14 md:pt-20 pb-4 sm:pb-6 text-[#20261A] select-none relative">
                 <div className="container max-w-[1400px] px-4 sm:px-6">
 
                     {/* ======================================================== */}
                     {/* TOP BRAND NARRATIVE & SOCIALS ROW                        */}
                     {/* ======================================================== */}
                     <div className="flex flex-col space-y-6 max-w-4xl mb-12 sm:mb-16">
-                        <h2 className="font-serif !font-normal text-[#1F2922] text-[34px] sm:text-[44px] md:text-[50px] tracking-[0.04em] uppercase leading-none">
+                        <h2 className="font-serif !font-normal text-[#1F2922] text-[28px] sm:text-[36px] md:text-[42px] tracking-[0.04em] uppercase leading-none">
                             NIRVAANA HILLS
                         </h2>
 
-                        <p className="font-sans text-[#353D2C] text-[15px] sm:text-[17px] md:text-[18px] leading-[1.65] max-w-3xl">
+                        <p className="font-sans text-[#353D2C] text-[13.5px] sm:text-[15px] md:text-[16px] leading-[1.65] max-w-3xl">
                             A premium 200-acre nature-led farmland community nestled in the
                             Aravalli foothills near Delhi NCR. Designed around family, wellness,
                             meaningful living, and long-term ownership. A Forest Crafted For
@@ -247,7 +382,7 @@ export default function Footer() {
                         <div className="flex flex-wrap items-center gap-4 sm:gap-5 pt-2">
                             <Link
                                 href="/contact-us"
-                                className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-medium text-[14px] sm:text-[15px] px-7 py-3 rounded-full transition-all duration-300 shadow-xs active:scale-95"
+                                className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] transition-all duration-300 shadow-xs active:scale-95"
                             >
                                 Book A Site Visit
                             </Link>
@@ -273,126 +408,39 @@ export default function Footer() {
                     {/* ======================================================== */}
                     {/* 2-COLUMN ON MOBILE / 4-COLUMN ON DESKTOP                 */}
                     {/* ======================================================== */}
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 xs:gap-x-6 sm:gap-x-8 gap-y-9 sm:gap-y-12 lg:gap-8 pb-12 sm:pb-16 border-b border-black/10">
 
-                        {/* 1. Quick Links (Mapped from QUICK_LINKS array) */}
-                        <div className="flex flex-col space-y-3.5 sm:space-y-4 lg:order-1">
-                            <h3 className="font-serif italic text-secondary text-[16px] sm:text-[18px] md:text-[20px] font-normal">
-                                Quick Links
-                            </h3>
-                            <ul className="flex flex-col space-y-1">
-                                {QUICK_LINKS.map((item, idx) => (
-                                    <li key={idx}>
-                                        <Link
-                                            href={item.href}
-                                            className="font-sans text-[12px] sm:text-[13px] md:text-[14px] text-[#252B20] hover:text-[#5B8820] tracking-[0.03em] uppercase transition-colors"
-                                        >
-                                            {item.label}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
+                    {/* Desktop View (>= lg): 4 distinct columns */}
+                    <div className="hidden lg:grid lg:grid-cols-4 lg:gap-8 pb-8 sm:pb-12 border-b border-black/10">
+                        <QuickLinksBlock />
+                        <LocationBlock />
+                        <ContactAndHoursBlock />
+                        <LegalBlock />
+                    </div>
+
+                    {/* Mobile & Tablet View (< lg): 2 independent vertical columns */}
+                    {/* This prevents row-height stretching so Location starts right below Quick Links without gap */}
+                    <div className="grid grid-cols-2 lg:hidden gap-x-5 xs:gap-x-7 sm:gap-x-10 pb-8 sm:pb-12 border-b border-black/10">
+                        {/* Left Column: Quick Links followed immediately by Location */}
+                        <div className="flex flex-col space-y-7 sm:space-y-8">
+                            <QuickLinksBlock />
+                            <LocationBlock />
                         </div>
 
-                        {/* 2. Contact Information & Working Hours (Mapped from CONTACT_DETAILS & WORKING_HOURS) */}
-                        <div className="flex flex-col space-y-5 lg:order-3">
-                            <h3 className="font-serif italic text-secondary text-[16px] sm:text-[18px] md:text-[20px] font-normal">
-                                Contact Information
-                            </h3>
-
-                            {CONTACT_DETAILS.map((contact, idx) => (
-                                <div key={idx}>
-                                    <span className="font-sans text-[11px] sm:text-[12px] md:text-[13px] font-semibold text-[#1F2922] uppercase tracking-[0.05em] block mb-0.5">
-                                        {contact.title}
-                                    </span>
-                                    <div className="font-sans text-[12px] sm:text-[13px] md:text-[14px] text-[#424A3B]">
-                                        {contact.items.map((item, itemIdx) => (
-                                            <a
-                                                key={itemIdx}
-                                                href={item.href}
-                                                className="hover:underline block"
-                                            >
-                                                {item.label}
-                                            </a>
-                                        ))}
-                                    </div>
-                                </div>
-                            ))}
-
-                            <div className="pt-2">
-                                <h4 className="font-serif italic text-secondary text-[15px] sm:text-[16px] md:text-[17px] font-normal mb-1.5">
-                                    Working Hours
-                                </h4>
-                                <div className="space-y-2 text-[12px] sm:text-[13px] md:text-[14px] text-[#424A3B]">
-                                    {WORKING_HOURS.map((wh, idx) => (
-                                        <div key={idx}>
-                                            <span className="font-semibold text-[#1F2922] uppercase block text-[11px] sm:text-[12px] tracking-[0.04em]">
-                                                {wh.title}
-                                            </span>
-                                            <p className="leading-snug">{wh.time}</p>
-                                            {wh.note && (
-                                                <span className="italic text-[#757D6D] text-[11px] sm:text-[12px] block mt-0.5">
-                                                    {wh.note}
-                                                </span>
-                                            )}
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* 3. Location (Mapped from LOCATION_INFO array) */}
-                        <div className="flex flex-col space-y-5 sm:space-y-6 lg:order-2">
-                            <h3 className="font-serif italic text-secondary text-[16px] sm:text-[18px] md:text-[20px] font-normal">
-                                Location
-                            </h3>
-                            <div className="flex flex-col space-y-4">
-                                {LOCATION_INFO.map((loc, idx) => (
-                                    <div key={idx} className={idx > 0 ? "pt-1 sm:pt-2" : ""}>
-                                        <span className="font-sans text-[11px] sm:text-[12px] md:text-[13px] font-semibold text-[#1F2922] uppercase tracking-[0.05em] block mb-0.5">
-                                            {loc.title}
-                                        </span>
-                                        <p className="font-sans text-[12px] sm:text-[13px] md:text-[14px] text-[#424A3B] leading-relaxed">
-                                            {loc.lines.map((line, lineIdx) => (
-                                                <React.Fragment key={lineIdx}>
-                                                    {line}
-                                                    {lineIdx < loc.lines.length - 1 && <br />}
-                                                </React.Fragment>
-                                            ))}
-                                        </p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* 4. Legal (Mapped from LEGAL_LINKS array) */}
-                        <div className="flex flex-col space-y-3.5 sm:space-y-4 lg:order-4">
-                            <h3 className="font-serif italic text-secondary text-[16px] sm:text-[18px] md:text-[20px] font-normal">
-                                Legal
-                            </h3>
-                            <ul className="flex flex-col space-y-2 sm:space-y-2.5">
-                                {LEGAL_LINKS.map((item, idx) => (
-                                    <li key={idx}>
-                                        <Link
-                                            href={item.href}
-                                            className="font-sans text-[12px] sm:text-[13px] md:text-[14px] text-[#252B20] hover:text-[#5B8820] tracking-[0.03em] uppercase transition-colors"
-                                        >
-                                            {item.label}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
+                        {/* Right Column: Contact Information & Hours followed by Legal */}
+                        <div className="flex flex-col space-y-7 sm:space-y-8">
+                            <ContactAndHoursBlock />
+                            <LegalBlock />
                         </div>
                     </div>
 
                     {/* ======================================================== */}
                     {/* SUBSCRIBE TO OUR NEWSLETTER                              */}
                     {/* ======================================================== */}
-                    <div className="py-5 md:py-10 max-w-xl">
-                        <h3 className="font-serif !font-normal text-[#1F2922] text-[24px] sm:text-[28px] md:text-[32px] mb-2 leading-tight">
+                    <div className="pt-4 sm:pt-6 md:pt-8 pb-3 sm:pb-4 max-w-xl">
+                        <h3 className="font-serif !font-normal text-[#1F2922] text-[20px] sm:text-[23px] md:text-[26px] mb-1.5 leading-tight">
                             Subscribe to Our Newsletter
                         </h3>
-                        <p className="font-sans text-[#424A3B] text-[14px] sm:text-[15px] leading-relaxed mb-5">
+                        <p className="font-sans text-[#424A3B] text-[12.5px] sm:text-[13.5px] leading-relaxed mb-4">
                             Stay updated with the latest insights, stories, announcements, and
                             exclusive updates delivered straight to your inbox.
                         </p>
@@ -404,17 +452,17 @@ export default function Footer() {
                                 placeholder="jane@mail.com"
                                 value={newsletterEmail}
                                 onChange={(e) => setNewsletterEmail(e.target.value)}
-                                className="w-full bg-[#E5E8D8] text-[#20261A] placeholder-[#7E856F] text-[15px] px-6 py-3.5 pr-14 rounded-full border border-[#C6CFB6] focus:outline-none focus:ring-1 focus:ring-[#7E856F]/50 transition-all"
+                                className="w-full bg-[#E5E8D8] text-[#20261A] placeholder-[#7E856F] text-[14px] sm:text-[15px] px-5 py-3 sm:py-3.5 pr-12 sm:pr-14 rounded-full border border-[#C6CFB6] focus:outline-none focus:ring-1 focus:ring-[#7E856F]/50 transition-all"
                             />
                             <button
                                 type="submit"
                                 aria-label="Subscribe"
-                                className="absolute right-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center text-[#89D038] hover:text-[#6FA825] transition-colors cursor-pointer"
+                                className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-[#89D038] hover:text-[#6FA825] transition-colors cursor-pointer"
                             >
                                 {subscribed ? (
                                     <span className="text-[11px] font-bold text-[#6FA825]">✓</span>
                                 ) : (
-                                    <ArrowRight className="w-6 h-6" />
+                                    <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
                                 )}
                             </button>
                         </form>
@@ -423,15 +471,15 @@ export default function Footer() {
                     {/* ======================================================== */}
                     {/* LARGE BRAND LOGO                                         */}
                     {/* ======================================================== */}
-                    <div className="py-4">
-                        <div className="relative w-[220px] sm:w-[280px] md:w-[340px] h-[40px] sm:h-[48px] md:h-[56px]">
+                    <div className="pt-4 pb-5 sm:pb-6">
+                        <div className="relative w-[210px] sm:w-[270px] md:w-[330px] h-[38px] sm:h-[46px] md:h-[54px]">
                             <Image
                                 src="/logo.avif"
                                 alt="Nirvaana Hills"
                                 fill
                                 unoptimized
                                 className="object-contain object-left"
-                                sizes="(max-width: 768px) 280px, 340px"
+                                sizes="(max-width: 768px) 270px, 330px"
                             />
                         </div>
                     </div>
@@ -439,16 +487,15 @@ export default function Footer() {
                     {/* ======================================================== */}
                     {/* BOTTOM COPYRIGHT & ATTRIBUTION BAR                       */}
                     {/* ======================================================== */}
-                    <div className="pt-6 border-t border-black/15 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[12px] sm:text-[13px] text-[#555E4E]">
-                        <div className="flex flex-col space-y-1.5">
-                            <p className="font-sans leading-relaxed">
-                                © 2026 Nirvaana Hills | A SEAD Realty Development Built Around
-                                Nature. Designed For Generations.
+                    <div className="pt-4 border-t border-black/15 flex flex-row items-end justify-between gap-3 text-[12px] sm:text-[13px] text-[#555E4E]">
+                        <div className="flex flex-col space-y-2.5">
+                            <p className="font-sans leading-relaxed text-[12px] sm:text-[13px] text-[#424A3B]">
+                                © 2026 Nirvaana Hills | A SEAD Realty Development Built Around Nature. Designed For Generations.
                             </p>
                             <p className="font-sans text-[11px] sm:text-[12px] text-[#6E7766]">
                                 Created by{" "}
-                                <Link href="https://vikavalabs.com">
-                                    <span className="font-medium text-[#20261A]">Vikava Labs</span>
+                                <Link href="https://vikavalabs.com" target="_blank" rel="noopener noreferrer">
+                                    <span className="font-medium text-[#20261A] hover:underline">Vikava Labs</span>
                                 </Link>
                             </p>
                         </div>
@@ -457,9 +504,9 @@ export default function Footer() {
                             type="button"
                             onClick={scrollToTop}
                             aria-label="Back to top"
-                            className="self-end md:self-center p-2 text-[#89D038] hover:text-[#6FA825] transition-colors cursor-pointer"
+                            className="p-1 text-[#89D038] hover:text-[#6FA825] transition-colors cursor-pointer shrink-0 mb-0.5"
                         >
-                            <ChevronUp className="w-6 h-6 stroke-[2.5]" />
+                            <ChevronUp className="w-6 h-6 stroke-[1.8]" />
                         </button>
                     </div>
                 </div>

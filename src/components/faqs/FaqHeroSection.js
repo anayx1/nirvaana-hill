@@ -4,7 +4,8 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Home, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export default function FaqHeroSection() {
   return (
@@ -27,19 +28,19 @@ export default function FaqHeroSection() {
           >
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2 text-white/90">
-              <Home className="w-4 h-4 md:w-5 md:h-5 shrink-0" strokeWidth={2.2} aria-hidden="true" />
-              <span className="font-semibold tracking-[0.14em] uppercase text-[12px] md:text-[13px] whitespace-nowrap">
+              <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+              <span className="font-medium tracking-[0.14em] uppercase text-[11px] md:text-[12px] whitespace-nowrap">
                 FAQS
               </span>
             </div>
 
             {/* Headline */}
-            <h1 className="font-serif !font-normal text-white text-[28px] md:text-[48px] lg:text-[54px] leading-[1.15] tracking-[-0.01em]">
+            <h1 className="font-serif !font-normal text-white text-[28px] xs:text-[34px] sm:text-[42px] md:text-[48px] lg:text-[54px] leading-[1.15] tracking-[-0.01em]">
               Questions Are Part Of Every Meaningful Decision.
             </h1>
 
             {/* Narrative Body */}
-            <p className="font-sans text-white/90 text-[14px] md:text-[17px] lg:text-[18px] leading-[1.65] max-w-xl font-normal">
+            <p className="font-sans text-white/90 text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.65] max-w-xl font-normal">
               Choosing land, lifestyle, and long-term ownership naturally comes
               with important questions. We believe every important decision
               deserves complete clarity and transparency. Explore everything you
@@ -48,7 +49,7 @@ export default function FaqHeroSection() {
             </p>
 
             {/* Sub-tagline */}
-            <p className="font-sans italic text-white/85 text-[14px] md:text-[16.5px] leading-[1.6] font-normal">
+            <p className="font-sans italic text-white/85 text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-[1.6] font-normal">
               Because confidence begins with understanding.
             </p>
 
@@ -58,7 +59,7 @@ export default function FaqHeroSection() {
               <div>
                 <Link
                   href="/contact-us"
-                  className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-medium text-[14.5px] md:text-[16px] px-7 py-3.5 md:px-9 md:py-4 rounded-full transition-all duration-300 shadow-xs active:scale-95 inline-flex items-center justify-center text-center"
+                  className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] transition-all duration-300 shadow-xs active:scale-95 inline-flex items-center justify-center text-center"
                 >
                   Book A Site Visit
                 </Link>
@@ -70,15 +71,15 @@ export default function FaqHeroSection() {
                   href="https://wa.me/919589585050?text=Hi%20Nirvaana%20Hills%2C%20I%20have%20a%20few%20questions%20about%20the%20property"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-white hover:text-white/90 font-sans text-[16px] md:text-[19px] font-medium transition-colors"
+                  className="inline-flex items-center gap-1.5 text-white hover:text-white/90 font-sans text-[12px] md:text-[16px] font-normal transition-colors"
                 >
                   <span>Talk To Our Team</span>
-                  <ArrowUpRight className="w-4.5 h-4.5 md:w-5 md:h-5 text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="w-4 h-4 md:w-4.5 md:h-4.5 text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
                 {/* Decorative Pill Accent */}
                 <div className="flex items-center gap-1.5 mt-1.5 md:mt-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  <div className="w-9 h-[2.5px] md:w-10 md:h-[3px] rounded-full bg-primary" />
+                  <div className="w-6 md:w-8 h-[2px] md:h-[3px] rounded-full bg-primary" />
                 </div>
               </div>
             </div>

@@ -31,8 +31,9 @@ export default function PricingMatrixSection() {
   return (
     <section
       id="pricing"
-      className="w-full bg-[#FAF9F5] py-10 sm:py-12 md:py-14 lg:py-16 overflow-hidden select-none"
+      className="w-full bg-[#FAF9F5] py-10 sm:py-12 md:py-14 lg:py-16 overflow-hidden select-none relative"
     >
+      <div id="price" className="absolute -top-20 pointer-events-none" />
       <div className="container max-w-[900px] px-4 sm:px-6">
         
         {/* ====================================================== */}

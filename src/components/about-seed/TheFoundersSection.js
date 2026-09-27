@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Home } from "lucide-react";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export const FOUNDERS = [
   {
@@ -40,14 +40,14 @@ export default function TheFoundersSection() {
         >
           {/* Eyebrow */}
           <div className="inline-flex items-center justify-center gap-2 text-[#B3482B]">
-            <Home className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" strokeWidth={2.2} aria-hidden="true" />
-            <span className="font-semibold tracking-[0.14em] uppercase text-[12px] sm:text-[13px]">
+            <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
+            <span className="font-medium tracking-[0.14em] uppercase text-[11px] md:text-[12px]">
               THE FOUNDERS
             </span>
           </div>
 
           {/* Headline */}
-          <h2 className="font-serif !font-normal text-[#1F2922] text-[28px] xs:text-[32px] sm:text-[38px] md:text-[44px] lg:text-[48px] leading-[1.18] tracking-[-0.01em] max-w-2xl">
+          <h2 className="font-serif !font-normal text-[#1F2922] text-[24px] sm:text-[30px] md:text-[36px] leading-[1.18] tracking-[-0.01em] max-w-2xl">
             Built By People Who Believe In
             <br />
             Long-Term Value.
@@ -86,19 +86,19 @@ export default function TheFoundersSection() {
               {/* Founder Bio */}
               <p
                 style={{ color: "#4A5447" }}
-                className="font-sans text-[13.5px] sm:text-[14.5px] md:text-[15px] leading-[1.65] font-normal max-w-[440px]"
+                className="font-sans text-[12.5px] sm:text-[13.5px] md:text-[14px] leading-[1.65] font-normal max-w-[440px]"
               >
                 {founder.bio}
               </p>
 
               {/* Founder Name & Role */}
               <div className="pt-2 flex flex-col items-center space-y-1">
-                <h3 className="font-serif !font-normal text-[#1F2922] text-[22px] sm:text-[25px] md:text-[28px] tracking-tight">
+                <h3 className="font-serif !font-normal text-[#1F2922] text-[20px] sm:text-[22px] md:text-[24px] tracking-tight">
                   {founder.name}
                 </h3>
                 <p
                   style={{ color: "#5C6051" }}
-                  className="font-sans text-[13px] sm:text-[14px] font-normal"
+                  className="font-sans text-[12px] sm:text-[13px] font-normal"
                 >
                   {founder.role}
                 </p>
