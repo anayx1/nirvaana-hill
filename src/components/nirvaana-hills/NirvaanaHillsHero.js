@@ -67,7 +67,7 @@ export default function NirvaanaHillsHero() {
               {/* Secondary CTA: Explore The Community Vision */}
               <div className="flex flex-col items-start">
                 <Link
-                  href="#different"
+                  href="/about-seed#founder-vision"
                   className="inline-flex items-center gap-1.5 text-white hover:text-white/90 font-sans text-[12px] md:text-[16px] font-normal transition-colors group"
                 >
                   <span>Explore The Community Vision</span>

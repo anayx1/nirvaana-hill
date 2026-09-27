@@ -388,9 +388,7 @@ export default function LocationHeroRadarSection() {
 
             {/* Get Directions Link with Brand Accent Underline */}
             <a
-              href="https://www.google.com/maps/search/?api=1&query=Nirvaana+Hills+by+SEAD+Realty&query_place_id=ChIJOSPvPKyJRW0RlOh5Pwjdzb4"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#location-overview"
               className="group inline-flex flex-col items-start gap-1.5 text-white hover:text-white transition-colors duration-300 cursor-pointer pt-2"
             >
               <div className="flex items-center gap-1.5 md:gap-2 font-sans text-[12px] md:text-[16px] font-normal tracking-tight">

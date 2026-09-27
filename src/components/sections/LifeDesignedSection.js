@@ -98,7 +98,7 @@ export default function LifeDesignedSection() {
         </p>
 
         <Link
-          href="/gallery"
+          href="/gallery#life-at-nirvaana"
           className="inline-flex items-center justify-center px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-[14px] md:rounded-[16px] bg-[#AFEB63] hover:bg-[#A3E553] text-[#1F2922] font-normal text-[12px] md:text-[16px] transition-all duration-300 shadow-md shadow-black/10 hover:shadow-lg active:scale-[0.98] no-underline"
         >
           Explore Life At Nirvaana Hills
