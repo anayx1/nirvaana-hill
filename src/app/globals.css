@@ -99,6 +99,35 @@
 
 @layer base {
 
+  html {
+    /* scroll-behavior: smooth; */
+    scroll-padding-top: 6px;
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      scroll-padding-top: 8px;
+    }
+  }
+
+  /* Ensure all section anchor targets clear the fixed navbar snuggly without showing the previous section */
+  section[id],
+  div[id],
+  main[id],
+  article[id] {
+    scroll-margin-top: 6px;
+  }
+
+  @media (min-width: 1024px) {
+
+    section[id],
+    div[id],
+    main[id],
+    article[id] {
+      scroll-margin-top: 8px;
+    }
+  }
+
   *,
   *::before,
   *::after {
@@ -213,6 +242,7 @@
   }
 
   @media (max-width: 800px) {
+
     p,
     li {
       font-size: 13.5px;

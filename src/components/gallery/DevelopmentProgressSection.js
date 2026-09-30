@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import FarmIcon from "@/components/icons/FarmIcon";
 
@@ -17,7 +18,7 @@ export default function DevelopmentProgressSection() {
       className="w-full bg-[#FAF9F5] py-14 sm:py-18 md:py-24 text-[#1F2922]"
     >
       <div className="container max-w-[900px] px-4 sm:px-6 flex flex-col items-center text-center">
-        
+
         {/* ====================================================== */}
         {/* HEADER BLOCK                                           */}
         {/* ====================================================== */}
@@ -83,6 +84,24 @@ export default function DevelopmentProgressSection() {
               ))}
             </div>
           </div>
+        </motion.div>
+
+        {/* ====================================================== */}
+        {/* BOTTOM CTA BUTTON                                      */}
+        {/* ====================================================== */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-8 sm:mt-10 flex justify-center"
+        >
+          <Link
+            href="/nirvaana-hills"
+            className="inline-flex items-center justify-center bg-[#AFEB63] text-[#1F2922] font-sans font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] hover:bg-[#9de04e] active:scale-[0.98] transition-all duration-300 shadow-xs"
+          >
+            See What's Happening Right Now
+          </Link>
         </motion.div>
 
       </div>

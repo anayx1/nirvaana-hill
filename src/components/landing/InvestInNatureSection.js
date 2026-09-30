@@ -112,7 +112,7 @@ export default function InvestInNatureSection() {
           </div>
 
           {/* Action CTAs */}
-          <div className="flex flex-col items-center gap-5 pt-7 sm:pt-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-7 md:gap-8 pt-7 sm:pt-8">
             {/* Primary Button */}
             <Link
               href="#landing-pricing"
@@ -122,19 +122,15 @@ export default function InvestInNatureSection() {
             </Link>
 
             {/* Secondary CTA: Download Brochure */}
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-start">
               <Link
-                href="/contact-us"
-                className="inline-flex items-center gap-1.5 text-[#1F2922] hover:text-[#1F2922]/80 font-sans text-[12px] md:text-[16px] font-normal transition-colors group"
+                href="/#brochure"
+                className="inline-flex items-center gap-1.5 text-[#1F2922] hover:text-primary font-sans text-[12px] md:text-[16px] font-normal transition-colors group"
               >
                 <span>Download Brochure</span>
                 <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
-              {/* Decorative Pill Accent */}
-              <div className="flex items-center gap-1.5 mt-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                <div className="w-8 h-[2px] rounded-full bg-primary" />
-              </div>
+              <span className="w-6 md:w-8 h-[2px] md:h-[3px] bg-primary rounded-full mt-1" />
             </div>
           </div>
         </motion.div>

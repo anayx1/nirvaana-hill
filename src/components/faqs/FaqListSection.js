@@ -318,14 +318,13 @@ export default function FaqListSection() {
   return (
     <section
       id="faq-list"
-      className="w-full bg-[#FAF9F5] pt-8 pb-16 md:pt-12 md:pb-24 overflow-hidden select-none scroll-mt-14 sm:scroll-mt-16 lg:scroll-mt-20"
+      className="w-full bg-[#FAF9F5] pt-4 pb-16 md:pt-6 md:pb-24 overflow-visible relative select-none scroll-mt-14 sm:scroll-mt-16 lg:scroll-mt-20"
     >
-      <div className="container max-w-[720px] px-4 md:px-6 mx-auto">
-
-        {/* ======================================================== */}
-        {/* CATEGORY FILTER TABS                                     */}
-        {/* ======================================================== */}
-        <div className="flex flex-wrap items-center justify-center gap-x-5 md:gap-x-7 gap-y-2.5 md:gap-y-3 mb-9 md:mb-11 text-center max-w-[680px] mx-auto">
+      {/* ======================================================== */}
+      {/* STICKY CATEGORY FILTER TABS BAR                          */}
+      {/* ======================================================== */}
+      <div className="sticky top-[56px] lg:top-[64px] z-30 w-full bg-[#FAF9F5]/95 backdrop-blur-md py-3.5 sm:py-4 mb-8 md:mb-10 border-b border-[#E5E8D8]/70 transition-all">
+        <div className="flex flex-wrap items-center justify-center gap-x-5 md:gap-x-7 gap-y-2.5 md:gap-y-3 text-center max-w-[680px] mx-auto px-4">
           {/* "All" Tab */}
           <button
             type="button"
@@ -378,6 +377,9 @@ export default function FaqListSection() {
             );
           })}
         </div>
+      </div>
+
+      <div className="container max-w-[720px] px-4 md:px-6 mx-auto">
 
         {/* ======================================================== */}
         {/* CATEGORY SECTIONS & ACCORDIONS                           */}
@@ -391,13 +393,13 @@ export default function FaqListSection() {
             >
               {/* Category Aliases for Topic Links */}
               {category.id === "about" && (
-                <div id="phases" className="absolute -top-24 pointer-events-none" />
+                <div id="phases" className="absolute top-0 pointer-events-none" />
               )}
               {category.id === "farmlands" && (
-                <div id="master-plan" className="absolute -top-24 pointer-events-none" />
+                <div id="master-plan" className="absolute top-0 pointer-events-none" />
               )}
               {category.id === "amenities" && (
-                <div id="features" className="absolute -top-24 pointer-events-none" />
+                <div id="features" className="absolute top-0 pointer-events-none" />
               )}
 
               {/* Category Header Card Banner */}

@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import FarmIcon from "@/components/icons/FarmIcon";
 import ExperienceSlideCard from "@/components/common/ExperienceSlideCard";
 
 // ========================================================
@@ -256,8 +257,8 @@ export default function DesignWithIntentSection() {
       id="features-amenities"
       className="w-full bg-[#FAF9F5] py-12 sm:py-14 md:py-16 lg:py-20 overflow-hidden select-none relative"
     >
-      <div id="features" className="absolute -top-20 pointer-events-none" />
-      <div id="amenities" className="absolute -top-20 pointer-events-none" />
+      <div id="features" className="absolute top-0 pointer-events-none" />
+      <div id="amenities" className="absolute top-0 pointer-events-none" />
       <div className="container max-w-[1400px]">
         {/* Section Header */}
         <motion.div
@@ -269,13 +270,7 @@ export default function DesignWithIntentSection() {
         >
           {/* Eyebrow with Farm Icon */}
           <div className="inline-flex items-center justify-center gap-2 text-secondary">
-            <Image
-              src="/farm.svg"
-              alt="farm"
-              width={18}
-              height={18}
-              className="w-4 h-4 md:w-5 md:h-5 shrink-0 [filter:brightness(0)_saturate(100%)_invert(47%)_sepia(18%)_saturate(1175%)_hue-rotate(37deg)_brightness(94%)_contrast(89%)]"
-            />
+            <FarmIcon className="w-4 h-4 md:w-5 md:h-5 shrink-0 text-secondary" />
             <span className="text-[11px] sm:text-[12px] font-medium tracking-[0.14em] uppercase whitespace-nowrap">
               FEATURES &amp; AMENITIES
             </span>

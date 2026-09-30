@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { getBlogByIdOrSlug, getAdjacentBlogs } from "@/lib/db";
 import SubscribeNewsletterSection from "@/components/blogs/SubscribeNewsletterSection";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 function formatDate(dateStr) {
   if (!dateStr) return "August 03, 2026";

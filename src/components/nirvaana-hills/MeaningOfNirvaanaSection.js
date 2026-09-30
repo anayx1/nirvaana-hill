@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 export default function MeaningOfNirvaanaSection() {
   return (
@@ -19,22 +20,7 @@ export default function MeaningOfNirvaanaSection() {
         >
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 text-secondary">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-4 h-4 md:w-5 md:h-5 shrink-0"
-              aria-hidden="true"
-            >
-              <path d="M12 3l-8 7h16l-8-7z" />
-              <path d="M5 14c2.5-1.5 5-1.5 7 0s4.5 1.5 7 0" />
-              <path d="M5 19c2.5-1.5 5-1.5 7 0s4.5 1.5 7 0" />
-            </svg>
+            <FarmIcon className="w-4 h-4 md:w-5 md:h-5 shrink-0 text-secondary" />
             <span className="text-[12px] sm:text-[13px] md:text-[14px] font-semibold tracking-[0.14em] uppercase whitespace-nowrap">
               THE MEANING OF NIRVAANA
             </span>

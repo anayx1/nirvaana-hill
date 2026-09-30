@@ -1,33 +1,70 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import FarmIcon from "@/components/icons/FarmIcon";
 
-const CDN_VIDEO_URL =
-  "https://res.cloudinary.com/spqd54wy/video/upload/v1790420996/experince-the-journey.mp4";
-const LOCAL_VIDEO_URL = "/locations/video/experince-the-journey.mp4";
+const VIDEO_SRC = "/locations/video/experince-the-journey.mp4";
 
 export default function ExperienceTheJourneySection() {
   const videoRef = useRef(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
-  // Graceful fallback to local video if CDN stream fails
-  const handleVideoError = () => {
-    if (videoRef.current && videoRef.current.currentSrc !== LOCAL_VIDEO_URL) {
-      videoRef.current.src = LOCAL_VIDEO_URL;
-      videoRef.current.play().catch(() => {});
-    }
-  };
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Mobile browsers strictly require muted property set on DOM element
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+
+    const playVideo = () => {
+      if (!video) return;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay was prevented by browser policy/low-power mode
+        });
+      }
+    };
+
+    playVideo();
+
+    const handleLoadedData = () => {
+      setVideoLoaded(true);
+      playVideo();
+    };
+
+    video.addEventListener("loadeddata", handleLoadedData);
+    video.addEventListener("canplay", playVideo);
+
+    // Fallback trigger on first user touch/interaction for mobile low-power modes
+    const handleUserInteraction = () => {
+      playVideo();
+      window.removeEventListener("touchstart", handleUserInteraction);
+      window.removeEventListener("click", handleUserInteraction);
+      window.removeEventListener("scroll", handleUserInteraction);
+    };
+
+    window.addEventListener("touchstart", handleUserInteraction, { passive: true });
+    window.addEventListener("click", handleUserInteraction, { passive: true });
+    window.addEventListener("scroll", handleUserInteraction, { passive: true });
+
+    return () => {
+      video.removeEventListener("loadeddata", handleLoadedData);
+      video.removeEventListener("canplay", playVideo);
+      window.removeEventListener("touchstart", handleUserInteraction);
+      window.removeEventListener("click", handleUserInteraction);
+      window.removeEventListener("scroll", handleUserInteraction);
+    };
+  }, []);
 
   return (
     <section
       id="experience-the-journey"
       className="w-full bg-[#FAF9F5] py-14 sm:py-18 md:py-24 text-[#1F2922]"
     >
-      {/* Prefetch & Preload CDN Video */}
-      <link rel="preload" href={CDN_VIDEO_URL} as="video" type="video/mp4" />
-      <link rel="prefetch" href={CDN_VIDEO_URL} as="video" type="video/mp4" />
-
       <div className="container max-w-[900px] px-4 sm:px-6">
         
         {/* ====================================================== */}
@@ -86,12 +123,13 @@ export default function ExperienceTheJourneySection() {
             muted
             loop
             playsInline
+            webkit-playsinline="true"
+            x5-playsinline="true"
             preload="auto"
-            onError={handleVideoError}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-opacity duration-500"
+            style={{ opacity: videoLoaded ? 1 : 0.85 }}
           >
-            <source src={CDN_VIDEO_URL} type="video/mp4" />
-            <source src={LOCAL_VIDEO_URL} type="video/mp4" />
+            <source src={VIDEO_SRC} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </motion.div>

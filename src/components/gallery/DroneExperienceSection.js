@@ -13,85 +13,100 @@ export default function DroneExperienceSection() {
   const fgVideoRef = useRef(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
-  // Synchronize playback between foreground and background video
   useEffect(() => {
     const bg = bgVideoRef.current;
     const fg = fgVideoRef.current;
-    if (!bg || !fg) return;
 
-    const tryPlay = async () => {
-      try {
-        await Promise.all([bg.play(), fg.play()]);
-      } catch {
-        // Fallback for strict browser autoplay policies
+    // Mobile browsers strictly require muted property set on DOM element
+    if (bg) {
+      bg.muted = true;
+      bg.defaultMuted = true;
+      bg.playsInline = true;
+    }
+    if (fg) {
+      fg.muted = true;
+      fg.defaultMuted = true;
+      fg.playsInline = true;
+    }
+
+    const playVideo = (videoEl) => {
+      if (!videoEl) return;
+      const playPromise = videoEl.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay was prevented by browser policy/low-power mode
+        });
       }
     };
 
-    tryPlay();
-
-    // Lock background video time to foreground video time
-    const handleTimeUpdate = () => {
-      if (Math.abs(bg.currentTime - fg.currentTime) > 0.12) {
-        bg.currentTime = fg.currentTime;
-      }
+    const startPlayback = () => {
+      playVideo(bg);
+      playVideo(fg);
     };
 
-    const handleSeeked = () => {
-      bg.currentTime = fg.currentTime;
-    };
-
-    const handlePlay = () => {
-      bg.play().catch(() => { });
-      fg.play().catch(() => { });
-    };
-
-    const handlePause = () => {
-      bg.pause();
-    };
+    startPlayback();
 
     const handleLoadedData = () => {
       setVideoLoaded(true);
-      bg.currentTime = fg.currentTime;
+      startPlayback();
     };
 
-    fg.addEventListener("timeupdate", handleTimeUpdate);
-    fg.addEventListener("seeked", handleSeeked);
-    fg.addEventListener("play", handlePlay);
-    fg.addEventListener("pause", handlePause);
-    fg.addEventListener("loadeddata", handleLoadedData);
+    if (fg) {
+      fg.addEventListener("loadeddata", handleLoadedData);
+      fg.addEventListener("canplay", startPlayback);
+    }
+    if (bg) {
+      bg.addEventListener("canplay", startPlayback);
+    }
+
+    // Fallback trigger on first user touch/interaction for mobile low-power modes
+    const handleUserInteraction = () => {
+      startPlayback();
+      window.removeEventListener("touchstart", handleUserInteraction);
+      window.removeEventListener("click", handleUserInteraction);
+      window.removeEventListener("scroll", handleUserInteraction);
+    };
+
+    window.addEventListener("touchstart", handleUserInteraction, { passive: true });
+    window.addEventListener("click", handleUserInteraction, { passive: true });
+    window.addEventListener("scroll", handleUserInteraction, { passive: true });
 
     return () => {
-      fg.removeEventListener("timeupdate", handleTimeUpdate);
-      fg.removeEventListener("seeked", handleSeeked);
-      fg.removeEventListener("play", handlePlay);
-      fg.removeEventListener("pause", handlePause);
-      fg.removeEventListener("loadeddata", handleLoadedData);
+      if (fg) {
+        fg.removeEventListener("loadeddata", handleLoadedData);
+        fg.removeEventListener("canplay", startPlayback);
+      }
+      if (bg) {
+        bg.removeEventListener("canplay", startPlayback);
+      }
+      window.removeEventListener("touchstart", handleUserInteraction);
+      window.removeEventListener("click", handleUserInteraction);
+      window.removeEventListener("scroll", handleUserInteraction);
     };
   }, []);
 
   return (
     <section
       id="drone-experience"
-      className="relative w-full min-h-[90vh] sm:min-h-[95vh] flex items-center justify-center overflow-hidden py-16 sm:py-24 px-4 sm:px-6 select-none"
+      className="relative w-full min-h-[90vh] sm:min-h-[95vh] flex items-center justify-center overflow-hidden py-16 sm:py-24 px-4 sm:px-6 select-none bg-[#141A12]"
     >
-      {/* Video Prefetch & Preload */}
-      <link rel="preload" href={VIDEO_SRC} as="video" type="video/mp4" />
-      <link rel="prefetch" href={VIDEO_SRC} as="video" type="video/mp4" />
-
       {/* ======================================================== */}
-      {/* BACKGROUND VIDEO (Full-bleed, Loop, Muted, Synced)      */}
+      {/* BACKGROUND VIDEO (Full-bleed, Loop, Muted)              */}
       {/* ======================================================== */}
       <video
         ref={bgVideoRef}
-        src={VIDEO_SRC}
         autoPlay
         muted
         loop
         playsInline
+        webkit-playsinline="true"
+        x5-playsinline="true"
         preload="auto"
         className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none transition-opacity duration-700"
         style={{ opacity: videoLoaded ? 1 : 0.8 }}
-      />
+      >
+        <source src={VIDEO_SRC} type="video/mp4" />
+      </video>
 
       {/* Atmospheric Dark & Blur Overlay */}
       <div className="absolute inset-0 bg-black/35 backdrop-blur-[2px] pointer-events-none" />
@@ -110,16 +125,17 @@ export default function DroneExperienceSection() {
         <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-black/50 border border-white/15 shadow-inner group">
           <video
             ref={fgVideoRef}
-            src={VIDEO_SRC}
             autoPlay
             muted
             loop
             playsInline
+            webkit-playsinline="true"
+            x5-playsinline="true"
             preload="auto"
             className="w-full h-full object-cover"
-          />
-
-
+          >
+            <source src={VIDEO_SRC} type="video/mp4" />
+          </video>
         </div>
 
         {/* Card Content */}

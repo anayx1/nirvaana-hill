@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 /**
  * Format currency into Indian Rupees (Cr / L / K)
@@ -106,7 +107,8 @@ export default function RoiCalculatorModal({ isOpen, onClose }) {
             </div>
 
             {/* Header / Eyebrow */}
-            <div className="flex items-center gap-2 text-secondary mb-2">
+            <div className="inline-flex items-center gap-2 text-secondary mb-2">
+              <FarmIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0 text-secondary" />
               <span className="font-sans text-[11px] md:text-[12px] font-medium tracking-[0.14em] uppercase">
                 ROI CALCULATOR
               </span>
@@ -114,8 +116,7 @@ export default function RoiCalculatorModal({ isOpen, onClose }) {
 
             {/* Title */}
             <h2 className="font-serif !font-normal text-[#1F2922] text-[22px] sm:text-[26px] md:text-[30px] leading-[1.2] mb-2 sm:mb-3">
-              Calculate Your{" "}
-              <span className="font-serif italic text-secondary">Forest Dividend</span>
+              Calculate Your Forest Dividend
             </h2>
 
             {/* Subtitle */}
@@ -284,7 +285,7 @@ export default function RoiCalculatorModal({ isOpen, onClose }) {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] transition-all duration-300 shadow-md inline-flex items-center justify-center gap-2.5 active:scale-95 uppercase tracking-[0.04em]"
+                className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] transition-all duration-300 shadow-md inline-flex items-center justify-center gap-2.5 active:scale-95 tracking-[0.04em]"
               >
                 <span>Discuss My ROI With An Advisor</span>
               </a>

@@ -472,14 +472,14 @@ export default function Footer() {
                     {/* LARGE BRAND LOGO                                         */}
                     {/* ======================================================== */}
                     <div className="pt-4 pb-5 sm:pb-6">
-                        <div className="relative w-[210px] sm:w-[270px] md:w-[330px] h-[38px] sm:h-[46px] md:h-[54px]">
+                        <div className="relative w-full aspect-[4.6/1] sm:aspect-auto sm:w-[270px] md:w-[330px] sm:h-[46px] md:h-[54px]">
                             <Image
                                 src="/logo.avif"
                                 alt="Nirvaana Hills"
                                 fill
                                 unoptimized
                                 className="object-contain object-left"
-                                sizes="(max-width: 768px) 270px, 330px"
+                                sizes="(max-width: 768px) 100vw, 330px"
                             />
                         </div>
                     </div>

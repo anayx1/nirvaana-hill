@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 const PRICING_DATA = [
   {
@@ -33,7 +34,7 @@ export default function PricingMatrixSection() {
       id="pricing"
       className="w-full bg-[#FAF9F5] py-10 sm:py-12 md:py-14 lg:py-16 overflow-hidden select-none relative"
     >
-      <div id="price" className="absolute -top-20 pointer-events-none" />
+      <div id="price" className="absolute top-0 pointer-events-none" />
       <div className="container max-w-[900px] px-4 sm:px-6">
         
         {/* ====================================================== */}
@@ -48,22 +49,7 @@ export default function PricingMatrixSection() {
         >
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 text-secondary">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-4 h-4 md:w-5 md:h-5 shrink-0"
-              aria-hidden="true"
-            >
-              <path d="M12 3l-8 7h16l-8-7z" />
-              <path d="M5 14c2.5-1.5 5-1.5 7 0s4.5 1.5 7 0" />
-              <path d="M5 19c2.5-1.5 5-1.5 7 0s4.5 1.5 7 0" />
-            </svg>
+            <FarmIcon className="w-4 h-4 md:w-5 md:h-5 shrink-0 text-secondary" />
             <span className="text-[12px] sm:text-[13px] md:text-[14px] font-semibold tracking-[0.14em] uppercase whitespace-nowrap">
               PRICE
             </span>

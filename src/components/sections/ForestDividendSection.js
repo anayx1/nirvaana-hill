@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
+import FarmIcon from "@/components/icons/FarmIcon";
 
 const HIGHLIGHTS = [
   "Freehold Land Ownership",
@@ -38,13 +39,7 @@ export default function ForestDividendSection() {
           >
             {/* Eyebrow */}
             <div className="flex items-center gap-2 text-secondary">
-              <Image
-                src="/farm.svg"
-                alt="farm"
-                width={16}
-                height={16}
-                className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 [filter:brightness(0)_saturate(100%)_invert(47%)_sepia(18%)_saturate(1175%)_hue-rotate(37deg)_brightness(94%)_contrast(89%)]"
-              />
+              <FarmIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 text-secondary" />
               <span className="text-[11px] md:text-[12px] font-medium tracking-[0.14em] uppercase">
                 THE FOREST DIVIDEND
               </span>
@@ -149,13 +144,7 @@ export default function ForestDividendSection() {
           >
             {/* Eyebrow */}
             <div className="flex items-center gap-2 text-secondary">
-              <Image
-                src="/farm.svg"
-                alt="farm"
-                width={18}
-                height={18}
-                className="w-4 h-4 shrink-0 [filter:brightness(0)_saturate(100%)_invert(47%)_sepia(18%)_saturate(1175%)_hue-rotate(37deg)_brightness(94%)_contrast(89%)]"
-              />
+              <FarmIcon className="w-4 h-4 shrink-0 text-secondary" />
               <span className="text-[11px] md:text-[12px] font-medium tracking-[0.14em] uppercase">
                 THE FOREST DIVIDEND
               </span>

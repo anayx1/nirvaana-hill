@@ -174,9 +174,9 @@ export default function ContactFormTabsSection() {
       id="enquiry-form"
       className="w-full bg-[#FAF9F5] py-14 sm:py-18 md:py-22 lg:py-26 text-[#1F2922] select-none scroll-mt-14 sm:scroll-mt-16 lg:scroll-mt-20 relative"
     >
-      <div id="channel-partner" className="absolute -top-16 sm:-top-20 pointer-events-none" />
-      <div id="channel-partner-form" className="absolute -top-16 sm:-top-20 pointer-events-none" />
-      <div id="enquiry" className="absolute -top-16 sm:-top-20 pointer-events-none" />
+      <div id="channel-partner" className="absolute top-0 pointer-events-none" />
+      <div id="channel-partner-form" className="absolute top-0 pointer-events-none" />
+      <div id="enquiry" className="absolute top-0 pointer-events-none" />
       <div className="container max-w-[1280px] px-4 sm:px-6">
 
         {/* ====================================================== */}

@@ -33,7 +33,7 @@ export default function LocationHeroRadarSection() {
 
           {/* Location Badge Pill */}
           <div>
-            <span className="inline-block bg-[#E5E8D8] text-[#1F2922] font-sans font-medium text-[12px] sm:text-[13.5px] px-4 sm:px-6 py-1.5 sm:py-2 rounded-full shadow-xs">
+            <span className="inline-block bg-[#E5E8D8] text-[#1F2922] font-sans font-medium text-[11px] px-2 py-1.5 sm:py-2 rounded-full shadow-xs">
               Mahendragarh, Haryana • Aravalli Foothills • 200 Acres
             </span>
           </div>
