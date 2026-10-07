@@ -134,7 +134,47 @@ function initTables(db) {
       createdAt TEXT NOT NULL
     );
     CREATE INDEX IF NOT EXISTS idx_password_resets_email ON password_resets(email);
+
+    -- 7. Instagram Posts Table (Cached from Apify)
+    CREATE TABLE IF NOT EXISTS instagram_posts (
+      id TEXT PRIMARY KEY,
+      imageUrl TEXT NOT NULL,
+      videoUrl TEXT,
+      postUrl TEXT,
+      caption TEXT,
+      timestamp TEXT,
+      isVideo INTEGER DEFAULT 0,
+      shortCode TEXT,
+      orderIndex INTEGER DEFAULT 0,
+      createdAt TEXT NOT NULL,
+      updatedAt TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS idx_instagram_posts_order ON instagram_posts(orderIndex);
+
+    -- 8. Instagram Meta Cache Tracking
+    CREATE TABLE IF NOT EXISTS instagram_meta (
+      key TEXT PRIMARY KEY,
+      value TEXT NOT NULL,
+      updatedAt TEXT NOT NULL
+    );
   `);
+
+  // Runtime schema migrations for instagram_posts if created earlier
+  try {
+    const tableInfo = db.prepare("PRAGMA table_info(instagram_posts)").all();
+    const colNames = tableInfo.map((c) => c.name);
+    if (!colNames.includes("videoUrl")) {
+      db.exec("ALTER TABLE instagram_posts ADD COLUMN videoUrl TEXT;");
+    }
+    if (!colNames.includes("isVideo")) {
+      db.exec("ALTER TABLE instagram_posts ADD COLUMN isVideo INTEGER DEFAULT 0;");
+    }
+    if (!colNames.includes("shortCode")) {
+      db.exec("ALTER TABLE instagram_posts ADD COLUMN shortCode TEXT;");
+    }
+  } catch (e) {
+    // Ignore migration error if already migrated
+  }
 
   // Seed default categories if empty
   seedDefaultCategories(db);
@@ -333,6 +373,10 @@ function seedDefaultGallery(db) {
 function toPlain(obj) {
   if (!obj) return null;
   return { ...obj };
+}
+
+function toPlainObject(obj) {
+  return toPlain(obj);
 }
 
 function toPlainList(arr) {
@@ -922,4 +966,95 @@ export function getDashboardStats() {
     recentLeads,
     recentBlogs,
   };
+}
+
+// ============================================================================
+// HELPER FUNCTIONS: INSTAGRAM POSTS & CACHE TRACKING
+// ============================================================================
+
+/**
+ * Returns all cached Instagram posts ordered by orderIndex ASC.
+ */
+export function getStoredInstagramPosts() {
+  const db = getDb();
+  const rows = db.prepare("SELECT * FROM instagram_posts ORDER BY orderIndex ASC").all();
+  return toPlainList(rows);
+}
+
+/**
+ * Saves/Replaces the entire set of Instagram posts in an atomic transaction.
+ * @param {Array<{id: string, imageUrl: string, postUrl?: string, caption?: string, timestamp?: string, orderIndex?: number}>} posts
+ */
+export function saveInstagramPosts(posts) {
+  const db = getDb();
+  const now = new Date().toISOString();
+
+  const insertStmt = db.prepare(`
+    INSERT INTO instagram_posts (id, imageUrl, videoUrl, postUrl, caption, timestamp, isVideo, shortCode, orderIndex, createdAt, updatedAt)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT(id) DO UPDATE SET
+      imageUrl = excluded.imageUrl,
+      videoUrl = excluded.videoUrl,
+      postUrl = excluded.postUrl,
+      caption = excluded.caption,
+      timestamp = excluded.timestamp,
+      isVideo = excluded.isVideo,
+      shortCode = excluded.shortCode,
+      orderIndex = excluded.orderIndex,
+      updatedAt = excluded.updatedAt
+  `);
+
+  db.exec("BEGIN TRANSACTION;");
+  try {
+    // Optionally clean up older items if list completely replaced
+    db.prepare("DELETE FROM instagram_posts").run();
+    posts.forEach((post, index) => {
+      insertStmt.run(
+        post.id || `insta-${index}`,
+        post.imageUrl || post.src || "",
+        post.videoUrl || "",
+        post.postUrl || post.url || "",
+        post.caption || "",
+        post.timestamp || "",
+        post.isVideo ? 1 : 0,
+        post.shortCode || "",
+        post.orderIndex ?? index,
+        now,
+        now
+      );
+    });
+    db.exec("COMMIT;");
+  } catch (error) {
+    db.exec("ROLLBACK;");
+    throw error;
+  }
+
+  return getStoredInstagramPosts();
+}
+
+/**
+ * Retrieves a metadata value for instagram sync cache.
+ * @param {string} key
+ */
+export function getInstagramMeta(key) {
+  const db = getDb();
+  const row = db.prepare("SELECT value, updatedAt FROM instagram_meta WHERE key = ?").get(key);
+  return row ? toPlainObject(row) : null;
+}
+
+/**
+ * Sets a metadata key-value pair for instagram sync cache.
+ * @param {string} key
+ * @param {string} value
+ */
+export function setInstagramMeta(key, value) {
+  const db = getDb();
+  const now = new Date().toISOString();
+  db.prepare(`
+    INSERT INTO instagram_meta (key, value, updatedAt)
+    VALUES (?, ?, ?)
+    ON CONFLICT(key) DO UPDATE SET
+      value = excluded.value,
+      updatedAt = excluded.updatedAt
+  `).run(key, value, now);
 }

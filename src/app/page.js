@@ -12,8 +12,11 @@ import LifeDesignedSection from "@/components/sections/LifeDesignedSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import FaqSection from "@/components/sections/FaqSection";
 import SocialHubSection from "@/components/sections/SocialHubSection";
+import { getOrFetchInstagramPosts } from "@/lib/instagram";
 
-export default function Page() {
+export default async function Page() {
+  const instagramPosts = await getOrFetchInstagramPosts();
+
   return (
     <>
       <MarqueeBanner />
@@ -28,7 +31,7 @@ export default function Page() {
       <LifeDesignedSection />
       <TestimonialsSection />
       <FaqSection />
-      <SocialHubSection />
+      <SocialHubSection initialPosts={instagramPosts} />
     </>
   );
 }

@@ -63,32 +63,8 @@
 
 @font-face {
   font-family: "Mona Sans";
-  src: url("https://github.com/github/mona-sans/raw/main/fonts/webfonts/MonaSans-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Mona Sans";
-  src: url("https://github.com/github/mona-sans/raw/main/fonts/webfonts/MonaSans-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Mona Sans";
-  src: url("https://github.com/github/mona-sans/raw/main/fonts/webfonts/MonaSans-SemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Mona Sans";
-  src: url("https://github.com/github/mona-sans/raw/main/fonts/webfonts/MonaSans-Bold.woff2") format("woff2");
-  font-weight: 700;
+  src: url("/fonts/mona_sans/mona-sans-variable.woff2") format("woff2-variations");
+  font-weight: 200 900;
   font-style: normal;
   font-display: swap;
 }

@@ -254,6 +254,7 @@ The template generator in `src/lib/emailTemplates.js` features responsive, inlin
 | `/api/contact` | `POST` | Public (Rate-limited, reCAPTCHA) | Processes requirement inquiries and sends email alerts |
 | `/api/newsletter` | `POST` | Public (Rate-limited) | Processes newsletter signups and sends alerts |
 | `/api/upload` | `POST` | Admin | Converts uploaded images to `.webp` and saves to `/public/uploads` |
+| `/api/instagram/sync` | `GET`, `POST` | Public / Admin | Syncs latest Instagram post images from Apify and caches in SQLite |
 
 ---
 
@@ -294,6 +295,11 @@ export default async function BlogsPage() {
 | `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | Public Google reCAPTCHA site key | `6Ldk...` |
 | `RECAPTCHA_SECRET_KEY` | Secret Google reCAPTCHA server verification key | `6Ldk...` |
 | `ADMIN_JWT_SECRET` | *(Optional)* Secret string for HMAC session token signing | Custom string fallback |
+| `APIFY_API_TOKEN` | Personal API token for Apify Actor scraping | `apify_api_...` |
+| `INSTAGRAM_PROFILE_URL` | Instagram target profile URL | `https://www.instagram.com/nirvaanahills/` |
+| `INSTAGRAM_POSTS_LIMIT` | Number of Instagram posts to retrieve | `10` |
+| `INSTAGRAM_CACHE_TTL_HOURS` | Cache expiration duration in hours before checking for new posts | `12` |
+
 
 ---
 
