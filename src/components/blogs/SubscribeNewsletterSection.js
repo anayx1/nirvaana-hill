@@ -1,9 +1,11 @@
 "use client";
 
+import { getContactContext } from "@/lib/contact-context";
+import FormSpamTrap from "@/components/ui/FormSpamTrap";
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
-import { executeRecaptcha } from "@/lib/recaptcha";
 
 export default function SubscribeNewsletterSection() {
   const [email, setEmail] = useState("");
@@ -12,20 +14,19 @@ export default function SubscribeNewsletterSection() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const contactContext = getContactContext(e.currentTarget);
     if (!email || !email.includes("@")) return;
 
     setIsLoading(true);
     try {
-      const recaptchaToken = await executeRecaptcha("newsletter_blog");
-
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          ...contactContext,
           email: email.trim(),
           requirement: "Blog Newsletter Subscription",
           source: "blog-newsletter",
-          recaptchaToken,
         }),
       });
 
@@ -103,6 +104,7 @@ export default function SubscribeNewsletterSection() {
                     <ArrowRight className="w-6 h-6 sm:w-7 sm:h-7" strokeWidth={2.2} />
                   </button>
                 </div>
+                <FormSpamTrap />
               </form>
             )}
           </div>

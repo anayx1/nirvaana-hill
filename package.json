@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "test:crm": "node --test tests/crm.test.mjs",
+    "crm": "node src/scripts/crm-deliveries.mjs",
     "optimize-images": "node src/scripts/optimize-images.js",
     "optimize-videos": "node src/scripts/optimize-videos.js"
   },

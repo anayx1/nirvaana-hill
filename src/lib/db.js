@@ -3,7 +3,7 @@ import path from "node:path";
 import fs from "node:fs";
 import crypto from "node:crypto";
 
-const DB_DIR = path.join(process.cwd(), "data");
+const DB_DIR = process.env.NIRVAANA_DATA_DIR || path.join(process.cwd(), "data");
 const DB_PATH = path.join(DB_DIR, "nirvaana.db");
 
 let dbInstance = null;
@@ -16,7 +16,12 @@ export function getDb() {
     return dbInstance;
   }
 
-  if (!fs.existsSync(DB_DIR)) {
+  // An externally configured database directory is runtime storage, not a
+  // dependency to bundle. Keep tracing the existing default data directory.
+  const directoryExists = process.env.NIRVAANA_DATA_DIR
+    ? fs.existsSync(/* turbopackIgnore: true */ DB_DIR)
+    : fs.existsSync(path.join(process.cwd(), "data"));
+  if (!directoryExists) {
     fs.mkdirSync(DB_DIR, { recursive: true });
   }
 
@@ -108,6 +113,16 @@ function initTables(db) {
     );
     CREATE INDEX IF NOT EXISTS idx_contacts_status ON contacts(status);
     CREATE INDEX IF NOT EXISTS idx_contacts_created ON contacts(createdAt);
+
+    CREATE TABLE IF NOT EXISTS crm_deliveries (
+      contactId TEXT PRIMARY KEY REFERENCES contacts(id) ON DELETE CASCADE,
+      payload TEXT NOT NULL,
+      status TEXT NOT NULL DEFAULT 'pending',
+      attempts INTEGER NOT NULL DEFAULT 0,
+      reference TEXT,
+      lastError TEXT,
+      updatedAt TEXT NOT NULL
+    );
   `);
 
   // 5. Admin Users & Credentials Table
@@ -886,7 +901,7 @@ export function getContactById(id) {
   return toPlain(db.prepare("SELECT * FROM contacts WHERE id = ?").get(id));
 }
 
-export function createContact(data) {
+export function createContact(data, crmPayload = null) {
   const db = getDb();
   const id = data.id || crypto.randomUUID();
   const now = new Date().toISOString();
@@ -897,20 +912,52 @@ export function createContact(data) {
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
 
-  stmt.run(
-    id,
-    data.name || "Inquiry",
-    data.email || "",
-    data.phone,
-    data.requirement || "Farmland Inquiry",
-    data.message || "",
-    data.status || "NEW",
-    data.source || "website",
-    now,
-    now
-  );
+  db.exec("BEGIN IMMEDIATE");
+  try {
+    stmt.run(
+      id,
+      data.name || "Inquiry",
+      data.email || "",
+      data.phone,
+      data.requirement || "Farmland Inquiry",
+      data.message || "",
+      data.status || "NEW",
+      data.source || "website",
+      now,
+      now
+    );
+    if (crmPayload) {
+      db.prepare(`INSERT INTO crm_deliveries (contactId, payload, updatedAt)
+        VALUES (?, ?, ?)`).run(id, JSON.stringify(crmPayload), now);
+    }
+    db.exec("COMMIT");
+  } catch (error) {
+    db.exec("ROLLBACK");
+    throw error;
+  }
 
   return getContactById(id);
+}
+
+export function getCrmDelivery(contactId) {
+  return toPlain(getDb().prepare("SELECT * FROM crm_deliveries WHERE contactId = ?").get(contactId));
+}
+
+export function claimCrmDelivery(contactId, allowUnknown = false) {
+  // Claim atomically so concurrent operators/requests cannot send the same row.
+  const result = getDb().prepare(`UPDATE crm_deliveries
+    SET status = 'sending', attempts = attempts + 1, updatedAt = ?
+    WHERE contactId = ? AND (status IN ('pending', 'failed') OR
+      (? = 1 AND (status = 'unknown' OR (status = 'sending' AND updatedAt < ?))))
+  `).run(new Date().toISOString(), contactId, allowUnknown ? 1 : 0,
+    new Date(Date.now() - 60000).toISOString());
+  return result.changes > 0;
+}
+
+export function finishCrmDelivery(contactId, result) {
+  getDb().prepare(`UPDATE crm_deliveries
+    SET status = ?, reference = ?, lastError = ?, updatedAt = ? WHERE contactId = ?
+  `).run(result.status, result.reference || null, result.error || null, new Date().toISOString(), contactId);
 }
 
 export function updateContactStatus(id, status) {

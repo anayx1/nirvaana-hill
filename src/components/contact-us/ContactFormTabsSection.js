@@ -5,7 +5,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Info, Check, ChevronDown } from "lucide-react";
 import FarmIcon from "@/components/icons/FarmIcon";
-import { executeRecaptcha } from "@/lib/recaptcha";
+import { getContactContext } from "@/lib/contact-context";
+import FormSpamTrap from "@/components/ui/FormSpamTrap";
 import { openVisitModal } from "@/components/modals/VisitConfirmationModal";
 
 export const INTEREST_OPTIONS = [
@@ -79,18 +80,19 @@ export default function ContactFormTabsSection() {
 
   const handleEnquirySubmit = async (e) => {
     e.preventDefault();
+    const contactContext = getContactContext(e.currentTarget);
     if (!enquiryData.mobileNumber.trim()) return;
 
     setLoading(true);
     setErrorMessage("");
 
     try {
-      const recaptchaToken = await executeRecaptcha("contact_enquiry");
 
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          ...contactContext,
           name: enquiryData.fullName,
           email: enquiryData.emailAddress,
           phone: enquiryData.mobileNumber,
@@ -98,7 +100,6 @@ export default function ContactFormTabsSection() {
           city: enquiryData.city,
           message: enquiryData.message,
           source: "contact-page-enquiry",
-          recaptchaToken,
         }),
       });
 
@@ -126,18 +127,19 @@ export default function ContactFormTabsSection() {
 
   const handlePartnerSubmit = async (e) => {
     e.preventDefault();
+    const contactContext = getContactContext(e.currentTarget);
     if (!partnerData.mobileNumber.trim()) return;
 
     setLoading(true);
     setErrorMessage("");
 
     try {
-      const recaptchaToken = await executeRecaptcha("partner_application");
 
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          ...contactContext,
           name: partnerData.fullName,
           email: partnerData.emailAddress,
           phone: partnerData.mobileNumber,
@@ -145,7 +147,6 @@ export default function ContactFormTabsSection() {
           city: partnerData.city,
           requirement: "Channel Partner Program Application",
           source: "contact-page-channel-partner",
-          recaptchaToken,
         }),
       });
 
@@ -420,6 +421,7 @@ export default function ContactFormTabsSection() {
                       Our team typically responds during working hours.
                     </span>
                   </div>
+                  <FormSpamTrap />
                 </form>
               )}
             </motion.div>
@@ -608,6 +610,7 @@ export default function ContactFormTabsSection() {
                       {loading ? "Submitting Application..." : "Become A Channel Partner"}
                     </button>
                   </div>
+                  <FormSpamTrap />
                 </form>
               )}
             </motion.div>

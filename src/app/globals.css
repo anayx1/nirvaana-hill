@@ -353,13 +353,3 @@
 .animate-marquee:hover {
   animation-play-state: paused;
 }
-
-/* ============================================
-   GOOGLE RECAPTCHA V3 BADGE
-   ============================================ */
-
-.grecaptcha-badge {
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}

@@ -1,5 +1,8 @@
 "use client";
 
+import { getContactContext } from "@/lib/contact-context";
+import FormSpamTrap from "@/components/ui/FormSpamTrap";
+
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -7,7 +10,6 @@ import { usePathname } from "next/navigation";
 import { ArrowRight, ChevronUp } from "lucide-react";
 import BrochureSection from "@/components/sections/BrochureSection";
 import SiteVisitSection from "@/components/sections/SiteVisitSection";
-import { executeRecaptcha } from "@/lib/recaptcha";
 
 // ========================================================
 // FOOTER CONFIGURATION DATA ARRAYS
@@ -322,19 +324,19 @@ export default function Footer() {
 
     const handleSubscribe = async (e) => {
         e.preventDefault();
+        const contactContext = getContactContext(e.currentTarget);
         if (!newsletterEmail || !newsletterEmail.includes("@")) return;
         setLoadingNewsletter(true);
         try {
-            const recaptchaToken = await executeRecaptcha("newsletter_footer");
 
             const res = await fetch("/api/contact", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
+                    ...contactContext,
                     email: newsletterEmail.trim(),
                     requirement: "Newsletter Subscription",
                     source: "footer-newsletter",
-                    recaptchaToken,
                 }),
             });
             if (res.ok) {
@@ -465,6 +467,7 @@ export default function Footer() {
                                     <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
                                 )}
                             </button>
+                            <FormSpamTrap />
                         </form>
                     </div>
 

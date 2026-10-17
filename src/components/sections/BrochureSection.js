@@ -5,7 +5,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Compass, Wallet, Camera, FileText, ChevronDown, Check, Info } from "lucide-react";
 import FarmIcon from "@/components/icons/FarmIcon";
-import { executeRecaptcha } from "@/lib/recaptcha";
+import { getContactContext } from "@/lib/contact-context";
+import FormSpamTrap from "@/components/ui/FormSpamTrap";
 
 const BROCHURE_FEATURES = [
   {
@@ -74,18 +75,19 @@ export default function BrochureSection() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const contactContext = getContactContext(e.currentTarget);
     if (!formData.mobile.trim()) return;
 
     setIsLoading(true);
     setErrorMessage("");
 
     try {
-      const recaptchaToken = await executeRecaptcha("brochure_download");
 
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          ...contactContext,
           name: formData.fullName,
           phone: formData.mobile,
           email: formData.email,
@@ -94,7 +96,6 @@ export default function BrochureSection() {
           purpose: formData.purpose !== "Select purpose" ? formData.purpose : "",
           requirement: "Phase 2 Brochure Download Request",
           source: "brochure-section",
-          recaptchaToken,
         }),
       });
 
@@ -387,7 +388,8 @@ export default function BrochureSection() {
                       ? "Brochure Sent Successfully!"
                       : "Download Brochure Now"}
                 </button>
-              </form>
+                <FormSpamTrap />
+                </form>
             </div>
 
             {/* Brochure Mockup Image & Trust Note (Mobile view display below form) */}
