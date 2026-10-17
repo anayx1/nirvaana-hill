@@ -364,7 +364,7 @@ export default function LocationConnectivityTabsSection() {
           <div className="flex flex-row items-center justify-center gap-3.5 md:gap-8 pt-2">
             {/* Book A Site Visit Button */}
             <a
-              href="#site-visit"
+              href="/contact-us#enquiry"
               className="inline-flex items-center justify-center bg-[#AFEB63] text-[#1F2922] font-sans font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] hover:bg-[#9de04e] active:scale-[0.98] transition-all duration-300 shadow-xs whitespace-nowrap shrink-0"
             >
               Book A Site Visit
@@ -372,7 +372,9 @@ export default function LocationConnectivityTabsSection() {
 
             {/* Explore The Route Link with Underline Accent */}
             <a
-              href="#location-overview"
+              href="https://youtu.be/x5cTaqPR_HE?si=VAVZ-d0kUXllkdpM"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group inline-flex flex-col items-start gap-0.5 md:gap-1 text-[#1F2922] hover:text-[#1F2922] transition-colors duration-300 cursor-pointer whitespace-nowrap shrink-0"
             >
               <div className="flex items-center gap-1.5 md:gap-2 font-sans text-[12px] md:text-[16px] font-normal tracking-tight">

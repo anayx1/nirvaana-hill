@@ -6,7 +6,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-const BG_IMAGE_SRC = "/landing/site-visit-bg.webp";
+const BG_IMAGE_SRC = "/pop-up/bg.webp";
 
 const STATS_DATA = [
   {

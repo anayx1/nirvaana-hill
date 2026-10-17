@@ -35,39 +35,13 @@ export default function VisitConfirmationModal() {
     }
   }, [pathname, router]);
 
-  // Listen for custom event & global clicks on Book Visit buttons
+  // Listen for custom event dispatched on successful enquiry form submission
   useEffect(() => {
     const onOpenEvent = () => handleOpen();
     window.addEventListener("open-visit-modal", onOpenEvent);
 
-    const handleDocumentClick = (e) => {
-      // Check if clicked element or parent has data-book-visit, href="#book-visit", href="#site-visit", etc.
-      const target = e.target.closest("a, button");
-      if (!target) return;
-
-      const href = target.getAttribute("href");
-      const isBookVisitBtn =
-        target.dataset.bookVisit === "true" ||
-        target.getAttribute("data-book-visit") === "true" ||
-        href === "#book-visit" ||
-        href === "#site-visit" ||
-        target.textContent?.trim() === "Book A Site Visit" ||
-        target.textContent?.trim() === "Book a Visit" ||
-        target.textContent?.trim() === "Experience A Weekend Visit";
-
-      if (isBookVisitBtn) {
-        // Prevent default hash scroll if we are showing the popup
-        e.preventDefault();
-        e.stopPropagation();
-        handleOpen();
-      }
-    };
-
-    document.addEventListener("click", handleDocumentClick, true);
-
     return () => {
       window.removeEventListener("open-visit-modal", onOpenEvent);
-      document.removeEventListener("click", handleDocumentClick, true);
     };
   }, [handleOpen]);
 

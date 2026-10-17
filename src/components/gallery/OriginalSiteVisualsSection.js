@@ -209,12 +209,14 @@ export default function OriginalSiteVisualsSection({
           transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="mt-8 sm:mt-10 flex justify-center"
         >
-          <Link
-            href="/nirvaana-hills#features-amenities"
+          <a
+            href="https://youtu.be/HwMWaD_C-As?si=cmQyOLgcljjfmUBY"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center bg-[#AFEB63] text-[#1F2922] font-sans font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] hover:bg-[#9de04e] active:scale-[0.98] transition-all duration-300 shadow-xs"
           >
             Discover Nirvaana
-          </Link>
+          </a>
         </motion.div>
 
       </div>

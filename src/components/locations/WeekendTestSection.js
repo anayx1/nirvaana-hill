@@ -54,7 +54,7 @@ export default function WeekendTestSection() {
           {/* CTA Button */}
           <div className="pt-3">
             <a
-              href="#site-visit"
+              href="/contact-us#enquiry"
               className="inline-flex items-center justify-center bg-[#AFEB63] text-[#1F2922] font-sans font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] hover:bg-[#9de04e] active:scale-[0.98] transition-all duration-300 shadow-xs"
             >
               Experience A Weekend Visit

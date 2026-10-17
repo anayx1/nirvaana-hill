@@ -157,7 +157,7 @@ export default function PhasesOfNirvaanaSection() {
                 href="/faqs#phases"
                 className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] transition-all duration-300 shadow-xs inline-flex items-center justify-center active:scale-95"
               >
-                Find Your Answers
+                Find Phase Answers
               </Link>
             </div>
           </motion.div>

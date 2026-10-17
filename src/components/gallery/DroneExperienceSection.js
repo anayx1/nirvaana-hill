@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import FarmIcon from "@/components/icons/FarmIcon";
 
-const YOUTUBE_URL = "https://youtu.be/oEEhBYWmNrU?si=o9jdABNYPEz_wQW8";
+const YOUTUBE_URL = "https://youtu.be/oEEhBYWmNrU?si=s_NNAL5qku18MmEL";
 const VIDEO_SRC = "/gallery/drone.mp4";
 
 export default function DroneExperienceSection() {

@@ -179,7 +179,7 @@ export const CTA_ACTIONS = [
   {
     id: "book-visit",
     label: "Book A Site Visit",
-    href: "/contact-us",
+    href: "/contact-us#enquiry",
     type: "button",
   },
   {

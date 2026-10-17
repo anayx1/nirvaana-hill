@@ -143,6 +143,32 @@ export default function PricingMatrixSection() {
             Every farm comes with a dedicated boundary plantation for a private
             green setting. Limited Phase 2 availability
           </p>
+
+          {/* Discuss My Investment on WhatsApp CTA */}
+          <div className="pt-3 sm:pt-4">
+            <a
+              href="https://wa.me/919589585050?text=Hi%2C%20I%20would%20like%20to%20discuss%20my%20investment%20in%20Nirvaana%20Hills"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] transition-all duration-300 shadow-xs inline-flex items-center justify-center gap-2 active:scale-95 cursor-pointer"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="shrink-0"
+              >
+                <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+                <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
+              </svg>
+              <span>Discuss My Investment On WhatsApp</span>
+            </a>
+          </div>
         </motion.div>
       </div>
     </section>

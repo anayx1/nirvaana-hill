@@ -242,21 +242,6 @@ export default function VisitNirvaanaSection() {
                 Map Location
               </Link>
             </div>
-
-            {/* Nirvaana Hills Interactive Google Map */}
-            <div className="relative w-full aspect-[4/3] xs:aspect-[4/3.2] sm:aspect-[16/10] rounded-[20px] sm:rounded-[24px] overflow-hidden bg-[#D3DEC6] shadow-sm mt-3 ring-1 ring-black/5">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.508893632435!2d76.0706328!3d28.403897599999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d45898c3ccf2339%3A0xbcdd42083f79e894!2sNirvaana%20Hills%20by%20SEAD%20Realty!5e0!3m2!1sen!2sin!4v1790501903936!5m2!1sen!2sin"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="strict-origin-when-cross-origin"
-                title="Nirvaana Hills by SEAD Realty Google Maps"
-                className="w-full h-full"
-              />
-            </div>
           </motion.div>
 
           {/* ---------------- CARD 2: SALES OFFICE & WORKING HOURS ---------------- */}
@@ -323,21 +308,6 @@ export default function VisitNirvaanaSection() {
               >
                 Get Directions To Our Office
               </Link>
-            </div>
-
-            {/* SEAD Realty Interactive Google Map */}
-            <div className="relative w-full aspect-[4/3] xs:aspect-[4/3.2] sm:aspect-[16/10] rounded-[20px] sm:rounded-[24px] overflow-hidden bg-[#D3DEC6] shadow-sm mt-3 ring-1 ring-black/5">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d33385.22319188453!2d77.05148373641299!3d28.413543965116855!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d213e5f592b57%3A0x3393d6823a4c4203!2sSEAD%20Realty!5e0!3m2!1sen!2sin!4v1790502054317!5m2!1sen!2sin"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="strict-origin-when-cross-origin"
-                title="SEAD Realty Sales Office Google Maps"
-                className="w-full h-full"
-              />
             </div>
 
             {/* Sales Office Lobby Photo */}

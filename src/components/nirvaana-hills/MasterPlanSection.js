@@ -50,12 +50,14 @@ export default function MasterPlanSection() {
 
           {/* CTA Button */}
           <div className="pt-2 sm:pt-3">
-            <Link
-              href="#master-plan-map"
+            <a
+              href="https://youtu.be/mj-I_o3qlig?si=-WP9IZ0GDMgn1yvs"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-primary hover:bg-[#9EE837] text-[#1F2922] font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] transition-all duration-300 shadow-xs inline-flex items-center justify-center active:scale-95"
             >
               Explore The Nirvaana Layout
-            </Link>
+            </a>
           </div>
         </motion.div>
 
@@ -68,15 +70,15 @@ export default function MasterPlanSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="relative w-full aspect-[4/3] xs:aspect-[16/11] sm:aspect-[16/10] md:aspect-[16/9] lg:h-[620px] rounded-xl overflow-hidden bg-[#FAF9F5] border border-black/5 mt-8 sm:mt-10 md:mt-12"
+          className="relative w-full aspect-[512/361] rounded-xl overflow-hidden bg-[#FAF9F5] border border-black/5 mt-8 sm:mt-10 md:mt-12"
         >
           <Image
-            src="/nirvaana-hills/masterplan-map.avif"
+            src="/nirvaana-hills/master-plan-img.jpg"
             alt="Nirvaana Hills Master Plan - A Community Designed As One"
             fill
             unoptimized
             priority
-            className="object-contain sm:object-cover transition-transform duration-700 hover:scale-[1.02]"
+            className="object-contain transition-transform duration-700 hover:scale-[1.02]"
             sizes="(max-width: 1280px) 100vw, 1200px"
           />
         </motion.div>

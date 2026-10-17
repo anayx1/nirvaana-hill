@@ -89,7 +89,7 @@ export default function IntroductionSection() {
           {/* Action CTAs */}
           <div className="flex flex-wrap items-center gap-5 pt-2">
             <Link
-              href="#book-visit"
+              href="/contact-us#enquiry"
               className="inline-flex items-center justify-center bg-primary text-[#19241B] font-normal text-[12px] md:text-[16px] px-6 py-2.5 md:px-8 md:py-3.5 rounded-[14px] md:rounded-[16px] hover:brightness-95 transition-all shadow-sm active:scale-[0.98]"
             >
               Book A Site Visit
