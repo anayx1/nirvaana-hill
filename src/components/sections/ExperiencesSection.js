@@ -57,7 +57,7 @@ export const SLIDE_CARDS = [
         number: "1",
         title: "Clubhouse",
         category: "Gather & Belong",
-        image: "/homepage/slide2/2.webp",
+        image: "/clubhouse.jpg",
       },
       {
         id: "restaurant",
@@ -97,7 +97,7 @@ export const SLIDE_CARDS = [
       {
         id: "golf-range",
         number: "1",
-        title: "Golf Range",
+        title: "Golf",
         category: "Play & Recreation",
         image: "/homepage/slide3/2.webp",
       },

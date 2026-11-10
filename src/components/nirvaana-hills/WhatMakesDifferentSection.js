@@ -66,7 +66,7 @@ export default function WhatMakesDifferentSection() {
       className="w-full bg-[#FAF9F5] py-12 sm:py-14 md:py-16 lg:py-20 overflow-visible select-none"
     >
       <div className="container max-w-[1200px] px-4 sm:px-6">
-        
+
         {/* ======================================================== */}
         {/* SECTION HEADER                                          */}
         {/* ======================================================== */}
@@ -113,9 +113,8 @@ export default function WhatMakesDifferentSection() {
               <div
                 key={card.id}
                 style={{ zIndex: index + 1 }}
-                className={`sticky top-20 sm:top-24 md:top-28 w-full ${
-                  !isLast ? "mb-8 sm:mb-12 md:mb-16" : "mb-0"
-                }`}
+                className={`sticky top-20 sm:top-24 md:top-28 w-full ${!isLast ? "mb-8 sm:mb-12 md:mb-16" : "mb-0"
+                  }`}
               >
                 <div className="w-full h-[275px] xs:h-[300px] sm:h-[350px] md:h-[390px] rounded-[22px] sm:rounded-[28px] bg-[#E5E8D8] p-4 sm:p-6 md:p-7 border border-black/5 shadow-none flex flex-col justify-between">
                   {/* Card Title with uniform height to prevent top/bottom shifts */}

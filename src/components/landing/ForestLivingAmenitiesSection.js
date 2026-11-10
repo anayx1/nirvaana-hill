@@ -16,7 +16,7 @@ const AMENITIES = [
   {
     id: "golf",
     icon: "/landing/golf.webp",
-    title: "Golf Range",
+    title: "Golf",
     description:
       "Exclusive in-community golf range surrounded by natural forest. Rare in any NCR development.",
   },

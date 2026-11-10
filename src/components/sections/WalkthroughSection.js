@@ -54,7 +54,7 @@ const ORBIT_ITEMS = [
   },
   {
     id: "orbit-img-trail",
-    src: "/homepage/orbit-section/2.webp",
+    src: "/clubhouse.jpg",
     alt: "Green Pathway and Jogging Trails",
     // Mid-Right: ~3:30 o'clock (Edge position)
     x: 90.0,
