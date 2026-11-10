@@ -32,14 +32,36 @@ export async function generateMetadata({ params }) {
     };
   }
 
+  const title = blog.metaTitle || `${blog.title} | Nirvaana Hills`;
+  const description = blog.metaDescription || blog.excerpt || blog.title;
+  const canonicalUrl = `https://www.nirvaanahills.com/blogs/${slug}`;
+  const ogImages = blog.featuredImage
+    ? [{ url: blog.featuredImage, alt: blog.title }]
+    : [{ url: "/nirvaana-hills/hero.webp", alt: "Nirvaana Hills" }];
+
   return {
-    title: blog.metaTitle || `${blog.title} | Nirvaana Hills`,
-    description: blog.metaDescription || blog.excerpt || blog.title,
+    title,
+    description,
     keywords: blog.metaKeywords || "",
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
-      title: blog.metaTitle || blog.title,
-      description: blog.metaDescription || blog.excerpt,
-      images: blog.featuredImage ? [{ url: blog.featuredImage }] : [],
+      type: "article",
+      locale: "en_IN",
+      url: canonicalUrl,
+      siteName: "Nirvaana Hills",
+      title,
+      description,
+      publishedTime: blog.publishedAt || blog.createdAt,
+      authors: [blog.author || "Nirvaana Hills Team"],
+      images: ogImages,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ogImages.map((img) => img.url),
     },
   };
 }

@@ -13,6 +13,33 @@ export const metadata = {
   title: "Gallery & Life at Nirvaana | Nirvaana Hills",
   description:
     "Explore original site visuals, development progress, natural landscape, and living community moments at Nirvaana Hills.",
+  alternates: {
+    canonical: "https://www.nirvaanahills.com/gallery",
+  },
+  openGraph: {
+    title: "Gallery & Life at Nirvaana | Nirvaana Hills",
+    description:
+      "Explore original site visuals, development progress, natural landscape, and living community moments at Nirvaana Hills.",
+    url: "https://www.nirvaanahills.com/gallery",
+    siteName: "Nirvaana Hills",
+    images: [
+      {
+        url: "/gallery/hero.avif",
+        width: 1200,
+        height: 630,
+        alt: "Nirvaana Hills Gallery & Landscape",
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Gallery & Life at Nirvaana | Nirvaana Hills",
+    description:
+      "Explore original site visuals, development progress, natural landscape, and living community moments at Nirvaana Hills.",
+    images: ["/gallery/hero.avif"],
+  },
 };
 
 export const dynamic = "force-dynamic";

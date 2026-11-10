@@ -14,6 +14,39 @@ import FaqSection from "@/components/sections/FaqSection";
 import SocialHubSection from "@/components/sections/SocialHubSection";
 import { getOrFetchInstagramPosts } from "@/lib/instagram";
 
+export const metadata = {
+  title: "Nirvaana Hills | 200-Acre Managed Farmland Community Near Delhi & Gurgaon",
+  description:
+    "Experience natural serenity and long-term ownership nestled in the Aravallis. Premium managed farmland plots 2 hours from Delhi and Gurgaon with 100% clear title.",
+  alternates: {
+    canonical: "https://www.nirvaanahills.com",
+  },
+  openGraph: {
+    title: "Nirvaana Hills | 200-Acre Managed Farmland Community Near Delhi & Gurgaon",
+    description:
+      "Experience natural serenity and long-term ownership nestled in the Aravallis. Premium managed farmland plots 2 hours from Delhi and Gurgaon with 100% clear title.",
+    url: "https://www.nirvaanahills.com",
+    siteName: "Nirvaana Hills",
+    images: [
+      {
+        url: "/nirvaana-hills/hero.webp",
+        width: 1200,
+        height: 630,
+        alt: "Nirvaana Hills Managed Farmlands",
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nirvaana Hills | 200-Acre Managed Farmland Community",
+    description:
+      "Experience natural serenity and long-term ownership nestled in the Aravallis. Premium managed farmland plots 2 hours from Delhi and Gurgaon.",
+    images: ["/nirvaana-hills/hero.webp"],
+  },
+};
+
 export default async function Page() {
   const instagramPosts = await getOrFetchInstagramPosts();
 

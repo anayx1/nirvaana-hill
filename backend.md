@@ -28,7 +28,7 @@ Kleanflix leverages a modern **Next.js App Router (v16+)** full-stack architectu
 │  • src/lib/auth.js        (PBKDF2 HMAC-SHA256 sessions, OTP auth)      │
 │  • src/lib/security.js    (Sliding window rate limit, CORS, IP detect) │
 │  • src/lib/email.js       (Nodemailer SMTP transporter)                │
-│  • src/lib/recaptcha.js   (Google reCAPTCHA verification)              │
+│  • src/lib/security.js    (Rate limiting and spam protection)              │
 │  • src/app/api/upload     (Sharp WebP optimization engine)             │
 └──────────────────────────────────┬─────────────────────────────────────┘
                                    │
@@ -53,7 +53,6 @@ Kleanflix leverages a modern **Next.js App Router (v16+)** full-stack architectu
 | **Nodemailer** | `^10.0.10` | SMTP email transport for notifications, inquiries, and password reset OTPs |
 | **Node.js `crypto`** | Built-in | PBKDF2 password hashing (SHA-512), salt generation, and HMAC token signing |
 | **Prisma** | `^6.4.1` | Initial schema and model definitions (`prisma/schema.prisma`) |
-| **Google reCAPTCHA** | REST API | Spam and bot protection for public submission forms |
 
 ---
 
@@ -171,8 +170,9 @@ CREATE TABLE IF NOT EXISTS admin_users (
 - Restricts API access to verified domains (`kleanfix.com`, `kleanfix.in`, `kleanfix.vercel.app`).
 - Generates compliant CORS headers and handles preflight `OPTIONS` requests via `handleCorsPreflight(request)`.
 
-### 4.6 Bot Defense (`src/lib/recaptcha.js`)
-- Validates Google reCAPTCHA tokens on public contact form submissions by querying `https://www.google.com/recaptcha/api/siteverify`.
+### 4.6 Bot Defense
+- All public forms use a hidden `website` spam trap. Filled traps are discarded before saving or sending notifications.
+- `/api/contact` retains server-side input validation and a limit of 20 submissions per IP per minute. Google reCAPTCHA has been removed.
 
 ---
 
@@ -251,7 +251,7 @@ The template generator in `src/lib/emailTemplates.js` features responsive, inlin
 ### 7.6 Inquiries, Leads & Media
 | Route | Method | Access | Description |
 | :--- | :--- | :--- | :--- |
-| `/api/contact` | `POST` | Public (Rate-limited, reCAPTCHA) | Processes requirement inquiries and sends email alerts |
+| `/api/contact` | `POST` | Public (Rate-limited, spam trap) | Processes requirement inquiries and sends email alerts |
 | `/api/newsletter` | `POST` | Public (Rate-limited) | Processes newsletter signups and sends alerts |
 | `/api/upload` | `POST` | Admin | Converts uploaded images to `.webp` and saves to `/public/uploads` |
 | `/api/instagram/sync` | `GET`, `POST` | Public / Admin | Syncs latest Instagram post images from Apify and caches in SQLite |
@@ -292,8 +292,6 @@ export default async function BlogsPage() {
 | `SMTP_PASS` | SMTP app password or credential | `xxxx xxxx xxxx xxxx` |
 | `SMTP_TO` | Target recipient(s) for leads and notifications | `Skg@kleanfix.com` |
 | `SMTP_FROM_NAME` | Sender display name in email clients | `Kleanfix Website` |
-| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | Public Google reCAPTCHA site key | `6Ldk...` |
-| `RECAPTCHA_SECRET_KEY` | Secret Google reCAPTCHA server verification key | `6Ldk...` |
 | `ADMIN_JWT_SECRET` | *(Optional)* Secret string for HMAC session token signing | Custom string fallback |
 | `APIFY_API_TOKEN` | Personal API token for Apify Actor scraping | `apify_api_...` |
 | `INSTAGRAM_PROFILE_URL` | Instagram target profile URL | `https://www.instagram.com/nirvaanahills/` |

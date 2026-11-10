@@ -15,6 +15,33 @@ export const metadata = {
   title: "About Nirvaana Hills | 200-Acre Nature-Led Community",
   description:
     "Nirvaana Hills is a premium 200-acre farmland community near Delhi & Gurgaon, built around family, wellness, and long-term ownership.",
+  alternates: {
+    canonical: "https://www.nirvaanahills.com/nirvaana-hills",
+  },
+  openGraph: {
+    title: "About Nirvaana Hills | 200-Acre Nature-Led Farmland Community",
+    description:
+      "Nirvaana Hills is a premium 200-acre farmland community near Delhi & Gurgaon, built around family, wellness, and long-term ownership.",
+    url: "https://www.nirvaanahills.com/nirvaana-hills",
+    siteName: "Nirvaana Hills",
+    images: [
+      {
+        url: "/nirvaana-hills/hero.webp",
+        width: 1200,
+        height: 630,
+        alt: "About Nirvaana Hills Community",
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Nirvaana Hills | 200-Acre Nature-Led Community",
+    description:
+      "Nirvaana Hills is a premium 200-acre farmland community near Delhi & Gurgaon, built around family, wellness, and long-term ownership.",
+    images: ["/nirvaana-hills/hero.webp"],
+  },
 };
 
 export default function NirvaanaHillsPage() {
