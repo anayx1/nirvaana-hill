@@ -19,7 +19,7 @@ export const STORY_TESTIMONIALS = [
   {
     id: "story-2",
     name: "Dheeraj Seth and Monica Seth",
-    location: "gurgaon",
+    location: "Gurgaon",
     quote: '"Professional experience from start to finish."',
     video: "/homepage/testimonials/testimonial-2.mp4",
   },
