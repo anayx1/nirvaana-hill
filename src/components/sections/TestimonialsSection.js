@@ -11,28 +11,28 @@ import FarmIcon from "@/components/icons/FarmIcon";
 export const STORY_TESTIMONIALS = [
   {
     id: "story-1",
-    name: "Amit Sharma",
+    name: "Arpit Mittal",
     location: "Gurugram",
     quote: '"A beautiful blend of nature and thoughtful planning."',
     video: "/homepage/testimonials/testimonial-1.mp4",
   },
   {
     id: "story-2",
-    name: "Sandeep Verma",
+    name: "Dheeraj Seth and Monica Seth",
     location: "Noida",
     quote: '"Professional experience from start to finish."',
     video: "/homepage/testimonials/testimonial-2.mp4",
   },
   {
     id: "story-3",
-    name: "Karan Malhotra",
+    name: "Asish Gupta and Preeti Gupta",
     location: "Faridabad",
     quote: '"A project that truly stands out for its vision."',
     video: "/homepage/testimonials/testimonial-3.mp4",
   },
   {
     id: "story-4",
-    name: "Vikram Singhania",
+    name: "Amit Dewan",
     location: "Delhi NCR",
     quote: '"The most transparent and well-managed farmland community."',
     video: "/homepage/testimonials/testimonial-4.mp4",
@@ -115,7 +115,7 @@ export default function TestimonialsSection() {
       if (videoRef.current && !isMutedRef.current) {
         videoRef.current.muted = false;
         if (isInView) {
-          videoRef.current.play().catch(() => {});
+          videoRef.current.play().catch(() => { });
         }
       }
     };
@@ -408,8 +408,8 @@ export default function TestimonialsSection() {
                   onClick={() => setActiveReviewIndex(idx)}
                   aria-label={`Go to testimonial ${idx + 1}`}
                   className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${idx === activeReviewIndex
-                      ? "bg-[#9EE837] scale-110"
-                      : "bg-[#D5E4BC] hover:bg-[#BCCE9E]"
+                    ? "bg-[#9EE837] scale-110"
+                    : "bg-[#D5E4BC] hover:bg-[#BCCE9E]"
                     }`}
                 />
               ))}
